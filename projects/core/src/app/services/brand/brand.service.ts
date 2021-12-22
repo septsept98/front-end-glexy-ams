@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Brand } from '../../model/brand';
+import { InsertResDto } from '../../dto/all-respons/insert-res-dto';
+import { UpdateResDto } from '../../dto/all-respons/update-res-dto';
+import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
+import { Observable } from 'rxjs';
+import { roots } from '../../constance/root';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BrandService {
+
+  constructor(private http : HttpClient) { }
+
+  getAll() : Observable<Brand> | undefined {
+    return this.http.get<Brand>(`${roots}brands/`)??""
+  }
+  insert(data : Brand) : Observable<InsertResDto> | undefined {
+    return this.http.post<InsertResDto>(`${roots}brands/`, data)??""
+  }
+  update(data : Brand): Observable<UpdateResDto> | undefined {
+    return this.http.put<UpdateResDto>(`${roots}brands/`, data)??""
+  }
+  delete(id : string) : Observable<DeleteResDto> | undefined{
+    return this.http.delete<DeleteResDto>(`${roots}brands/${id}`)??""
+  }
+}
