@@ -5,7 +5,7 @@ import { UpdateResDto } from '../../dto/all-respons/update-res-dto';
 import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
 import { Observable } from 'rxjs';
 import { StatusTransaction } from '../../model/status-transaction';
-import { roots } from '../../constance/root';
+import { baseUrl } from '../../constance/root';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,23 @@ export class StatusTransactionService {
 
   constructor(private http : HttpClient) { }
 
-  getAll() : Observable<StatusTransaction> | undefined {
-    return this.http.get<StatusTransaction>(`${roots}status-transactions/`)??""
+  getAll() : Observable<StatusTransaction[]> | undefined {
+    return this.http.get<StatusTransaction[]>(`${baseUrl}status-transactions/`)??""
   }
+
   insert(data : StatusTransaction) : Observable<InsertResDto> | undefined {
-    return this.http.post<InsertResDto>(`${roots}status-transactions/`, data)??""
+    return this.http.post<InsertResDto>(`${baseUrl}status-transactions/`, data)??""
   }
+
   update(data : StatusTransaction): Observable<UpdateResDto> | undefined {
-    return this.http.put<UpdateResDto>(`${roots}status-transactions/`, data)??""
+    return this.http.put<UpdateResDto>(`${baseUrl}status-transactions/`, data)??""
   }
-  delete(id : string) : Observable<DeleteResDto> | undefined{
-    return this.http.delete<DeleteResDto>(`${roots}status-transactions/${id}`)??""
+
+  getById(id : string) : Observable<StatusTransaction> | undefined {
+    return this.http.get<StatusTransaction>(`${baseUrl}status-transactions/${id}`)??""
+  }
+
+  deleteById(id : string) : Observable<DeleteResDto> | undefined{
+    return this.http.delete<DeleteResDto>(`${baseUrl}status-transactions/${id}`)??""
   }
 }

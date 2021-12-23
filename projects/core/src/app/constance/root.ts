@@ -1,2 +1,2 @@
-export const roots = 'http://localhost:1234/'
+export const baseUrl = 'http://localhost:1234/'
 
