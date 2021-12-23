@@ -12,6 +12,11 @@ const routes: Routes = [
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./roles/roles.module').then(m => m.RolesModule)
   }
 ];
 
