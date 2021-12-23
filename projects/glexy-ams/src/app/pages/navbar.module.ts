@@ -7,6 +7,7 @@ import { PermissionDetailListComponent } from './permission-detail/permission-de
 import { NotFoundComponent } from './not-found/not-found.component';
 
 
+
 @NgModule({
   declarations: [
     GeneralTemplateComponent,
