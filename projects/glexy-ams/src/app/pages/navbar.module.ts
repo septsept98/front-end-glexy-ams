@@ -11,7 +11,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     GeneralTemplateComponent,
-    PermissionDetailListComponent,
     NotFoundComponent
   ],
   imports: [
