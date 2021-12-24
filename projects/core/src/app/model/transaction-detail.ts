@@ -7,10 +7,10 @@ export class TransactionDetail {
 
 	id! : string;
 	transactionId! : Transactions;
-	durationDate! : Date;
+	durationDate! : string;
 	assetId! : Asset;
 	statusAssetCheckoutId! : StatusAsset;
-	dateCheckin! : Date;
+	dateCheckin! : string;
 	statusEmail! : boolean;
 	statusTrCheckinId! : StatusTransaction;
 	isActive! : boolean;

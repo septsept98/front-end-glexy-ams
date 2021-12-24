@@ -7,7 +7,7 @@ export class Transactions {
 
 	id! : string;
 	codeTransaction! : string;
-	checkOutDate! : Date;
+	checkOutDate! : string;
 	quantity! : number;
 	description! : string;
 	employeeId! : Employee;

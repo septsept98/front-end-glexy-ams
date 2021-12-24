@@ -10,7 +10,7 @@ export class Asset {
 	id! : string;
 	names! : string;
 	code! : string;
-	expiredDate! : Date;
+	expiredDate! : string;
 	assetImg! : File;
 	invoiceId! : Invoice;
 	companyId! : Company;

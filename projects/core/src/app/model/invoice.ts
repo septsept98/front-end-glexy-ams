@@ -4,7 +4,7 @@ export class Invoice {
 
 	id! : string;
 	code! : string;
-	purchaseDate! : Date;
+	purchaseDate! : string;
 	totalPrice! : number;
 	invoiceImg! : File;
 	isActive! : boolean;
