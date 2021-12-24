@@ -5,6 +5,8 @@ ANGOTA KELOMPOK
 2) Febri Ufaira Hasan
 3) Glenn Nazari
 
-- PrimeNG -
+- PrimeNG
+
 -> npm install primeng --save
+
 -> npm install @angular/cdk --save
