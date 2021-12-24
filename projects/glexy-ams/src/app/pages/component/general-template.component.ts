@@ -9,16 +9,29 @@ export class GeneralTemplateComponent implements OnInit {
 
   constructor() { }
 
+  body = document.getElementsByTagName('body')[0]
+
   ngOnInit(): void {
 
   }
 
+  hoverOpen(data: any): void {
+    if (this.body.className.match("sidebar-icon-only")) {
+      data.classList.add('hover-open')
+    }
+  }
+
+  hoverClose(data: any): void {
+    if (this.body.className.match("sidebar-icon-only")) {
+      data.classList.remove('hover-open')
+    }
+  }
+
   iconOnly(): void {
-    const body = document.getElementsByTagName('body')[0];
-    if (body.className.match("sidebar-icon-only")) {
-      body.classList.remove('sidebar-icon-only')
+    if (this.body.className.match("sidebar-icon-only")) {
+      this.body.classList.remove('sidebar-icon-only')
     } else {
-      body.classList.add('sidebar-icon-only')
+      this.body.classList.add('sidebar-icon-only')
     }
   }
 
