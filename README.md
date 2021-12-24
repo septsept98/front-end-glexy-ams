@@ -18,3 +18,6 @@ First install jQuery using npm
 
 Then install select2 using npm
 -> npm i -S select2
+
+Then install ng-select2 using npm
+-> npm i -S ng-select2 --force
