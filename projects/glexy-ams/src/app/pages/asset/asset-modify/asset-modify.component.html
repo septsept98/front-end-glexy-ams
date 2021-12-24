@@ -1,1 +1,83 @@
-<p>asset-modify works!</p>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Asset form</h4>
+        <form class="forms-sample">
+            <div class="row">
+                <div class="col-md-6 grid-margin">
+                    <div class="form-group">
+                        <label for="nameAsset">Name</label>
+                        <input type="text" class="form-control" id="nameAsset" placeholder="Name Asset">
+                    </div>
+                    <div class="form-group">
+                        <label for="typeAsset">Type</label>
+                        <select class="form-control" id="typeAsset">
+                          <option>General</option>
+                          <option>Lisence</option>
+                          <option>Consumable</option>
+                          <option>Component</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <select class="form-control" id="brand">
+                          <option value="SMG">Samsung</option>
+                          <option value="LNV">Lenovo</option>
+                          <option value="GFC">G-Force</option>
+                          <option value="ACR">Acer</option>
+                          <option value="ASS">Asus</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <select class="form-control" id="company">
+                          <option value="LWN">Lawencon</option>
+                          <option value="LNV">Linov</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="qty">Quantity</label>
+                        <input type="number" class="form-control" id="qty" placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Date Expired</label>
+                        <input class="form-control" placeholder="yyyy/MM/dd" />
+                    </div>
+
+                </div>
+                <div class="col-md-6 grid-margin">
+
+                    <div class="form-group">
+                        <label for="codeInvoice">Code Invoice</label>
+                        <input type="text" class="form-control" id="codeInvoice" placeholder="Code Invoice">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label>File Invoice</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <button type="button" class="btn btn-danger btn-icon-text">
+                                <i class="mdi mdi-upload btn-icon-prepend"></i> Upload </button>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Asset Image</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <button type="button" class="btn btn-danger btn-icon-text">
+                                <i class="mdi mdi-upload btn-icon-prepend"></i> Upload </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button class="btn btn-dark">Cancel</button>
+        </form>
+    </div>
+</div>

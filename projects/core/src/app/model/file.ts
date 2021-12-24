@@ -1,7 +1,7 @@
 export class File {
 	
 	id! : string;
-	file! : number[];
+	file! : string;
 	extension! : string;
 	isActive! : boolean;
 	
