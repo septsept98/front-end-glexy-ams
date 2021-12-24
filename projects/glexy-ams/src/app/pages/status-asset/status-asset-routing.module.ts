@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StatusAssetListComponent } from './status-asset-list/status-asset-list.component';
+
 import { StatusAssetModifyComponent } from './status-asset-modify/status-asset-modify.component';
 
 const routes: Routes = [

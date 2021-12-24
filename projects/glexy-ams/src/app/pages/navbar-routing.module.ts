@@ -35,6 +35,7 @@ const routes: Routes = [
     component : GeneralTemplateComponent,
     loadChildren : () => import('./permission-detail/permission-detail.module').then(m => m.PermissionDetailModule)
   },
+
   {  
     path : '',
     component : GeneralTemplateComponent,
@@ -81,6 +82,14 @@ const routes: Routes = [
     loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
   }, 
   {  
+
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
+  },
+  {
+
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./status-transaction/status-transaction.module').then(m => m.StatusTransactionModule)
