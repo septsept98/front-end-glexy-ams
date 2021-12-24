@@ -13,4 +13,8 @@ ANGOTA KELOMPOK
 
 -> npm install @angular/cdk --save
 
--> npm install --save @ng-select/ng-select
+First install jQuery using npm
+-> npm i -S jquery
+
+Then install select2 using npm
+-> npm i -S select2
