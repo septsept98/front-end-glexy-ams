@@ -9,38 +9,53 @@ export class GeneralTemplateComponent implements OnInit {
 
   constructor() { }
 
-  body = document.getElementsByTagName('body')[0]
-
   ngOnInit(): void {
 
   }
 
-  hoverOpen(data: any): void {
-    if (this.body.className.match("sidebar-icon-only")) {
-      data.classList.add('hover-open')
-    }
-  }
-
-  hoverClose(data: any): void {
-    if (this.body.className.match("sidebar-icon-only")) {
-      data.classList.remove('hover-open')
-    }
-  }
-
   iconOnly(): void {
-    if (this.body.className.match("sidebar-icon-only")) {
-      this.body.classList.remove('sidebar-icon-only')
+    const parentDiv = document.getElementById('parent-body')
+    const btnSideBar = document.getElementById('btn-sidebar')
+    if (btnSideBar?.className.match('is-active')) {
+      btnSideBar?.classList.remove('is-active')
     } else {
-      this.body.classList.add('sidebar-icon-only')
+      btnSideBar?.classList.add('is-active')
+    }
+    if (parentDiv?.className.match('closed-sidebar')) {
+      parentDiv?.classList.remove('closed-sidebar')
+    } else {
+      parentDiv?.classList.add('closed-sidebar')
     }
   }
 
-  sidebarActive(): void {
-    const offCanvas = document.getElementById('sidebar')
-    if (offCanvas?.className.match('active')) {
-      offCanvas?.classList.remove('active')
+  closeSidebar(): void {
+    const parentDiv = document.getElementById('parent-body')
+    const btnSideBar = document.getElementById('btn-sidebar-mobile')
+    if (btnSideBar?.className.match('is-active')) {
+      btnSideBar?.classList.remove('is-active')
     } else {
-      offCanvas?.classList.add('active')
+      btnSideBar?.classList.add('is-active')
+    }
+    if (parentDiv?.className.match('sidebar-mobile-open')) {
+      parentDiv?.classList.remove('sidebar-mobile-open')
+    } else {
+      parentDiv?.classList.add('sidebar-mobile-open')
     }
   }
+
+  openMenu(): void {
+    const menu = document.getElementById('menu-mobile')
+    const btnMenuMob = document.getElementById('btn-menu-mobile')
+    if (btnMenuMob?.className.match('active')) {
+      btnMenuMob?.classList.remove('active')
+    } else {
+      btnMenuMob?.classList.add('active')
+    }
+    if (menu?.className.match('header-mobile-open')) {
+      menu?.classList.remove('header-mobile-open')
+    } else {
+      menu?.classList.add('header-mobile-open')
+    }
+  }
+
 }

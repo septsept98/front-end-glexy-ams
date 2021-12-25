@@ -1,144 +1,160 @@
-<div class="container-scroller">
-    <!-- sidebar start -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="index.html"><img src="../../../assets/images/LogoText.png" alt="logo" /></a>
-            <a class="sidebar-brand brand-logo-mini pl-2" href="index.html"><img src="../../../assets/images/Logo--.png"
-                    alt="logo" /></a>
+<div id="parent-body" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-header header-shadow">
+        <div class="app-header__logo">
+            <div class="logo-src">
+                <img src="../../../assets/images/LogoText.png" alt="">
+            </div>
+            <div class="header__pane ml-auto">
+                <div>
+                    <button (click)="iconOnly()" id="btn-sidebar" type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                        data-class="closed-sidebar" >
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <ul class="nav">
-            <li class="nav-item nav-category">
-                <span class="nav-link">Navigation</span>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link">
-                    <span class="menu-icon">
-                        <i class='bx bx-home'></i>
+        <div class="app-header__mobile-menu">
+            <div>
+                <button id="btn-sidebar-mobile" (click)="closeSidebar()" type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
                     </span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link">
-                    <span class="menu-icon">
-                        <i class='bx bx-home'></i>
+                </button>
+            </div>
+        </div>
+        <div class="app-header__menu">
+            <span>
+                <button id="btn-menu-mobile" (click)="openMenu()" type="button" class="btn-icon btn-icon-only btn bg-transparent btn-sm mobile-toggle-header-nav">
+                    <span class="btn-icon-wrapper">
+                        <i class="fa fa-ellipsis-v fa-w-6"></i>
                     </span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link">
-                    <span class="menu-icon">
-                        <i class='bx bx-home'></i>
-                    </span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link">
-                    <span class="menu-icon">
-                        <i class='bx bx-home'></i>
-                    </span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link">
-                    <span class="menu-icon">
-                        <i class='bx bx-home'></i>
-                    </span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                    aria-controls="ui-basic">
-                    <span class="menu-icon">
-                        <i class='bx bx-food-menu'></i>
-                    </span>
-                    <span class="menu-title">Basic UI Elements</span>
-                    <i class='menu-arrow bx bxs-chevron-down'></i>
-                </a>
-                <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                </button> 
+            </span>
+        </div>
+        <div id="menu-mobile" class="app-header__content">
+            <div class="app-header-right">
+                <div class="header-btn-lg pr-0">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="btn-group">
+                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="p-0 btn">
+                                        <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=".">
+                                        <i class="fa fa-angle-down ml-2"></i>
+                                    </a>
+                                    <div tabindex="-1" role="menu" aria-hidden="true"
+                                        class="dropdown-menu dropdown-menu-right">
+                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                        <div tabindex="-1" class="dropdown-divider"></div>
+                                        <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content-left  ml-3 header-user-info">
+                                <div class="widget-heading">
+                                    Alina Mclourd
+                                </div>
+                                <div class="widget-subheading">
+                                    VP People Manager
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-main">
+        <div class="app-sidebar sidebar-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+                            data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>
+            <div class="scrollbar-sidebar">
+                <div class="app-sidebar__inner">
+                    <ul class="vertical-nav-menu">
+                        <li class="app-sidebar__heading">Dashboards</li>
+                        <li>
+                            <a href="index.html" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                Dashboard Example 1
+                            </a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link"
-                                href="pages/ui-features/typography.html">Typography</a></li>
+                        <li class="app-sidebar__heading">UI Components</li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-diamond"></i>
+                                Elements
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="elements-buttons-standard.html">
+                                        <i class="metismenu-icon"></i>
+                                        Buttons
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="elements-dropdowns.html">
+                                        <i class="metismenu-icon">
+                                        </i>Dropdowns
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="elements-icons.html">
+                                        <i class="metismenu-icon">
+                                        </i>Icons
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
-            </li>
-        </ul>
-    </nav>
-    <!-- sidebar end -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- navbar start -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src=""
-                        alt="logo" /></a>
             </div>
-            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" (click)="iconOnly()" >
-                    <span class="bx bx-menu"></span>
-                </button>
-                <ul class="navbar-nav w-100">
-                </ul>
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                            <div class="navbar-profile">
-                                <img class="img-xs rounded-circle" src="" alt="pic">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
-                                <i class='bx bxs-chevron-down d-none d-sm-block'></i>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                            aria-labelledby="profileDropdown">
-                            <h6 class="p-3 mb-0">Profile</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon rounded-circle">
-                                        <i class='bx bx-cog text-glexy-prime'></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Settings</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon rounded-circle">
-                                        <i class='bx bx-log-out text-danger'></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Log out</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas" (click)="sidebarActive()">
-                    <span class='bx bx-align-right'></span>
-                </button>
-            </div>
-        </nav>
-        <!-- navbar end -->
-
-        <div class="main-panel">
-            <div class="content-wrapper">
+        </div>
+        <div class="app-main__outer">
+            <div class="app-main__inner">
                 <router-outlet></router-outlet>
             </div>
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                  <span class="d-block text-center text-sm-left d-sm-inline-block">Copyright © Glexy AMMS 2021</span>
+            <div class="app-wrapper-footer">
+                <div class="app-footer">
+                    <div class="app-footer__inner">
+                        <div class="app-footer-left">
+                            &nbsp; Copyright Glexy 2021
+                        </div>
+                    </div>
                 </div>
-              </footer>
+            </div>
         </div>
     </div>
 </div>
