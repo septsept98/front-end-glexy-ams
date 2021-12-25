@@ -9,6 +9,10 @@ export class GeneralTemplateComponent implements OnInit {
 
   constructor() { }
 
+  dashboard: boolean = true
+  master: boolean = true
+  auth: boolean = true
+
   ngOnInit(): void {
 
   }
