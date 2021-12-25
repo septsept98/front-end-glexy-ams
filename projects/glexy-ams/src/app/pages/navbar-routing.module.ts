@@ -81,8 +81,6 @@ const routes: Routes = [
     component : GeneralTemplateComponent,
     loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
   }, 
-  {  
-
   {
     path : '',
     component : GeneralTemplateComponent,
