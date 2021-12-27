@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 })
 export class StatusAssetListComponent implements OnInit, OnDestroy {
 
-  listStatusAssets: StatusAsset[] = []
+  // listStatusAssets: StatusAsset[] = []
+  listStatusAssets: Asset[] = []
   selectedStatusAssets: StatusAsset[] = []
 
   private unSubs?: Subscription;
@@ -18,14 +19,32 @@ export class StatusAssetListComponent implements OnInit, OnDestroy {
   constructor(private statusAssetService: StatusAssetService) { }
 
   ngOnInit(): void {
-     this.unSubs = this.statusAssetService.getAll()?.subscribe(data => {
-       this.listStatusAssets = data
-       console.log(this.listStatusAssets)
-     })
+    //  this.unSubs = this.statusAssetService.getAll()?.subscribe(data => {
+    //    this.listStatusAssets = data
+    //    console.log(this.listStatusAssets)
+    //  })
+    this.listStatusAssets = [
+      {codeStatusAsset: 'ccc', nameStatusAsset:'s'},
+      {codeStatusAsset: 'aaa', nameStatusAsset:'df'},
+      {codeStatusAsset: 'xxx', nameStatusAsset:'ssd'},
+      {codeStatusAsset: 'ccc', nameStatusAsset:'fass'},
+      {codeStatusAsset: 'vvv', nameStatusAsset:'wee'},
+      {codeStatusAsset: 'ff', nameStatusAsset:'wwe'},
+      {codeStatusAsset: 'dsf', nameStatusAsset:'wwe'},
+      {codeStatusAsset: 'sss', nameStatusAsset:'wwe'},
+      {codeStatusAsset: 'uuy', nameStatusAsset:'wwe'},
+      {codeStatusAsset: 'uyj', nameStatusAsset:'kmm'},
+      {codeStatusAsset: 'kkk', nameStatusAsset:'oiu'},
+      {codeStatusAsset: 'aba', nameStatusAsset:'dds'},
+      {codeStatusAsset: 'acv', nameStatusAsset:'ggdg'}
+    ]
   }
 
   ngOnDestroy(): void {
     this.unSubs?.unsubscribe()
   }
-  
 }
+class Asset {
+  codeStatusAsset!: string
+  nameStatusAsset!: string
+} 
