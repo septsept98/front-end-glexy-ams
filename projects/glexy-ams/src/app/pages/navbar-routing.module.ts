@@ -87,10 +87,14 @@ const routes: Routes = [
     loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
   },
   {
-
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./status-transaction/status-transaction.module').then(m => m.StatusTransactionModule)
+  },
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./transaction/transaction.module').then(m => m.TransactionModule)
   }
   
  

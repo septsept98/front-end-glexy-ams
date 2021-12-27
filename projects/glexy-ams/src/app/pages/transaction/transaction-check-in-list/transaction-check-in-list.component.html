@@ -1,1 +1,78 @@
-<p>transaction-check-in-list works!</p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <div>Status Assets Tables
+                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Transaction Check In</h2>
+                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
+                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="d-flex p-ai-center justify-content-end">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="codeStatusAsset">Code Trx <p-sortIcon field="codeStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusAsset">Assign Type<p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusAsset">Assign To<p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusAsset">Date Check Out<p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                        <tr>
+                            <td>
+                                {{rowIndex + 1}}
+                            </td>
+                            <td>{{status.codeStatusAsset}}</td>
+                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{status.nameStatusAsset}}</td>
+                            <td>
+                                <button class="btn btn-success" (click)="checkIn()">Return</button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
