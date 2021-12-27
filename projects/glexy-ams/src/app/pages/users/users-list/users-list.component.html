@@ -1,35 +1,88 @@
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Roles List</h4>
-        <div class="create row mb-3">
-          <div class="col-2 offset-10"> <button type="button" class="btn btn-warning btn-fw ms-5">Create</button> </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-                <tr>
-                  <th> No </th>
-                  <th> Email </th>
-                  <th> Role </th>
-                  <th> Name </th>
-                  <th> Is Active </th>
-                  <th> Deadline </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td> 1 </td>
-                  <td> bondan@gmail.com </td>
-                  <td> admin </td>
-                  <td> bondan </td>
-                  <td> true </td>
-                  <td>  <button type="button" class="btn btn-success btn-fw mr-3">Update</button> <button type="button" class="btn btn-danger btn-fw ms-5">Delete</button></td>
-                </tr>
-               
-              </tbody>
-            </table>
+<div class="app-page-title">
+  <div class="page-title-wrapper">
+      <div class="page-title-heading">
+          <div class="page-title-icon">
+              <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+              </i>
           </div>
-        </div>
+          <div>Role Tables
+              <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+      <div class="main-card mb-3 card">
+          <div class="card-body">
+              <h2 class="card-title">Users</h2>
+              <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true"
+                  [globalFilterFields]="['employeeId.nameEmployee','email','rolesId.nameRoles','employeeId.companyId.names','employeeId.phoneNumber']" responsiveLayout="scroll"
+                  [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [showCurrentPageReport]="true">
+                  <ng-template pTemplate="caption">
+                      <div class="d-flex p-ai-center justify-content-between">
+                          <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                          <span class="p-input-icon-left">
+                              <i class="pi pi-search"></i>
+                              <input pInputText type="text"
+                                  (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                  placeholder="Search..." />
+                          </span>
+                      </div>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th style="width: 3rem">
+                              No
+                          </th>
+                          <th pSortableColumn="employeeId.nameEmployee">Name <p-sortIcon field="employeeId.nameEmployee">
+                              </p-sortIcon>
+                          </th>
+                          <th pSortableColumn="email">Email <p-sortIcon field="email">
+                              </p-sortIcon>
+                          </th>
+                          <th pSortableColumn="rolesId.nameRoles">Role <p-sortIcon field="rolesId.nameRoles">
+                          </p-sortIcon>
+                         </th>
+                         <th pSortableColumn="employeeId.companyId.names">Company <p-sortIcon field="employeeId.companyId.names">
+                        </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="employeeId.phoneNumber">Phone Number <p-sortIcon field="employeeId.phoneNumber">
+                        </p-sortIcon>
+                        </th>
+                       
+                          <th>Action</th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+                      <tr>
+                          <td>
+                              {{rowIndex + 1}}
+                          </td>
+                          <td>{{data.employeeId.nameEmployee}}</td>
+                          <td>{{data.email}}</td>
+                          <td>{{data.rolesId.nameRole}}</td>
+                          <td>{{data.employeeId.companyId.names}}</td>
+                          <td>{{data.employeeId.phoneNumber}}</td>
+                         
+                          <td>
+                              <button pButton pRipple icon="pi pi-pencil"
+                                  class="p-button-rounded p-button-success mr-2"></button>
+                              <button pButton pRipple icon="pi pi-trash"
+                                  class="p-button-rounded p-button-warning"></button>
+                          </td>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="summary">
+                      <div class="p-d-flex p-ai-center p-jc-between">
+                          In total there are {{listUsers ? listUsers.length : 0 }} products.
+                      </div>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+  </div>
+</div>

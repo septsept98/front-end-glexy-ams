@@ -1,1 +1,88 @@
-<p>employee-list works!</p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <div>Role Tables
+                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Users</h2>
+                <p-table #dt [value]="listEmployee" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['nameEmployee','nip','emailEmployee','companyId.names','phoneNumber']" responsiveLayout="scroll"
+                    [(selection)]="selectedEmployee" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="d-flex p-ai-center justify-content-between">
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="nameEmployee">Name <p-sortIcon field="nameEmployee">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nip">NIP <p-sortIcon field="nip">
+                            </p-sortIcon>
+                        </th>
+                            <th pSortableColumn="emailEmployee">Email <p-sortIcon field="emailEmployee">
+                                </p-sortIcon>
+                            </th>
+                           <th pSortableColumn="companyId.names">Company <p-sortIcon field="companyId.names">
+                          </p-sortIcon>
+                          </th>
+                          <th pSortableColumn="phoneNumber">Phone Number <p-sortIcon field="employeeId.phoneNumber">
+                          </p-sortIcon>
+                          </th>
+                         
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+                        <tr>
+                            <td>
+                                {{rowIndex + 1}}
+                            </td>
+                            <td>{{data.nameEmployee}}</td>
+                            <td>{{data.nip}}</td>
+                            <td>{{data.emailEmployee}}</td>
+                            <td>{{data.companyId.names}}</td>
+                            <td>{{data.phoneNumber}}</td>
+                           
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{listEmployee ? listEmployee.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -3,9 +3,9 @@ import { Roles } from "./roles";
 
 export class PermissionDetail {
 	
-	id! : string;
-	rolesId! : Roles;
-	permissionsId! : Permissions;
-	isActive! : boolean;
+	id? : string;
+	rolesId? : Roles;
+	permissionsId? : Permissions;
+	isActive? : boolean;
 
 }
