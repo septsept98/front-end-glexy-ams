@@ -12,10 +12,22 @@ export class AssetTypeListComponent implements OnInit {
 
   constructor(private assetTypeService : AssetTypeService) { }
   dataList? : AssetType[] = []
+  listAssetType : AssetTypeDummy[] = []
   obs? : Subscription
 
   ngOnInit(): void {
-    this.assetTypeService.getAll()?.subscribe(result => this.dataList = result)
+    // this.assetTypeService.getAll()?.subscribe(result => this.dataList = result)
+    this.listAssetType = [
+      {names: 'General', code: 'GNR'},
+      {names: 'Lisence', code: 'LSN'},
+      {names: 'Consumable', code: 'CSM'},
+      {names: 'Component', code: 'CPT'}
+    ]
   }
 
+}
+
+class AssetTypeDummy {
+  names! : string
+  code! : string
 }

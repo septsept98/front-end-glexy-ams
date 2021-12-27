@@ -1,69 +1,102 @@
-<div class="card">
-    <div class="card-body">
-        <h4 class="card-title">Asset Table</h4>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Status Asset</th>
-                        <th>Brand Name</th>
-                        <th>Inventory Code</th>
-                        <th>Invoice Code</th>
-                        <th>Company Name</th>
-                        <th>Is Active</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> </td>
-                        <td>Laptop</td>
-                        <td>LTPLWN1</td>
-                        <td><label class="badge badge-success">Available</label></td>
-                        <td>Samsung</td>
-                        <td>LTP</td>
-                        <td>GTY434563</td>
-                        <td>Lawencon</td>
-                        <td class="text-center"><input type="checkbox" class="form-check-input" disabled checked/></td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Laptop</td>
-                        <td>LTPLWN2</td>
-                        <td><label class="badge badge-success">Available</label></td>
-                        <td>Samsung</td>
-                        <td>LTP</td>
-                        <td>GTY434563</td>
-                        <td>Lawencon</td>
-                        <td class="text-center"><input type="checkbox" class="form-check-input" disabled checked/></td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Laptop</td>
-                        <td>LTPLWN3</td>
-                        <td><label class="badge badge-success">Available</label></td>
-                        <td>Samsung</td>
-                        <td>LTP</td>
-                        <td>GTY434563</td>
-                        <td>Lawencon</td>
-                        <td class="text-center"><input type="checkbox" class="form-check-input" disabled checked/></td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td>Spidol</td>
-                        <td>SPLLNV1</td>
-                        <td><label class="badge badge-success">Available</label></td>
-                        <td>Snowman</td>
-                        <td>SPL</td>
-                        <td>JYM434333</td>
-                        <td>Linov</td>
-                        <td class="text-center"><input type="checkbox" class="form-check-input" disabled checked/></td>
-                    </tr>
-
-                </tbody>
-            </table>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <div>Assets Tables
+                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Assets</h2>
+                <p-table #dt [value]="assetList" [rows]="8" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="d-flex p-ai-center justify-content-between">
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="image">Image</th>
+                            <th pSortableColumn="names">Name Asset
+                                <p-sortIcon field="names">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="code">Code Asset
+                                <p-sortIcon field="code">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="brand">Brand Asset
+                                <p-sortIcon field="brand">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="statusAsset">Status Asset
+                                <p-sortIcon field="statusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="inventory">Inventory Code
+                                <p-sortIcon field="inventory">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="company">Company
+                                <p-sortIcon field="company">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="invoice">Invoice Code
+                                <p-sortIcon field="invoice">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-asset let-rowIndex="rowIndex">
+                        <tr>
+                            <td>
+                                {{rowIndex + 1}}
+                            </td>
+                            <td>{{asset.image}}</td>
+                            <td>{{asset.names}}</td>
+                            <td>{{asset.code}}</td>
+                            <td>{{asset.brand}}</td>
+                            <td class="text-center">
+                                <div class="badge badge-success">
+                                    {{asset.statusAsset}}
+                                </div>
+                            </td>
+                            <td>{{asset.inventory}}</td>
+                            <td>{{asset.company}}</td>
+                            <td>{{asset.invoice}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{assetList ? assetList.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
         </div>
     </div>
 </div>
