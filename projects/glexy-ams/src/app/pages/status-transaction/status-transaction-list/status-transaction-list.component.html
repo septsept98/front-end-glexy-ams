@@ -1,1 +1,78 @@
-<p>status-transaction-list works!</p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <div>Status Transactions Tables
+                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Status Transactions</h2>
+                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['nameStatusTr','codeStatusTr','nameStatusAsset']" responsiveLayout="scroll"
+                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="d-flex p-ai-center justify-content-between">
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/status-trx/new"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="codeStatusTr">Code Status Tr <p-sortIcon field="codeStatusTr">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusTr">Name Status Tr <p-sortIcon field="nameStatusTr">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusAsset">Name Status Asset <p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                        <tr>
+                            <td>
+                                {{rowIndex + 1}}
+                            </td>
+                            <td>{{status.codeStatusTr}}</td>
+                            <td>{{status.nameStatusTr}}</td>
+                            <td>{{status.nameStatusAsset}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

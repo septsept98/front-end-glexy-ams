@@ -133,15 +133,30 @@
                         <div *ngIf="master">
                             <li class="app-sidebar__heading">Masters</li>
                             <li>
-                                <a routerLink="/glexy/status-asset/new" routerLinkActive="mm-active">
+                                <a routerLink="/glexy/status-trx/list" routerLinkActive="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Status Transactions
                                 </a>
                             </li>
                             <li>
-                                <a routerLink="/glexy/status-asset/new" routerLinkActive="mm-active">
+                                <a routerLink="/glexy/status-asset/list" routerLinkActive="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Status Asset
+                                </a>
+                            </li>
+                        </div>
+                        <div *ngIf="master">
+                            <li class="app-sidebar__heading">Transaction</li>
+                            <li>
+                                <a routerLink="/glexy/transaction/check-out" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Check Out Asset
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/glexy/transaction/check-in-list" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Check In Asset
                                 </a>
                             </li>
                         </div>

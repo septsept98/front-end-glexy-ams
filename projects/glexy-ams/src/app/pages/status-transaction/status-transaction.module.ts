@@ -6,6 +6,9 @@ import { NgSelect2Module } from 'ng-select2';
 import { StatusTransactionRoutingModule } from './status-transaction-routing.module';
 import { StatusTransactionModifyComponent } from './status-transaction-modify/status-transaction-modify.component';
 import { StatusTransactionListComponent } from './status-transaction-list/status-transaction-list.component';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -18,7 +21,10 @@ import { StatusTransactionListComponent } from './status-transaction-list/status
     CommonModule,
     StatusTransactionRoutingModule,
     NgSelect2Module,
-    FormsModule
+    FormsModule,
+    TableModule,
+    InputTextModule,
+    ButtonModule
 
   ]
 })
