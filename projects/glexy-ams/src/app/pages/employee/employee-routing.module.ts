@@ -10,11 +10,11 @@ const routes: Routes = [
     component : EmployeeListComponent
   },
   {
-    path:'asset/new',
+    path:'employee/new',
     component : EmployeeModifyComponent
   },
   {
-    path:'asset/:id',
+    path:'employee/:id',
     component : EmployeeModifyComponent
   }
 

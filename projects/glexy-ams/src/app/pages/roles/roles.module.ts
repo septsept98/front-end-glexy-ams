@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RolesRoutingModule } from './roles-routing.module';
 import { RolesModifyComponent } from './roles-modify/roles-modify.component';
 import { RolesListComponent } from './roles-list/roles-list.component';
+import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -13,7 +17,11 @@ import { RolesListComponent } from './roles-list/roles-list.component';
   ],
   imports: [
     CommonModule,
-    RolesRoutingModule
+    RolesRoutingModule,
+    FormsModule,
+    TableModule,
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class RolesModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Permissions } from '@models/permissions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-permissions-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionsListComponent implements OnInit {
 
+  listPermission: Permissions[] = []
+  selectedPermission: Permissions[] = []
+
+  private unSubs?: Subscription;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.listPermission = [
+      {namePermission:'Transaction',code:'TR'}
+    ]
+
+  }
+
+  ngOnDestroy(): void {
+    this.unSubs?.unsubscribe()
   }
 
 }
