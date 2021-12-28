@@ -17,18 +17,18 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Create Status Asset</h5>
-                <form class="">
-                    <div class="position-relative form-group">
-                        <label for="nameStatusAsset" class="">Name Status Asset</label>
-                        <input name="name" id="nameStatusAsset" placeholder="Type here..."
-                            type="text" class="form-control">
-                    </div>
-                    <div class="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox"
-                            class="form-check-input"><label for="exampleCheck" class="form-check-label">Check me
-                            out</label></div>
-                            <button class="mt-2 btn btn-secondary">Back</button>
-                    <button class="ml-2 mt-2 btn btn-primary">Submit</button>
-                </form>
+                <div class="position-relative form-group">
+                    <label for="nameStatusAsset" for="nameStatusAsset">Name Status Asset</label>
+                    <input [(ngModel)]="dataStatusAsset.nameStatusAsset" name="name" id="nameStatusAsset"
+                        placeholder="Type here..." type="text" class="form-control">
+                </div>
+                <div class="position-relative form-check">
+                    <input [(ngModel)]="dataStatusAsset.isActive" name="check" id="isActive" type="checkbox" class="form-check-input">
+                    <label for="isActive" class="form-check-label">Check me
+                        out</label>
+                </div>
+                <button class="mt-2 btn btn-secondary" (click)="onBack()">Back</button>
+                <button class="ml-2 mt-2 btn btn-primary" (click)="onSubmit()">Submit</button>
             </div>
         </div>
     </div>

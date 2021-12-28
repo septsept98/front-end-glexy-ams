@@ -95,9 +95,12 @@ const routes: Routes = [
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./transaction/transaction.module').then(m => m.TransactionModule)
+  },
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./history/history.module').then(m => m.HistoryModule)
   }
-  
- 
 ];
 
 @NgModule({
