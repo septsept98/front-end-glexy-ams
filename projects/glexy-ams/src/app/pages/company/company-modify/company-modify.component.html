@@ -1,45 +1,45 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Company Form</h4>
-        <form class="forms-sample">
+        <div class="forms-sample">
             <div class="form-group">
                 <label for="nameCompany">Name Company</label>
-                <input type="text" class="form-control" id="nameCompany" placeholder="Name Company">
+                <input type="text" class="form-control" id="nameCompany" placeholder="Name Company" [(ngModel)]="companyInsert.names">
             </div>
             <div class="form-group">
                 <label for="code">Code</label>
-                <input type="text" class="form-control" id="code" placeholder="Code">
+                <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="companyInsert.code">
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
-                <textarea class="form-control" id="address" rows="4"></textarea>
+                <textarea class="form-control" id="address" rows="4" [(ngModel)]="companyInsert.address"></textarea>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" rows="4"></textarea>
+                <textarea class="form-control" id="description" rows="4" [(ngModel)]="companyInsert.description"></textarea>
             </div>
             <div class="form-group">
                 <label for="emailCompany">Email</label>
-                <input type="text" class="form-control" id="emailCompany" placeholder="Email">
+                <input type="text" class="form-control" id="emailCompany" placeholder="Email" [(ngModel)]="companyInsert.email">
             </div>
             <div class="form-group">
                 <label for="website">Website</label>
-                <input type="text" class="form-control" id="website" placeholder="Website">
+                <input type="text" class="form-control" id="website" placeholder="Website" [(ngModel)]="companyInsert.website">
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                <input type="text" class="form-control" id="phone" placeholder="Phone Number" [(ngModel)]="companyInsert.phoneNumber">
             </div>
             <div class="form-group">
                 <label for="fax">Fax</label>
-                <input type="text" class="form-control" id="fax" placeholder="Fax">
+                <input type="text" class="form-control" id="fax" placeholder="Fax" [(ngModel)]="companyInsert.fax">
             </div>
             <div class="form-group">
                 <label>Company Logo </label><br>
-                <input type="file" name="img[]" class="file-upload-default">
+                <input type="file" name="img" class="file-upload-default" accept="image/*" (change)="selectFile($event)">
             </div>
-            <button type="submit" class="btn btn-primary me-2">Submit</button>
-            <button class="btn btn-dark">Cancel</button>
-        </form>
+            <button type="submit" class="btn btn-primary me-2" (click)="addData()">Submit</button>
+            <button class="btn btn-dark" routerLink="/glexy/company/list">Cancel</button>
+        </div>
     </div>
 </div>

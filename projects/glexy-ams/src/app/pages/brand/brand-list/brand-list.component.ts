@@ -1,38 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Brand } from '@models/brand';
+import { BrandService } from '@services/brand/brand.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
   styleUrls: ['./brand-list.component.css']
 })
-export class BrandListComponent implements OnInit {
+export class BrandListComponent implements OnInit, OnDestroy {
 
-  constructor() { }
-  selectedBrand : Brand[] = []
-  listBrand: BrandDummy[] = []
+  constructor(private brandService : BrandService) { }
+  selectedBrand: Brand[] = []
+  dataList: Brand[] = []
+  obs? : Subscription
 
   ngOnInit(): void {
     
-    this.listBrand = [
-      {names: 'Samsung', code: 'GNR'},
-      {names: 'Sumsang', code: 'SMG'},
-      {names: 'Lenovo', code: 'LKJ'},
-      {names: 'Voleno', code: 'POI'},
-      {names: 'Acer', code: 'HKI'},
-      {names: 'Cera', code: 'WWE'},
-      {names: 'Asus', code: 'QWE'},
-      {names: 'Snsv', code: 'RTY'},
-      {names: 'Iphone', code: 'ASD'},
-      {names: 'Apple', code: 'NMA'},
-      {names: 'Mango', code: 'MNG'},
-      {names: 'Aqua', code: 'AQU'}
-    ]
+    this.brandService.getAll()?.subscribe(result => this.dataList = result)
+
   }
 
-}
+  ngOnDestroy(): void{
+    this.obs?.unsubscribe()
+  }
 
-class BrandDummy {
-  names! : string
-  code! : string 
 }

@@ -1,45 +1,72 @@
-<div class="card">
-    <div class="card-body">
-        <h4 class="card-title">Invoice Table</h4>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Image</th>
-                        <th>Code</th>
-                        <th>Purchase Date</th>
-                        <th>Total Price</th>
-                        <th>Is Active</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td> </td>
-                        <td>GUYY0987567</td>
-                        <td>2021-12-23</td>
-                        <td>250000</td>
-                        <td><input type="checkbox" class="form-check-input" disabled checked/></td>
-                        <td>
-                            <button type="button" class="btn btn-outline-success btn-fw">Update</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td> </td>
-                        <td>MJ987656789</td>
-                        <td>2021-12-23</td>
-                        <td>250000</td>
-                        <td><input type="checkbox" class="form-check-input" disabled checked/></td>
-                        <td>
-                            <button type="button" class="btn btn-outline-success btn-fw">Update</button>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-note2 icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <div>Invoice Tables
+                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Invoice</h2>
+                <p-table #dt [value]="dataList" [rows]="10" [paginator]="true" [globalFilterFields]="['code','purchaseDate','totalPrice','invoiceImg']" responsiveLayout="scroll" [(selection)]="selectedInvoice" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="d-flex p-ai-center justify-content-between">
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="invoiceImg">Image</th>
+                            <th pSortableColumn="code">Code
+                                <p-sortIcon field="code">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="purchaseDate">Purchase Date</th>
+                            <th pSortableColumn="totalPrice">Total Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invo let-rowIndex="rowIndex">
+                        <tr>
+                            <td>
+                                {{rowIndex + 1}}
+                            </td>
+                            <td> <img class="company-img" src="data:image/png;base64,{{invo.invoiceImg.file}}" *ngIf="isDisplayAvail(invo.invoiceImg)" /> </td>
+                            <td>{{invo.code}}</td>
+                            <td>{{invo.purchaseDate}}</td>
+                            <td>{{invo.totalPrice}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{dataList ? dataList.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
         </div>
     </div>
 </div>

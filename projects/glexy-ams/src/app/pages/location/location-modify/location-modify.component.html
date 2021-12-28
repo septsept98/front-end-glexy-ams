@@ -1,24 +1,21 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Location Form</h4>
-        <form class="forms-sample">
+        <div class="forms-sample">
             <div class="form-group">
                 <label for="namePlace">Name Place</label>
-                <input type="text" class="form-control" id="namePlace" placeholder="Name Place">
+                <input type="text" class="form-control" id="namePlace" placeholder="Name Place" [(ngModel)]="locationInsert.namePlace">
             </div>
             <div class="form-group">
                 <label for="code">Code</label>
-                <input type="text" class="form-control" id="code" placeholder="Code">
+                <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="locationInsert.code">
             </div>
             <div class="form-group">
                 <label>Company</label>
-                <select class="form-control" id="company">
-                  <option value="LWN">Lawencon</option>
-                  <option value="LNV">Linov</option>
-                </select>
+                <ng-select2 [options]='optionsCompany' [(ngModel)]="locationInsert.companyId"> </ng-select2>
             </div>
-            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button type="submit" class="btn btn-primary me-2" (click)="addDb()">Submit</button>
             <button class="btn btn-dark">Cancel</button>
-        </form>
+        </div>
     </div>
 </div>

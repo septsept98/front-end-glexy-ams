@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AssetType } from '@models/asset-type';
 import { Brand } from '@models/brand';
 import { Company } from '@models/company';
-import { StatusAsset } from '@models/status-asset';
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 
@@ -37,8 +36,10 @@ export class AssetModifyComponent implements OnInit {
           for (const company of result) {
             select2Data.push(
               {
+
                 id: company.id!,
                 text: company.names!
+
               }
             )
           }
