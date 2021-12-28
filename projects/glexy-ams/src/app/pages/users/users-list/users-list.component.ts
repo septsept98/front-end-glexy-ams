@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Users } from '@models/users';
+import { UsersService } from '@services/users/users.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,13 +16,11 @@ export class UsersListComponent implements OnInit {
 
   private unSubs?: Subscription;
 
-  constructor() { }
+  constructor(private usersService :UsersService) { }
 
   ngOnInit(): void {
 
-    this.listUsers = [
-      {email:'glenn9828@gmail.com',employeeId:{nameEmployee:'glenn',nip:'321726372',phoneNumber:'0895610516196',companyId:{names:'linov'}},rolesId:{nameRole:'admin'}}
-    ]
+    this.usersService.getAll()?.subscribe(result => this.listUsers = result)
 
   }
 

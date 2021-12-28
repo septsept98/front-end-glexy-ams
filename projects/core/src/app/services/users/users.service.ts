@@ -36,5 +36,9 @@ export class UsersService {
   delete(id : string) : Observable<DeleteResDto> | undefined{
     return this.http.delete<DeleteResDto>(`${baseUrl}users/${id}`)??""
   }
+
+  getByIdAuth() : Observable<Users> | undefined {
+    return this.http.get<Users>(`${baseUrl}users/profile`)??""
+  }
   
 }

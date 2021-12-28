@@ -4,13 +4,13 @@ import { Roles } from "./roles";
 
 export class Users {
 
-	id? : string;
-	email? : string;
-	pass? : string;
-	usersImg? : File;
-	rolesId? : Roles;
-	employeeId? : Employee;
-	isActive? : boolean;
+	id! : string;
+	email! : string;
+	pass! : string;
+	usersImg! : File;
+	rolesId! : Roles;
+	employeeId! : Employee;
+	isActive! : boolean;
 
 }
  
