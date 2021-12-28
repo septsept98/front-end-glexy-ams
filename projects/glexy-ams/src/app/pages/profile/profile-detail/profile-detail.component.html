@@ -1,1 +1,49 @@
-<p>profile-detail works!</p>
+<div class="row mb-4">
+    <div class="col-12">
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title mb-5">Profile</h4>
+        <form class="forms-sample">
+            <div class="row">
+                <div class="col-md-6  grid-margin">
+                    <img width="200" height="200" class="rounded-circle mb-5 ml-5" src="data:image/{{users.usersImg?.extension}};base64,{{users.usersImg?.file}}" alt="">
+                    <div class="form-group">
+                        <label for="namePermission">Name</label>
+                        <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.employeeId?.nameEmployee}}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="namePermission">Email</label>
+                        <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.employeeId?.emailEmployee}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namePermission">Role</label>
+                        <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.rolesId?.nameRole}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namePermission">Company</label>
+                        <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.employeeId?.companyId?.names}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namePermission">Phone Number</label>
+                        <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.employeeId?.phoneNumber}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namePermission">Gender</label>
+                        <input type="text" class="form-control" disabled=""  id="namePermission" value="{{users.employeeId?.gender}}">
+                    </div>
+  
+                </div>
+              
+            </div>
+            <button type="submit" class="btn btn-primary me-2 mr-2">Submit</button>
+            <button class="btn btn-dark">Cancel</button>
+        </form>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PermissionDetail } from '@models/permission-detail';
+import { PermissionDetailService } from '@services/permission-detail/permission-detail.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,14 +15,11 @@ export class PermissionDetailListComponent implements OnInit {
 
   private unSubs?: Subscription;
 
-  constructor() { }
+  constructor(private permissionDetailService :PermissionDetailService) { }
 
   ngOnInit(): void {
 
-    this.listPermissionDetail = [
-
-      {rolesId:{nameRole:'admin'}, permissionsId:{namePermission:'transaction'}}
-    ]
+    this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
 
   }
 

@@ -95,6 +95,11 @@ const routes: Routes = [
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./transaction/transaction.module').then(m => m.TransactionModule)
+  },
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./profile/profile.module').then(m => m.ProfileModule)
   }
   
  
