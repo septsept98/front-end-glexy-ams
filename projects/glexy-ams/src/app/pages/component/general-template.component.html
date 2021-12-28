@@ -160,6 +160,33 @@
                                 </a>
                             </li>
                         </div>
+                        <div *ngIf="master">
+                            <li class="app-sidebar__heading">History</li>
+                            <li>
+                                <a routerLink="/glexy/histories/transaction" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    History Check In & Check Out
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/glexy/histories/track-assets" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Track Assets
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/glexy/histories/asset-expired" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Assets Expired
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/glexy/histories/transaction-expired" routerLinkActive="mm-active">
+                                    <i class="metismenu-icon pe-7s-rocket"></i>
+                                    Transaction Out of Date
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>

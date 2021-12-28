@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-history-detail',
-  templateUrl: './history-detail.component.html',
-  styleUrls: ['./history-detail.component.css']
+  selector: 'app-history-trx-expired',
+  templateUrl: './history-trx-expired.component.html',
+  styleUrls: ['./history-trx-expired.component.css']
 })
-export class HistoryDetailComponent implements OnInit, OnDestroy {
+export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
+
   // listStatusAssets: StatusAsset[] = []
   listStatusAssets: Asset[] = []
   selectedStatusAssets!: Asset

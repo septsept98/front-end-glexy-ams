@@ -19,12 +19,13 @@
                 <h2 class="card-title">Status Assets</h2>
                 <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                    [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/status-asset/new"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"
+                                routerLink="/glexy/status-asset/new"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -56,15 +57,15 @@
                             <td>{{status.nameStatusAsset}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="onUpdate(status.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash"
-                                    class="p-button-rounded p-button-warning"></button>
+                                    class="p-button-rounded p-button-warning" (click)="onDelete(status.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} Status Assets.
                         </div>
                     </ng-template>
                 </p-table>

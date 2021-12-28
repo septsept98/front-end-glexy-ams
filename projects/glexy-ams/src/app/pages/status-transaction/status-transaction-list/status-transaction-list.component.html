@@ -17,14 +17,15 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Status Transactions</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusTr','codeStatusTr','nameStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="listDataStatusTrx" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['codeStatusTr','nameStatusTr','statusAssetId.nameStatusAsset']" responsiveLayout="scroll"
+                    [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/status-trx/new"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"
+                                routerLink="/glexy/status-trx/new"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -44,7 +45,7 @@
                             <th pSortableColumn="nameStatusTr">Name Status Tr <p-sortIcon field="nameStatusTr">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Name Status Asset <p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="statusAssetId.nameStatusAsset">Name Status Asset <p-sortIcon field="statusAssetId.nameStatusAsset">
                                 </p-sortIcon>
                             </th>
                             <th>Action</th>
@@ -57,18 +58,18 @@
                             </td>
                             <td>{{status.codeStatusTr}}</td>
                             <td>{{status.nameStatusTr}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{status.statusAssetId.nameStatusAsset}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="onUpdate(status.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash"
-                                    class="p-button-rounded p-button-warning"></button>
+                                    class="p-button-rounded p-button-warning" (click)="onDelete(status.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                            In total there are {{listDataStatusTrx ? listDataStatusTrx.length : 0 }} products.
                         </div>
                     </ng-template>
                 </p-table>

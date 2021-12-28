@@ -24,7 +24,6 @@
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="fa fa-arrow-left" class="bg-secondary" routerLink="/glexy/status-asset/new"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -38,20 +37,21 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th>Image</th>
-                            <th pSortableColumn="codeStatusAsset">Code Asset<p-sortIcon field="codeStatusAsset">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="nameStatusAsset">Name Asset<p-sortIcon field="nameStatusAsset">
+                            <th colspan="2" pSortableColumn="codeStatusAsset">Asset<p-sortIcon field="codeStatusAsset">
                                 </p-sortIcon>
                             </th>
                             <th pSortableColumn="nameStatusAsset">Brand<p-sortIcon field="nameStatusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Duration Date<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="nameStatusAsset">Status Asset<p-sortIcon field="nameStatusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th>Action</th>
+                            <th pSortableColumn="nameStatusAsset">Type Asset<p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nameStatusAsset">Expired Date<p-sortIcon field="nameStatusAsset">
+                                </p-sortIcon>
+                            </th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
@@ -59,14 +59,13 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid" src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
-                            <td>{{status.codeStatusAsset}}</td>
+                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
+                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
+                            <td>{{status.codeStatusAsset}} - {{status.nameStatusAsset}}</td>
                             <td>{{status.nameStatusAsset}}</td>
                             <td>{{status.nameStatusAsset}}</td>
                             <td>{{status.nameStatusAsset}}</td>
-                            <td>
-                                <button class="btn btn-success" (click)="checkIn()">Check In</button>
-                            </td>
+                            <td>{{status.nameStatusAsset}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">

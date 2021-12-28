@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StatusTransactionService } from '@services/status-transaction/status-transaction.service';
 import { StatusTransaction } from '@models/status-transaction';
 import { Subscription } from 'rxjs';
+import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-status-transaction-list',
@@ -10,38 +12,37 @@ import { Subscription } from 'rxjs';
 })
 export class StatusTransactionListComponent implements OnInit, OnDestroy {
 
-  // listStatusAssets: StatusAsset[] = []
-  listStatusAssets: Asset[] = []
-  selectedStatusAssets: StatusTransaction[] = []
+  listDataStatusTrx: StatusTransaction[] = []
 
-  private unSubs?: Subscription;
+  private unSubs?: Subscription
+  private delUnSubs?: Subscription
 
-  constructor() { }
+  resDelete: DeleteResDto = new DeleteResDto()
+
+  constructor(private statusTransactionService: StatusTransactionService, private router: Router) { }
 
   ngOnInit(): void {
-    this.listStatusAssets = [
-      {codeStatusTr: 'ccc', nameStatusTr:'s', nameStatusAsset:'asas'},
-      {codeStatusTr: 'aaa', nameStatusTr:'df', nameStatusAsset:'ff'},
-      {codeStatusTr: 'xxx', nameStatusTr:'ssd', nameStatusAsset:'re'},
-      {codeStatusTr: 'ccc', nameStatusTr:'fass', nameStatusAsset:'fg'},
-      {codeStatusTr: 'vvv', nameStatusTr:'wee', nameStatusAsset:'f'},
-      {codeStatusTr: 'ff', nameStatusTr:'wwe', nameStatusAsset:'b'},
-      {codeStatusTr: 'dsf', nameStatusTr:'wwe', nameStatusAsset:'bbf'},
-      {codeStatusTr: 'sss', nameStatusTr:'wwe', nameStatusAsset:'iuiu'},
-      {codeStatusTr: 'uuy', nameStatusTr:'wwe', nameStatusAsset:'hh'},
-      {codeStatusTr: 'uyj', nameStatusTr:'kmm', nameStatusAsset:'mm'},
-      {codeStatusTr: 'kkk', nameStatusTr:'oiu', nameStatusAsset:'njk'},
-      {codeStatusTr: 'aba', nameStatusTr:'dds', nameStatusAsset:'hg'},
-      {codeStatusTr: 'acv', nameStatusTr:'ggdg', nameStatusAsset:'nmn'}
-    ]
+    this.unSubs = this.statusTransactionService.getAll()?.subscribe(res => {
+      this.listDataStatusTrx = res
+    })
   }
 
   ngOnDestroy(): void {
     this.unSubs?.unsubscribe()
   }
+
+  onUpdate(id: string): void {
+    this.router.navigateByUrl(`/glexy/status-asset/${id}`)
+  }
+
+  onDelete(id: string) :void {
+    this.unSubs = this.statusTransactionService.getById(id)?.subscribe(result => {
+      if (confirm("Are you sure to delete " + result.nameStatusTr)) {
+        this.delUnSubs = this.statusTransactionService.deleteById(id)?.subscribe(result => {
+          this.resDelete = result
+          window.location.reload();
+        })
+      }
+    })
+  }
 }
-class Asset {
-  codeStatusTr!: string
-  nameStatusTr!: string
-  nameStatusAsset!: string
-} 

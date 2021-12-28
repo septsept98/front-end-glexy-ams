@@ -36,10 +36,8 @@ export class AssetModifyComponent implements OnInit {
           for (const company of result) {
             select2Data.push(
               {
-
                 id: company.id!,
                 text: company.names!
-
               }
             )
           }
