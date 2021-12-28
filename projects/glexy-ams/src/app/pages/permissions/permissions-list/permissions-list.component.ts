@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Permissions } from '@models/permissions';
+import { PermissionsService } from '@services/permissions/permissions.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,13 +15,11 @@ export class PermissionsListComponent implements OnInit {
 
   private unSubs?: Subscription;
 
-  constructor() { }
+  constructor(private permissionsService :PermissionsService) { }
 
   ngOnInit(): void {
 
-    this.listPermission = [
-      {namePermission:'Transaction',code:'TR'}
-    ]
+    this.permissionsService.getAll()?.subscribe(result => this.listPermission = result)
 
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '@models/employee';
+import { EmployeeService } from '@services/employee/employee.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,13 +14,11 @@ export class EmployeeListComponent implements OnInit {
   selectedEmployee: Employee[] = []
   private unSubs?: Subscription;
 
-  constructor() { }
+  constructor(private employeeService :EmployeeService) { }
 
   ngOnInit(): void {
 
-    this.listEmployee = [
-      {nameEmployee:'glenn',emailEmployee:'glenn@gmail.com',nip:'321726372',phoneNumber:'0895610516196',companyId:{names:'linov'}}
-    ]
+    this.employeeService.getAll()?.subscribe(result => this.listEmployee = result)
 
   }
 
