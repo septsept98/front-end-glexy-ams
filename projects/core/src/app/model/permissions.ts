@@ -1,9 +1,9 @@
 
 export class Permissions {
 
-	id? : string;
-	namePermission? : string;
-	code? : string;
-	isActive? : boolean;
+	id! : string;
+	namePermission! : string;
+	code! : string;
+	isActive! : boolean;
 	
 }

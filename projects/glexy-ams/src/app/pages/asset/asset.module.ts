@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { NgSelect2Module } from 'ng-select2';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgSelect2Module } from 'ng-select2';
     TableModule,
     InputTextModule,
     ButtonModule,
-    NgSelect2Module
+    NgSelect2Module,
+    RouterModule
   ]
 })
 export class AssetModule { }

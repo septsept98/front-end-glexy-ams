@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@models/location';
+import { LocationService } from '@services/location/location.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-location-list',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private locationService : LocationService) { }
+  selectedLocation: Location[] = []
+  dataList: Location[] = []
+  obs? : Subscription
 
   ngOnInit(): void {
+    this.locationService.getAll()?.subscribe(result => this.dataList = result)
   }
 
 }

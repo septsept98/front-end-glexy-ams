@@ -24,7 +24,7 @@
                   [showCurrentPageReport]="true">
                   <ng-template pTemplate="caption">
                       <div class="d-flex p-ai-center justify-content-between">
-                          <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                          <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click) = "onCreate()"></button>
                           <span class="p-input-icon-left">
                               <i class="pi pi-search"></i>
                               <input pInputText type="text"
@@ -38,10 +38,10 @@
                           <th style="width: 3rem">
                               No
                           </th>
-                          <th pSortableColumn="codeRoles">Code Roles <p-sortIcon field="code">
+                          <th pSortableColumn="code">Code Roles <p-sortIcon field="code">
                               </p-sortIcon>
                           </th>
-                          <th pSortableColumn="nameRoles">Name Roles <p-sortIcon field="nameRole">
+                          <th pSortableColumn="nameRole">Name Roles <p-sortIcon field="nameRole">
                               </p-sortIcon>
                           </th>
                           <th>Action</th>
@@ -56,7 +56,7 @@
                           <td>{{data.nameRole}}</td>
                           <td>
                               <button pButton pRipple icon="pi pi-pencil"
-                                  class="p-button-rounded p-button-success mr-2"></button>
+                                  class="p-button-rounded p-button-success mr-2" (click) = "onUpdate(data.id)"></button>
                               <button pButton pRipple icon="pi pi-trash"
                                   class="p-button-rounded p-button-warning"></button>
                           </td>

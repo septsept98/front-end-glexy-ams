@@ -100,6 +100,11 @@ const routes: Routes = [
     path : '',
     component : GeneralTemplateComponent,
     loadChildren : () => import('./history/history.module').then(m => m.HistoryModule)
+  },
+  {
+    path : '',
+    component : GeneralTemplateComponent,
+    loadChildren : () => import('./profile/profile.module').then(m => m.ProfileModule)
   }
 ];
 

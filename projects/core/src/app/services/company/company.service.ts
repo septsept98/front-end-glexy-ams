@@ -18,8 +18,12 @@ export class CompanyService {
     return this.http.get<Company[]>(`${baseUrl}companies/`)??""
   }
 
-  insert(data : Company) : Observable<InsertResDto> | undefined {
-    return this.http.post<InsertResDto>(`${baseUrl}companies/`, data)??""
+  insert(data : Company, file: File | null) : Observable<InsertResDto> | undefined {
+    const formData : FormData = new FormData()
+    formData.append('data', JSON.stringify(data))
+    formData.append('file', file!)
+    console.log('asdasdfgbd '+ file)
+    return this.http.post<InsertResDto>(`${baseUrl}companies/`, formData)??""
   }
 
   update(data : Company): Observable<UpdateResDto> | undefined {

@@ -2,7 +2,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                <i class="pe-7s-portfolio icon-gradient bg-happy-itmeo">
                 </i>
             </div>
             <div>Brand Tables
@@ -17,11 +17,11 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Brand</h2>
-                <p-table #dt [value]="listBrand" [rows]="10" [paginator]="true" [globalFilterFields]="['names','code']" responsiveLayout="scroll" [(selection)]="selectedBrand" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                <p-table #dt [value]="dataList" [rows]="10" [paginator]="true" [globalFilterFields]="['names','code']" responsiveLayout="scroll" [(selection)]="selectedBrand" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/brand/new/"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -61,7 +61,7 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listBrand ? listBrand.length : 0 }} products.
+                            In total there are {{dataList ? dataList.length : 0 }} products.
                         </div>
                     </ng-template>
                 </p-table>
