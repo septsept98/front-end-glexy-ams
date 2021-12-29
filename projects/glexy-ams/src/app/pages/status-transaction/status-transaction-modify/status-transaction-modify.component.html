@@ -1,50 +1,42 @@
-<!-- <ng-select2 
-  [options]="options"
-  [(ngModel)]="dataSelected">		
-</ng-select2>
-
-<br/>
-<br/>
-
-<span>selected id : {{dataSelected}}</span> -->
-
 <div class="app-page-title">
-  <div class="page-title-wrapper">
-      <div class="page-title-heading">
-          <div class="page-title-icon">
-              <i class="pe-7s-graph text-success">
-              </i>
-          </div>
-          <div>Status Transactions Layouts
-              <div class="page-title-subheading">Build whatever layout you need with our Architect framework.
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-graph text-success">
+                </i>
+            </div>
+            <div>Status Transactions Layouts
+                <div class="page-title-subheading">Build whatever layout you need with our Architect framework.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="tab-content">
-  <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-      <div class="main-card mb-3 card">
-          <div class="card-body">
-              <h5 class="card-title">Create Status Transactions</h5>
-              <form class="">
-                  <div class="position-relative form-group">
-                      <label for="nameStatusAsset" class="">Name Status Asset</label>
-                      <input name="name" id="nameStatusAsset" placeholder="Type here..."
-                          type="text" class="form-control">
-                  </div>
-                  <div class="position-relative form-group">
-                      <label for="nameStatusAsset" class="">Name Status Transaction</label>
-                      <input name="name" id="nameStatusTransaction" placeholder="Type here..."
-                          type="text" class="form-control">
-                  </div>
-                  <div class="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox"
-                          class="form-check-input"><label for="exampleCheck" class="form-check-label">Check me
-                          out</label></div>
-                          <button class="mt-2 btn btn-secondary">Back</button>
-                  <button class="ml-2 mt-2 btn btn-primary">Submit</button>
-              </form>
-          </div>
-      </div>
-  </div>
+    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h5 class="card-title">Create Status Transactions</h5>
+                <div class="position-relative form-group">
+                    <label for="nameStatus" class="">Name Status Asset</label>
+                    <select [(ngModel)]="dataStatusTrx.statusAssetId.id" name="select" id="nameStatus"
+                        class="form-control">
+                        <option *ngFor="let data of listDataStatus" [value]="data.id">{{data.nameStatusAsset}}</option>
+                    </select>
+                </div>
+                <div class="position-relative form-group">
+                    <label for="nameStatusTr" class="">Name Status Transaction</label>
+                    <input [(ngModel)]="dataStatusTrx.nameStatusTr" name="name" id="nameStatusTr"
+                        placeholder="Type here..." type="text" class="form-control">
+                </div>
+                <div class="position-relative form-check">
+                    <input [(ngModel)]="dataStatusTrx.isActive" name="check" id="exampleCheck" type="checkbox" class="form-check-input">
+                    <label for="exampleCheck" class="form-check-label">Check me
+                        out</label>
+                </div>
+                <button class="mt-2 btn btn-secondary" (click)="onBack()">Back</button>
+                <button class="ml-2 mt-2 btn btn-primary" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
 </div>

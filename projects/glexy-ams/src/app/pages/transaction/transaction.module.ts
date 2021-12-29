@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { TransactionCheckInDetailListComponent } from './transaction-check-in-detail-list/transaction-check-in-detail-list.component';
+import { NgSelect2Module } from 'ng-select2';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TransactionCheckInDetailListComponent } from './transaction-check-in-de
     FormsModule,
     TableModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    NgSelect2Module
   ]
 })
 export class TransactionModule { }

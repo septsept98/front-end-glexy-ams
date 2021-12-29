@@ -29,10 +29,11 @@ export class StatusTransactionListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unSubs?.unsubscribe()
+    this.delUnSubs?.unsubscribe()
   }
 
   onUpdate(id: string): void {
-    this.router.navigateByUrl(`/glexy/status-asset/${id}`)
+    this.router.navigateByUrl(`/glexy/status-trx/${id}`)
   }
 
   onDelete(id: string) :void {

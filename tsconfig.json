@@ -6,7 +6,8 @@
     "paths": {
       "@services/*": ["projects/core/src/app/services/*"],
       "@models/*": ["projects/core/src/app/model/*"],
-      "@dto/*": ["projects/core/src/app/dto/*"]
+      "@dto/*": ["projects/core/src/app/dto/*"],
+      "@constant/*": ["projects/core/src/app/constance/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

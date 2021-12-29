@@ -42,8 +42,6 @@ export class AssetService {
 
   delete(id : string) : Observable<DeleteResDto> | undefined{
     return this.http.delete<DeleteResDto>(`${baseUrl}assets/${id}`)??""
-  }
-
-  
+  } 
 
 }
