@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Roles } from '@models/roles';
 import { RolesService } from '@services/roles/roles.service';
 import { Subscription } from 'rxjs';
@@ -13,7 +14,7 @@ export class RolesListComponent implements OnInit {
 
   listRoles: Roles[] = []
   selectedRoles: Roles[] = []
- 
+  deleteResDto :DeleteResDto = new DeleteResDto()
 
   private unSubs?: Subscription;
 
@@ -34,6 +35,13 @@ export class RolesListComponent implements OnInit {
 
     this.router.navigateByUrl(`/glexy/roles/${id}`)
 
+  }
+
+  onDelete(id :string):void{
+
+    this.rolesServices.delete(id)?.subscribe(result => {this.deleteResDto = result
+      this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
+    })
   }
 
   ngOnDestroy(): void {
