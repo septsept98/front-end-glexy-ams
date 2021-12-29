@@ -68,7 +68,4 @@ export class AssetService {
     return this.http.post<InsertResDto>(`${baseUrl}assets/upload`, formData)??""
     
   }
-
-  
-
 }

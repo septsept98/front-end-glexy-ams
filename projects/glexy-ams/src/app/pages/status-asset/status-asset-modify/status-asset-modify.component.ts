@@ -21,10 +21,10 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   private insUnSubs?: Subscription;
   private unSubs?: Subscription;
 
-  constructor(private statusAssetService: StatusAssetService, 
-    private router: Router, 
+  constructor(private statusAssetService: StatusAssetService,
+    private router: Router,
     private route: ActivatedRoute) { }
-  
+
   ngOnDestroy(): void {
     this.insUnSubs?.unsubscribe
     this.unSubs?.unsubscribe
@@ -32,7 +32,7 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const id: any = this.route.snapshot.paramMap.get('id');
-    if(id){
+    if (id) {
       this.unSubs = this.statusAssetService.getById(String(id))?.subscribe(result => {
         this.dataStatusAsset = result
       })
@@ -44,18 +44,16 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if(this.dataStatusAsset.id){
+    if (this.dataStatusAsset.id) {
       this.insUnSubs = this.statusAssetService.update(this.dataStatusAsset)?.subscribe(res => {
         this.updateResDto = res
         console.log(res)
       })
-    }else{
-      if(this.dataStatusAsset.nameStatusAsset && this.dataStatusAsset.isActive){
-        this.insUnSubs = this.statusAssetService.insert(this.dataStatusAsset)?.subscribe(res => {
-          this.insertResDto = res
-          this.router.navigateByUrl("/glexy/status-asset/list")
-        })
-      }
+    } else {
+      this.insUnSubs = this.statusAssetService.insert(this.dataStatusAsset)?.subscribe(res => {
+        this.insertResDto = res
+        this.router.navigateByUrl("/glexy/status-asset/list")
+      })
     }
   }
 }
