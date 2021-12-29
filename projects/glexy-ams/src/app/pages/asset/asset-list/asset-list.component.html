@@ -35,7 +35,8 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th pSortableColumn="image">Image</th>
+                            <th pSortableColumn="image">Image
+                            </th>
                             <th pSortableColumn="names">Name Asset
                                 <p-sortIcon field="names">
                                 </p-sortIcon>
@@ -72,18 +73,18 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td>{{asset.image}}</td>
+                            <td> <img class="asset-img" src="data:image/png;base64,{{asset.assetImg.file}}" *ngIf="isDisplayAvail(asset.assetImg)" /> </td>
                             <td>{{asset.names}}</td>
                             <td>{{asset.code}}</td>
-                            <td>{{asset.brand}}</td>
+                            <td>{{asset.brandId.names}}</td>
                             <td class="text-center">
                                 <div class="badge badge-success">
-                                    {{asset.statusAsset}}
+                                    {{asset.statusAssetId.nameStatusAsset}}
                                 </div>
                             </td>
-                            <td>{{asset.inventory}}</td>
-                            <td>{{asset.company}}</td>
-                            <td>{{asset.invoice}}</td>
+                            <td>{{asset.inventoryId.code}}</td>
+                            <td>{{asset.companyId.names}}</td>
+                            <td>{{asset.invoiceId.code}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>

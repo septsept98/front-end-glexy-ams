@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { NgSelect2Module } from 'ng-select2';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     InputTextModule,
     ButtonModule,
     NgSelect2Module,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ]
 })
 export class AssetModule { }

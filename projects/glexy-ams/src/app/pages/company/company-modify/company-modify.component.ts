@@ -35,8 +35,7 @@ export class CompanyModifyComponent implements OnInit, OnDestroy {
         if(this.insertResDto){
           this.router.navigateByUrl("/glexy/company/list")
         }
-      })
-    
+      }) 
   }
 
   selectFile(event : any) {
