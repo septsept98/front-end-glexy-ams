@@ -10,38 +10,42 @@
         </a>
     </li>
 </ul>
-
+{{assetInsert|json}}
 <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Asset form</h4>
-                <form class="forms-sample">
+                <div class="forms-sample">
                     <div class="row">
                         <div class="col-md-6 grid-margin">
                             <div class="form-group">
                                 <label for="nameAsset">Name</label>
-                                <input type="text" class="form-control" id="nameAsset" placeholder="Name Asset">
+                                <input type="text" class="form-control" id="nameAsset" placeholder="Name Asset" [(ngModel)]="assetInsert.inventoryId.nameAsset">
                             </div>
                             <div class="form-group">
                                 <label for="typeAsset">Type</label>
-                                <ng-select2 [options]='optionsAssetType'> </ng-select2>
+                                <ng-select2 [options]='optionsAssetType' [(ngModel)]="assetInsert.assetTypeId.id"> </ng-select2>
                             </div>
                             <div class="form-group">
                                 <label>Brand</label>
-                                <ng-select2 [options]='optionsBrand'> </ng-select2>
+                                <ng-select2 [options]='optionsBrand' [(ngModel)]="assetInsert.brandId.id"> </ng-select2>
                             </div>
                             <div class="form-group">
                                 <label>Company</label>
-                                <ng-select2 [options]='optionsCompany'> </ng-select2>
+                                <ng-select2 [options]='optionsCompany' [(ngModel)]="assetInsert.companyId.id"> </ng-select2>
+                            </div>
+                            <div class="form-group">
+                                <label>Status Asset</label>
+                                <ng-select2 [options]='optionsStatusAsset' [(ngModel)]="assetInsert.statusAssetId.id"> </ng-select2>
                             </div>
                             <div class="form-group">
                                 <label for="qty">Quantity</label>
-                                <input type="number" class="form-control" id="qty" placeholder="Quantity">
+                                <input type="number" class="form-control" id="qty" placeholder="Quantity" [(ngModel)]="assetInsert.inventoryId.stock">
                             </div>
                             <div class="form-group">
                                 <label>Date Expired</label>
-                                <input class="form-control" placeholder="yyyy/MM/dd" />
+                                <input class="form-control" type="date" [(ngModel)]="assetInsert.expiredDate" />
                             </div>
 
                         </div>
@@ -49,26 +53,26 @@
 
                             <div class="form-group">
                                 <label for="codeInvoice">Code Invoice</label>
-                                <input type="text" class="form-control" id="codeInvoice" placeholder="Code Invoice">
+                                <input type="text" class="form-control" id="codeInvoice" placeholder="Code Invoice" [(ngModel)]="assetInsert.invoiceId.code">
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="Price">
+                                <input type="number" class="form-control" id="price" placeholder="Price" [(ngModel)]="assetInsert.invoiceId.totalPrice">
                             </div>
                             <div class="form-group">
                                 <label>File Invoice </label><br>
-                                <input type="file" name="img" class="file-upload-default">
+                                <input type="file" name="img" class="file-upload-default form-control" (change)="selectImgInvo($event)">
                             </div>
                             <div class="form-group">
                                 <label>Asset Image </label><br>
-                                <input type="file" name="assetImg" class="file-upload-default">
+                                <input type="file" name="assetImg" class="file-upload-default form-control" (change)="selectImgAsset($event)">
                             </div>
 
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button type="submit" class="btn btn-primary me-2" (click)="addData()">Submit</button>
                     <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -85,11 +89,11 @@
                             </label>
                             <div class="form-group mt-md-3">
                                 <label>Upload Excel </label><br>
-                                <input type="file" name="img" class="file-upload-default">
+                                <input type="file" id="myfile" class="form-control" (change)="selectFile($event)" accept=".xls">
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button type="submit" class="btn btn-primary me-2" (click)="upload()">Submit</button>
                     <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                 </form>
             </div>

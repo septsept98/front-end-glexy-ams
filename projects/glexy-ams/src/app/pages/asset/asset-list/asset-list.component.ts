@@ -1,45 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Asset } from '@models/asset';
+import { AssetService } from '@services/asset/asset.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-asset-list',
   templateUrl: './asset-list.component.html',
   styleUrls: ['./asset-list.component.css']
 })
-export class AssetListComponent implements OnInit {
+export class AssetListComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private assetService : AssetService) { }
 
-  assetList: AssetDummy[] = []
+  assetList: Asset[] = []
   selectedAsset: Asset[] = []
+  obs? : Subscription
 
   ngOnInit(): void {
 
-    this.assetList = [
-      {names: 'Laptop',  code: 'LTPLWN1', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN2', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN3', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN4', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN5', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN6', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN7', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Laptop',  code: 'LTPLWN8', brand: 'Samsung', statusAsset: 'Available', inventory: 'LTP', company: 'Lawencon', image: '', invoice: 'GJK08779'},
-      {names: 'Spidol',  code: 'SPLLNV1', brand: 'Snowman', statusAsset: 'Available', inventory: 'SPL', company: 'Linov', image: '', invoice: 'GYY08999'},
-      {names: 'Spidol',  code: 'SPLLNV1', brand: 'Snowman', statusAsset: 'Available', inventory: 'SPL', company: 'Linov', image: '', invoice: 'GYY08999'}
-    ]
+    this.assetService.getAll()?.subscribe(result => this.assetList = result)
 
+  }
+  isDisplayAvail(file: File) : boolean {
+    if(file) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.obs?.unsubscribe
   }
 
 }
 
-class AssetDummy {
-  names! : string
-  code! : string
-  company! : string
-  brand! : string
-  statusAsset! : string
-  inventory! : string
-  invoice! : string
-  image! : string
-
-}
