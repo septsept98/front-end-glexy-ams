@@ -1,54 +1,55 @@
 <div class="card">
+    {{selectedFile|json}}
+    {{data|json}}
     <div class="card-body">
         <h4 class="card-title">User form</h4>
-        <form class="forms-sample">
+        <div class="forms-sample">
             <div class="row">
                 <div class="col-md-6 grid-margin">
                     <div class="form-group">
                         <label for="nameAsset">Name</label>
-                        <input type="text" class="form-control" id="nameAsset" placeholder="Name Employee">
+                        <input type="text" class="form-control" id="nameAsset" placeholder="Name Employee" [(ngModel)]="data.employeeId.nameEmployee">
                     </div>
                     <div class="form-group">
-                        <label for="nameAsset">NIP</label>
-                        <input type="text" class="form-control" id="nameAsset" placeholder="NIP Employee">
+                        <label for="nameAsset" *ngIf = "save">NIP</label>
+                        <input type="text" class="form-control" id="nameAsset" placeholder="NIP Employee" [(ngModel)]="data.employeeId.nip" *ngIf = "save">
                     </div>
                     <div class="form-group">
-                        <label for="nameAsset">Email</label>
-                        <input type="text" class="form-control" id="nameAsset" placeholder="Email Employee">
+                        <label for="nameAsset" *ngIf = "save">Email</label>
+                        <input type="email" class="form-control" id="nameAsset" placeholder="Email Employee" [(ngModel)]="data.email" *ngIf = "save">
                     </div>
                     <div class="form-group">
                         <label for="nameAsset">Phone Number</label>
-                        <input type="text" class="form-control" id="nameAsset" placeholder="Phone Number Employeet">
+                        <input type="text" class="form-control" id="nameAsset" placeholder="Phone Number Employeet" [(ngModel)]="data.employeeId.phoneNumber">
                     </div>
-                    <label for="">Gender</label>
-                    <div class="custom-radio custom-control"><input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">Male</label></div>
-                    <div class="custom-radio custom-control"><input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">Female</label></div>
+                    <label for="" *ngIf = "save">Gender</label>
+                    <div class="custom-radio custom-control" *ngIf = "save"><input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input" [(ngModel)] = "data.employeeId.gender" value="MALE" checked><label class="custom-control-label" for="exampleCustomRadio" *ngIf = "save">Male</label></div>
+                    <div class="custom-radio custom-control" *ngIf = "save"><input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input" [(ngModel)] = "data.employeeId.gender" value="FEMALE" ><label class="custom-control-label" for="exampleCustomRadio2" *ngIf = "save">Female</label></div>
                     <div class="form-group">
-                        <label for="typeAsset">Company</label>
-                        <select class="form-control" id="typeAsset">
-                          <option>Linov</option>
-                          <option>Lawencon</option>
+                        <label for="typeAsset" >Company</label>
+                        <select  class="form-control" id="typeAsset" [(ngModel)]="data.employeeId.companyId.id" >
+                          <option *ngFor="let list of listCompany" [value] = "list.id" >{{list.names}}</option>
+                         
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Role</label>
-                        <select class="form-control" id="brand">
-                          <option value="SMG">admin</option>
-                          <option value="LNV">hr</option>
+                        <label >Role</label>
+                        <select class="form-control" id="brand" [(ngModel)]="data.rolesId.id" >
+                          <option *ngFor="let list of listRoles" [value]="list.id">{{list.nameRole}}</option>
                         </select>
                     </div>
-                    <div class="position-relative form-group"><label for="exampleFile" class="">Photo</label><input name="file" id="exampleFile" type="file" class="form-control-file">
-                        <small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                    <div class="position-relative form-group" *ngIf = "save"><label for="exampleFile" class="" *ngIf = "save">Photo</label><input name="file" id="exampleFile" type="file" class="form-control-file" accept="image/*" (change)="selectFile($event)" *ngIf = "save">
+                        <small class="form-text text-muted" *ngIf = "save">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                     </div>
 
-                    <label for="codePermission">Is Active</label>
-                    <div class="position-relative form-check mb-3"><label class="form-check-label"><input type="checkbox" class="form-check-input"> True</label></div>
+                    <label for="codePermission" >Is Active</label>
+                    <div class="position-relative form-check mb-3"><label class="form-check-label" ><input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive" > True</label></div>
 
                 </div>
               
             </div>
-            <button type="submit" class="btn btn-primary me-2 mr-2">Submit</button>
+            <button type="submit" class="btn btn-primary me-2 mr-2" (click)="add()">Submit</button>
             <button class="btn btn-dark">Cancel</button>
-        </form>
+        </div>
     </div>
 </div>

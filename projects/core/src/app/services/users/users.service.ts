@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { baseUrl } from '../../constance/root';
 import { Users } from '../../model/users';
 import { UpdateResDto } from '../../dto/all-respons/update-res-dto';
+import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,19 @@ export class UsersService {
 
   getByIdAuth() : Observable<Users> | undefined {
     return this.http.get<Users>(`${baseUrl}users/profile`)??""
+  }
+
+  insert(data : Users, file: File | null) : Observable<InsertResDto> | undefined {
+    const formData : FormData = new FormData()
+    formData.append('data', JSON.stringify(data))
+    formData.append('file', file!)
+    console.log('asdasdfgbd '+ file)
+    return this.http.post<InsertResDto>(`${baseUrl}users/`, formData)??""
+  }
+
+  update(data : Users) : Observable<UpdateResDto> | undefined {
+    
+    return this.http.put<UpdateResDto>(`${baseUrl}users/`, data)??""
   }
   
 }
