@@ -29,7 +29,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
   optionsStatusAsset! : Options;
   assetInsert : Asset = new Asset();
   insertResDto: InsertResDto = new InsertResDto();
-  obs? : Subscription
+  obs? : Subscription;
   selectedImgAsset!: FileList;
   selectedImgInvo!: FileList;
   selectedExcel!: FileList;
@@ -65,6 +65,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
               {
                 id: company.id!,
                 text: company.names!
+                
               }
             )
           }
@@ -178,8 +179,6 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
   }
 
   upload() {
-    this.progress = 0;
-  
     this.currentFile = this.selectedExcel?.item(0);
     this.assetService.uploadFile(this.currentFile!)?.subscribe(result => {
       this.insertResDto = result

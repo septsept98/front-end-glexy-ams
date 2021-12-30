@@ -11,11 +11,13 @@ import { ButtonModule } from 'primeng/button';
 import { NgSelect2Module } from 'ng-select2';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AssetUpdateComponent } from './asset-update/asset-update/asset-update.component';
 
 @NgModule({
   declarations: [
     AssetModifyComponent,
-    AssetListComponent
+    AssetListComponent,
+    AssetUpdateComponent
   ],
   imports: [
     CommonModule,
