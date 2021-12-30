@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginReqDto } from '@dto/users/login-req-dto';
+import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,17 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  token? :string
   counter = 0
+  data :LoginReqDto = new LoginReqDto()
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService :AuthService) { }
 
   ngOnInit(): void {
 
   }
 
   login(): void {
-    this.router.navigateByUrl('/glexy/dashboard')
+    this.authService.login(this.data).subscribe(result=>{
+      this.authService.saveUserData(result)
+      this.token = this.authService.getToken()
+      console.log(this.token)
+      this.router.navigateByUrl('/glexy/dashboard')
+    
+    })
+    
   }
 
   onShow(): void {
