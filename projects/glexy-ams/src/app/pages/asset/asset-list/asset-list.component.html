@@ -86,7 +86,7 @@
                             <td>{{asset.companyId.names}}</td>
                             <td>{{asset.invoiceId.code}}</td>
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
                             </td>
                         </tr>

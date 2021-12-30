@@ -62,4 +62,6 @@ export class GeneralTemplateComponent implements OnInit {
     }
   }
 
+ 
+
 }
