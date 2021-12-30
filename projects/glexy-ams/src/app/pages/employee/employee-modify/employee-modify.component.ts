@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Company } from '@models/company';
@@ -25,7 +25,7 @@ export class EmployeeModifyComponent implements OnInit {
   employeeId?:string|null 
 
   constructor(private activedRoute:ActivatedRoute, private companyService:CompanyService,
-    private employeeService:EmployeeService) { }
+    private employeeService:EmployeeService, private router :Router) { }
 
   ngOnInit(): void {
 
@@ -42,14 +42,22 @@ export class EmployeeModifyComponent implements OnInit {
     this.companyService.getAll()?.subscribe(result => this.listCompany = result)
   }
 
+  onCancel() :void{
+
+    this.router.navigateByUrl('/glexy/employee/list')
+
+  }
+
   add(){
     if(this.employeeId){
       this.employeeService.update(this.data)?.subscribe(result =>{
         this.updateResDto = result
+        this.router.navigateByUrl('/glexy/employee/list')
       })
     }else{
       this.employeeService.insert(this.data)?.subscribe(result =>{
         this.insertResDto = result
+        this.router.navigateByUrl('/glexy/employee/list')
       })
     }
     

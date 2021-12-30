@@ -31,7 +31,7 @@ export class UsersService {
   }
 
   updatePassword(data : Users) : Observable<UpdateResDto> | undefined {
-    return this.http.post<UpdateResDto>(`${baseUrl}users/`, data)??""
+    return this.http.post<UpdateResDto>(`${baseUrl}users/password`, data)??""
   }
 
   delete(id : string) : Observable<DeleteResDto> | undefined{

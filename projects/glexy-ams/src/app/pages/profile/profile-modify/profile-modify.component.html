@@ -2,29 +2,30 @@
     <div class="col-12">
 <div class="card">
     <div class="card-body">
+        {{users|json}}
         <h4 class="card-title mb-5">Profile</h4>
-        <form class="forms-sample">
+        <div class="forms-sample">
             <div class="row">
                 <div class="col-md-6  grid-margin">
                     
                     <div class="form-group">
                         <label for="namePermission">Name</label>
-                        <input type="text" class="form-control"  id="namePermission" value="{{users.employeeId?.nameEmployee}}">
+                        <input type="text" class="form-control"  id="namePermission" [(ngModel)]="users.employeeId.nameEmployee">
                     </div>
 
 
                     <div class="form-group">
                         <label for="namePermission">Phone Number</label>
-                        <input type="text" class="form-control"  id="namePermission" value="{{users.employeeId?.phoneNumber}}">
+                        <input type="text" class="form-control"  id="namePermission" [(ngModel)]="users.employeeId.phoneNumber">
                     </div>
 
   
                 </div>
               
             </div>
-            <button type="submit" class="btn btn-primary me-2 mr-2">Submit</button>
-            <button class="btn btn-dark">Cancel</button>
-        </form>
+            <button type="submit" class="btn btn-primary me-2 mr-2" (click)="onUpdate()">Submit</button>
+            <button class="btn btn-dark" (click)="onCancel()">Cancel</button>
+        </div>
     </div>
   </div>
 </div>

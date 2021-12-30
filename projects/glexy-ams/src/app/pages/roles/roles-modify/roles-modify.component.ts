@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { RolesInsertReqDto } from '@dto/roles/roles-insert-req-dto';
@@ -28,7 +28,8 @@ export class RolesModifyComponent implements OnInit {
   save:boolean = true;
   roleId?:string|null 
   
-  constructor(private permissionsService :PermissionsService, private rolesService :RolesService, private activedRoute :ActivatedRoute) { }
+  constructor(private permissionsService :PermissionsService, private rolesService :RolesService,
+     private activedRoute :ActivatedRoute, private router :Router) { }
 
   ngOnInit(): void {
 
@@ -54,11 +55,18 @@ export class RolesModifyComponent implements OnInit {
     
   }
 
+  onCancel() :void{
+
+    this.router.navigateByUrl('/glexy/roles/list')
+
+  }
+
   onSubmit(){
 
     if(this.roleId){
 
       this.rolesService.update(this.data)?.subscribe(result => this.updateResDto = result)
+      this.router.navigateByUrl('/glexy/roles/list')
 
     }
     else{
@@ -77,6 +85,7 @@ export class RolesModifyComponent implements OnInit {
     console.log(this.data)
     
    this.rolesService.insert(this.data)?.subscribe(result => this.insertResDto = result)
+   this.router.navigateByUrl('/glexy/roles/list')
   }
   }
 
