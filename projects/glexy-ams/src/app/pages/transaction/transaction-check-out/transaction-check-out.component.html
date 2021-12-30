@@ -53,37 +53,42 @@
                     </textarea>
                 </div>
             </div>
-            {{dataTrx | json}}
-            <button class="mt-2 btn btn-primary" (click)="cek()">Check Out</button>
         </div>
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Choose Assets</h5>
                 <div class="form-row">
                     <div class="col-md-5">
-                        <div class="position-relative form-group"><label for="exampleCity" class="">Asset</label>
-                            <input name="city" id="exampleCity" type="text" class="form-control">
+                        <div class="position-relative form-group">
+                            <label for="exampleCity" class="">Asset</label>
+                            <ng-select2 [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
+                                [options]='optionsInventory'></ng-select2>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="position-relative form-group"><label for="exampleCity" class="">Brand</label>
-                            <input name="city" id="exampleCity" type="text" class="form-control">
+                            <select [(ngModel)]="dataReqAsset.brandId" (change)="onBrandChange($event.target)"
+                                name="select" id="nameStatus" class="form-control">
+                                <option *ngFor="let data of listBrands" [value]="data.id">{{data.names}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="position-relative form-group"><label for="exampleState" class="">Stock</label>
-                            <input name="state" id="exampleState" type="text" class="form-control" disabled>
+                            <input [(ngModel)]="stockAsset" name="state" id="exampleState" type="text"
+                                class="form-control" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="position-relative form-group"><label for="exampleState" class="">Quantity</label>
-                            <input name="state" id="exampleState" type="text" class="form-control">
+                            <input [(ngModel)]="qtyTrx" name="state" id="exampleState" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="position-relative form-group">
                             <label for="exampleZip" class="">Action</label>
-                            <button class="btn btn-success">Add</button>
+                            <button (click)="onAddAsset()" class="btn btn-success">Add</button>
                         </div>
                     </div>
                 </div>
@@ -106,13 +111,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Lp1</td>
-                                    <td>Laptop</td>
-                                    <td>Asus G15</td>
+                                <tr *ngFor="let d of dataDetailTrx; let i = index">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{d.assetId.code}}</td>
+                                    <td>{{d.assetId.names}}</td>
+                                    <td>{{d.assetId.brandId.names}}</td>
                                     <td>
-                                        <input name="state" id="exampleState" type="date" class="form-control">
+                                        <input [(ngModel)]="d.durationDate" name="state" id="exampleState" type="date"
+                                            class="form-control">
                                     </td>
                                     <td>
                                         <button class="btn btn-danger">Remove</button>
@@ -122,7 +128,7 @@
                         </table>
                     </div>
                 </div>
-                <button class="mt-2 btn btn-primary">Check Out</button>
+                <button (click)="onSubmit()" class="mt-2 btn btn-primary">Check Out</button>
             </div>
         </div>
     </div>

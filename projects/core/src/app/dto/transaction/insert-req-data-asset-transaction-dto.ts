@@ -1,4 +1,6 @@
 export class InsertReqDataAssetTransactionDto {
-    name! : string;
-    qty! : number;
+    inventId!: string;
+    stock!: number;
+    qty!: number;
+    brandId!: string;
 }

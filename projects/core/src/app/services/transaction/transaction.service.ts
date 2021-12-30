@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { baseUrl } from '../../constance/root';
 import { Transactions } from '../../model/transactions';
 import { InsertReqDataAssetTransactionDto } from '../../dto/transaction/insert-req-data-asset-transaction-dto';
+import { Asset } from '@models/asset';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class TransactionService {
 
   getById(id : string) : Observable<Transactions> | undefined {
     return this.http.get<Transactions>(`${baseUrl}transactions/${id}`)??""
+  }
+
+  getAsset(data : InsertReqDataAssetTransactionDto) : Observable<Asset[]> | undefined {
+    return this.http.post<Asset[]>(`${baseUrl}transactions/asset-details`, data)??""
   }
 
   insert(data : Transactions) : Observable<InsertResDto> | undefined {

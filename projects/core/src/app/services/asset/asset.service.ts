@@ -5,6 +5,7 @@ import { Asset } from '../../model/asset';
 import { baseUrl } from '../../constance/root';
 import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
+import { InsertReqDataAssetTransactionDto } from '@dto/transaction/insert-req-data-asset-transaction-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 
 
@@ -29,6 +30,10 @@ export class AssetService {
 
   getByInvent(id : string) : Observable<Asset[]> | undefined {
     return this.http.get<Asset[]>(`${baseUrl}assets/invent/${id}`)??""
+  }
+
+  getByInventBrand(data : InsertReqDataAssetTransactionDto) : Observable<Asset[]> | undefined {
+    return this.http.get<Asset[]>(`${baseUrl}assets/get-invent-brand/?invent-id=${data.inventId}&&brand-id=${data.brandId}`)??""
   }
 
   getByBrandId(id : string) : Observable<Asset[]> | undefined {
