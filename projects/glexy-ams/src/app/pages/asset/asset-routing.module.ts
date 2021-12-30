@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AssetListComponent } from './asset-list/asset-list.component';
 import { AssetModifyComponent } from './asset-modify/asset-modify.component';
+import { AssetUpdateComponent } from './asset-update/asset-update/asset-update.component';
 
 const routes: Routes = [
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path:'asset/:id',
-    component : AssetModifyComponent
+    component : AssetUpdateComponent
   }
 
 ];

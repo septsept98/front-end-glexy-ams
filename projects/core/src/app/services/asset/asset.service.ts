@@ -5,6 +5,7 @@ import { Asset } from '../../model/asset';
 import { baseUrl } from '../../constance/root';
 import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
+import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 
 
 @Injectable({
@@ -66,6 +67,15 @@ export class AssetService {
     formData.append('file', file);
 
     return this.http.post<InsertResDto>(`${baseUrl}assets/upload`, formData)??""
+    
+  }
+
+  updateImage(file : File) : Observable<UpdateResDto> | undefined {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    return this.http.put<UpdateResDto>(`${baseUrl}assets/image`, formData)??""
     
   }
 }
