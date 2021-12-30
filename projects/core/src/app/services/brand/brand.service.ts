@@ -33,4 +33,8 @@ export class BrandService {
   delete(id : string) : Observable<DeleteResDto> | undefined{
     return this.http.delete<DeleteResDto>(`${baseUrl}brands/${id}`)??""
   }
+  
+  getAllFilter(id: string) : Observable<Brand[]> | undefined {
+    return this.http.get<Brand[]>(`${baseUrl}brands/filter/${id}`)??""
+  }
 }
