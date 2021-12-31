@@ -54,15 +54,11 @@ export class AssetService {
 
   insert(data : Asset, invoiceImg: File | null, assetImg: File | null ) : Observable<InsertResDto> {
     const formData : FormData = new FormData()
-    console.log("dasdaf", data)
-    console.log("ajkdnasldk", invoiceImg)
-    console.log("amdklamda", assetImg)
     formData.append('data', JSON.stringify(data))
     if(invoiceImg)
       formData.append('invoiceImg', invoiceImg)
     if(assetImg)
       formData.append('assetImg', assetImg)
-    console.log(formData)
     return this.http.post<InsertResDto>(`${baseUrl}assets/`, formData)
   }
 
@@ -75,9 +71,10 @@ export class AssetService {
     
   }
 
-  updateImage(file : File) : Observable<UpdateResDto> | undefined {
+  updateImage(data : string, file : File) : Observable<UpdateResDto> | undefined {
     const formData: FormData = new FormData();
 
+    formData.append('data', data)
     formData.append('file', file);
 
     return this.http.put<UpdateResDto>(`${baseUrl}assets/image`, formData)??""

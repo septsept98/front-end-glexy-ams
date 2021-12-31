@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Invoice } from '@models/invoice';
 import { InvoiceService } from '@services/invoice/invoice.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +15,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   dataList: Invoice[] = []
   obs? : Subscription
   
-  constructor(private invoiceService : InvoiceService) { }
+  constructor(private invoiceService : InvoiceService, private router : Router) { }
 
   ngOnInit(): void {
     this.invoiceService.getAll()?.subscribe(result => this.dataList = result)
@@ -31,6 +32,10 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.obs?.unsubscribe
+  }
+
+  onUpdate(id : number): void{
+    this.router.navigateByUrl(`/glexy/invoice/${id}`)
   }
 
 }

@@ -1,11 +1,11 @@
 <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
     <li class="nav-item">
-        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+        <a role="tab" class="nav-link active btn btn-primary mr-2" id="tab-0" data-toggle="tab" href="#tab-content-0">
             <span>Form</span>
         </a>
     </li>
     <li class="nav-item">
-        <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
+        <a role="tab" class="nav-link btn btn-primary" id="tab-1" data-toggle="tab" href="#tab-content-1">
             <span>Excel</span>
         </a>
     </li>
@@ -65,16 +65,28 @@
                             </div>
                             <div class="form-group">
                                 <label>Invoice Image</label><br>
-                                <input type="file" name="img" class="file-upload-default form-control" (change)="selectImgInvo($event)">
+                                <input type="file" name="img[]" class="file-upload-default" (change)="selectImgInvo($event)">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Invoice Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Asset Image </label><br>
-                                <input type="file" name="assetImg" class="file-upload-default form-control" (change)="selectImgAsset($event)">
+                                <input type="file" name="assetImg" class="file-upload-default" (change)="selectImgAsset($event)">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Asset Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
                             </div>
 
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2" (click)="addData()">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" (click)="addData()">Submit</button>
                     <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                 </div>
             </div>
@@ -93,11 +105,17 @@
                             </label>
                             <div class="form-group mt-md-3">
                                 <label>Upload Excel </label><br>
-                                <input type="file" id="myfile" class="form-control" (change)="selectFile($event)" accept=".xls">
+                                <input type="file" name="excel" class="file-upload-default" (change)="selectFile($event)" accept=".xls">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Excel">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary me-2" (click)="upload()">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" (click)="upload()">Submit</button>
                     <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                 </form>
             </div>

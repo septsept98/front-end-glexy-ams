@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateResDto } from '@dto/all-respons/update-res-dto';
+import { Invoice } from '@models/invoice';
+import { InvoiceService } from '@services/invoice/invoice.service';
 
 @Component({
   selector: 'app-invoice-modify',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceModifyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activeRoute : ActivatedRoute, private invoiceService : InvoiceService, private router : Router) { }
+
+  invoice : Invoice = new Invoice()
+  updateResDto : UpdateResDto = new UpdateResDto()
+  fileImg! : File | null
+  selectedImg! : FileList
 
   ngOnInit(): void {
+    const data = this.activeRoute.snapshot.paramMap.get('id')
+    if(data){
+      this.invoiceService.getById(data)?.subscribe(result => this.invoice = result)
+    }
+  }
+
+  selectFile(event : any) {
+    this.selectedImg = event.target.files;
+  }
+
+  onUpdate(): void {
+    this.fileImg = this.selectedImg?.item(0);
+    this.invoiceService.update(this.invoice.code,this.fileImg!)?.subscribe(result => {
+      this.updateResDto = result
+      if(this.updateResDto){
+        this.router.navigateByUrl("/glexy/invoice/list")
+      }
+    })
   }
 
 }

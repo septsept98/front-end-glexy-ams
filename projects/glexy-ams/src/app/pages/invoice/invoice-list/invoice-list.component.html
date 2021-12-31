@@ -20,8 +20,7 @@
                 <p-table #dt [value]="dataList" [rows]="10" [paginator]="true" [globalFilterFields]="['code','purchaseDate','totalPrice','invoiceImg']" responsiveLayout="scroll" [(selection)]="selectedInvoice" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                        <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                        <div class="d-flex p-ai-center justify-content-end">
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -55,7 +54,7 @@
                             <td>{{invo.purchaseDate}}</td>
                             <td>{{invo.totalPrice}}</td>
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(invo.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
                             </td>
                         </tr>
