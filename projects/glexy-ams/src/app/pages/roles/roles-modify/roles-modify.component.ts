@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -8,13 +8,14 @@ import { Permissions } from '@models/permissions';
 import { Roles } from '@models/roles';
 import { PermissionsService } from '@services/permissions/permissions.service';
 import { RolesService } from '@services/roles/roles.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-roles-modify',
   templateUrl: './roles-modify.component.html',
   styleUrls: ['./roles-modify.component.css']
 })
-export class RolesModifyComponent implements OnInit {
+export class RolesModifyComponent implements OnInit,OnDestroy {
 
   permissionList:Permissions[] = []
 
@@ -27,6 +28,10 @@ export class RolesModifyComponent implements OnInit {
   updateResDto :UpdateResDto = new UpdateResDto();
   save:boolean = true;
   roleId?:string|null 
+  roleSubs?: Subscription
+  listPermissionSubs?: Subscription
+  insertRoleSubs?:Subscription
+  updateRoleSubs?:Subscription
   
   constructor(private permissionsService :PermissionsService, private rolesService :RolesService,
      private activedRoute :ActivatedRoute, private router :Router) { }
@@ -37,7 +42,7 @@ export class RolesModifyComponent implements OnInit {
 
     if(this.roleId){
 
-      this.rolesService.getById(this.roleId)?.subscribe(result => {
+     this.roleSubs = this.rolesService.getById(this.roleId)?.subscribe(result => {
         this.save = false
         this.data.roles = result
       })
@@ -46,7 +51,7 @@ export class RolesModifyComponent implements OnInit {
 
    this.data.roles = this.dataRole
    this.data.data = this.permissionDetail
-    this.permissionsService.getAll()?.subscribe(result => this.permissionList = result)
+    this.listPermissionSubs = this.permissionsService.getAll()?.subscribe(result => this.permissionList = result)
 
   }
 
@@ -65,7 +70,7 @@ export class RolesModifyComponent implements OnInit {
 
     if(this.roleId){
 
-      this.rolesService.update(this.data)?.subscribe(result => this.updateResDto = result)
+    this.updateRoleSubs =  this.rolesService.update(this.data)?.subscribe(result => this.updateResDto = result)
       this.router.navigateByUrl('/glexy/roles/list')
 
     }
@@ -84,9 +89,18 @@ export class RolesModifyComponent implements OnInit {
     
     console.log(this.data)
     
-   this.rolesService.insert(this.data)?.subscribe(result => this.insertResDto = result)
+  this.insertRoleSubs =  this.rolesService.insert(this.data)?.subscribe(result => this.insertResDto = result)
    this.router.navigateByUrl('/glexy/roles/list')
   }
+  }
+
+  ngOnDestroy(): void {
+
+    this.roleSubs?.unsubscribe()
+    this.updateRoleSubs?.unsubscribe()
+    this.insertRoleSubs?.unsubscribe()
+    this.listPermissionSubs?.unsubscribe()
+      
   }
 
 }

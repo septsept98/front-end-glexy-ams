@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -9,13 +9,14 @@ import { Users } from '@models/users';
 import { CompanyService } from '@services/company/company.service';
 import { RolesService } from '@services/roles/roles.service';
 import { UsersService } from '@services/users/users.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users-modify',
   templateUrl: './users-modify.component.html',
   styleUrls: ['./users-modify.component.css']
 })
-export class UsersModifyComponent implements OnInit {
+export class UsersModifyComponent implements OnInit, OnDestroy {
 
   data:Users = new Users()
   role:Roles = new Roles()
@@ -29,6 +30,11 @@ export class UsersModifyComponent implements OnInit {
   save :boolean = true
   selectedFile!:FileList
   file! :File |null 
+  dataSubs? :Subscription
+  insertSubs? :Subscription
+  updateSubs? :Subscription
+  listCompanySubs? :Subscription
+  listRoleSubs? :Subscription
 
   constructor(private companyService:CompanyService, private rolesService :RolesService,
     private usersService:UsersService, private activatedRoute :ActivatedRoute,private router:Router) { }
@@ -39,7 +45,7 @@ export class UsersModifyComponent implements OnInit {
 
     if(this.userId){
 
-      this.usersService.getById(this.userId)?.subscribe(result=>{
+      this.dataSubs = this.usersService.getById(this.userId)?.subscribe(result=>{
 
         this.save = false
          this.data = result
@@ -51,8 +57,8 @@ export class UsersModifyComponent implements OnInit {
     this.data.rolesId = this.role
     this.data.employeeId.companyId = this.company
     
-    this.companyService.getAll()?.subscribe(result => this.listCompany = result)
-    this.rolesService.getAll()?.subscribe(result => this.listRoles = result)
+   this.listCompanySubs = this.companyService.getAll()?.subscribe(result => this.listCompany = result)
+   this.listRoleSubs = this.rolesService.getAll()?.subscribe(result => this.listRoles = result)
 
   }
 
@@ -72,15 +78,25 @@ export class UsersModifyComponent implements OnInit {
     this.data.employeeId.emailEmployee = this.data.email
     if(this.userId){
       
-      this.usersService.update(this.data)?.subscribe(result => this.updateResDto = result)
+      this.updateSubs = this.usersService.update(this.data)?.subscribe(result => this.updateResDto = result)
       this.router.navigateByUrl('/glexy/users/list')
     }else{
     this.file = this.selectedFile?.item(0)
-    this.usersService.insert(this.data,this.file)?.subscribe(result =>{
+      this.insertSubs = this.usersService.insert(this.data,this.file)?.subscribe(result =>{
       this.insertResDto = result
     })
     this.router.navigateByUrl('/glexy/users/list')
   }
+  }
+
+  ngOnDestroy(): void {
+
+    this.dataSubs?.unsubscribe()
+    this.updateSubs?.unsubscribe()
+    this.insertSubs?.unsubscribe()
+    this.listRoleSubs?.unsubscribe()
+    this.listCompanySubs?.unsubscribe()
+
   }
 
 }
