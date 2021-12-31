@@ -10,10 +10,6 @@ const routes: Routes = [
     component : InvoiceListComponent
   },
   {
-    path:'invoice/new',
-    component : InvoiceModifyComponent
-  },
-  {
     path:'invoice/:id',
     component : InvoiceModifyComponent
   }

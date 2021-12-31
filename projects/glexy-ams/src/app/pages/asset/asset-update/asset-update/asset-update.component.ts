@@ -44,10 +44,10 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
     const data = this.activeRoute.snapshot.paramMap.get('id')
     if(data){
       this.assetService.getById(data)?.subscribe(result => this.asset = result)
-      this.assetTypeService.getAll()?.subscribe(result => this.assetType = result)
-      this.companyService.getAll()?.subscribe(result => this.company = result)
-      this.brandService.getAll()?.subscribe(result => this.brand = result)
     }
+    this.assetTypeService.getAll()?.subscribe(result => this.assetType = result)
+    this.companyService.getAll()?.subscribe(result => this.company = result)
+    this.brandService.getAll()?.subscribe(result => this.brand = result)
 
     this.optionsBrand = {
       width:'100%',
@@ -145,7 +145,7 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
 
   onUpdateImg(): void {
     this.fileImg = this.selectedImg?.item(0)
-      this.assetService.updateImage(this.fileImg!)?.subscribe(result => {
+      this.assetService.updateImage(this.asset.code, this.fileImg!)?.subscribe(result => {
         this.dataUpdate = result
         if(this.dataUpdate){
           this.router.navigateByUrl("/glexy/asset/list")

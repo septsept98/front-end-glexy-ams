@@ -10,6 +10,7 @@ import { Inventory } from '@models/inventory';
 import { Invoice } from '@models/invoice';
 import { StatusAsset } from '@models/status-asset';
 import { AssetService } from '@services/asset/asset.service';
+import { AuthService } from '@services/auth/auth.service';
 import { Select2OptionData } from 'ng-select2';
 import { Subscription } from 'rxjs';
 import { Options } from 'select2';
@@ -21,7 +22,7 @@ import { Options } from 'select2';
 })
 export class AssetModifyComponent implements OnInit, OnDestroy {
 
-  constructor(private assetService : AssetService, private router : Router) { }
+  constructor(private assetService : AssetService, private router : Router, private authService : AuthService) { }
 
   optionsBrand! : Options;
   optionsCompany! : Options;
@@ -48,8 +49,10 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.assetInsert.statusAssetId = new StatusAsset()
 
     this.optionsCompany = {
+      
       width:'100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/companies/search/',
         data: function (params) {
           var query = {
@@ -80,7 +83,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.optionsBrand = {
       width:'100%',
       ajax: {
-        
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/brands/search/',
         data: function (params) {
           var query = {
@@ -110,7 +113,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.optionsAssetType = {
       width:'100%',
       ajax: {
-        
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/asset-types/search/',
         data: function (params) {
           var query = {
@@ -140,6 +143,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.optionsStatusAsset = {
       width:'100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/status-assets/search',
         data: function (params) {
           var query = {

@@ -22,15 +22,21 @@ export class InvoiceService {
     return this.http.post<InsertResDto>(`${baseUrl}invoices/`, data)??""
   }
 
-  update(data : Invoice): Observable<UpdateResDto> | undefined {
-    return this.http.put<UpdateResDto>(`${baseUrl}invoices/`, data)??""
-  }
-
   getById(id : string) : Observable<Invoice> | undefined {
     return this.http.get<Invoice>(`${baseUrl}invoices/${id}`)??""
   }
 
   delete(id : string) : Observable<DeleteResDto> | undefined{
     return this.http.delete<DeleteResDto>(`${baseUrl}invoices/${id}`)??""
+  }
+
+  update(code : string, file : File) : Observable<UpdateResDto> | undefined {
+    const formData: FormData = new FormData();
+
+    formData.append('code', code)
+    formData.append('file', file);
+
+    return this.http.put<UpdateResDto>(`${baseUrl}invoices/image`, formData)??""
+    
   }
 }
