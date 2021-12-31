@@ -15,11 +15,11 @@ const routes: Routes = [
     component : TransactionCheckInListComponent
   },
   {
-    path : 'transaction/check-in-detail-list',
+    path : 'transaction/check-in-detail-list/:id',
     component : TransactionCheckInDetailListComponent
   },
   {
-    path : 'transaction/check-in-asset',
+    path : 'transaction/check-in-asset/:id',
     component : TransactionCheckInComponent
   }
 ];

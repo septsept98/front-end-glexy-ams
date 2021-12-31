@@ -6,6 +6,7 @@ import { baseUrl } from '../../constance/root';
 import { Transactions } from '../../model/transactions';
 import { InsertReqDataAssetTransactionDto } from '../../dto/transaction/insert-req-data-asset-transaction-dto';
 import { Asset } from '@models/asset';
+import { InsertReqTransactionDto } from '@dto/transaction/insert-req-transaction-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class TransactionService {
     return this.http.post<Asset[]>(`${baseUrl}transactions/asset-details`, data)??""
   }
 
-  insert(data : Transactions) : Observable<InsertResDto> | undefined {
+  insert(data : InsertReqTransactionDto) : Observable<InsertResDto> | undefined {
     return this.http.post<InsertResDto>(`${baseUrl}transactions/`, data)??""
   }
 }

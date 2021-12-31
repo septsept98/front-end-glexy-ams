@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { trxAssignType } from '@constant/trx-type'
+import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { InsertReqDataAssetTransactionDto } from '@dto/transaction/insert-req-data-asset-transaction-dto';
 import { InsertReqTransactionDto } from '@dto/transaction/insert-req-transaction-dto';
 import { Asset } from '@models/asset';
@@ -11,6 +13,7 @@ import { TransactionDetail } from '@models/transaction-detail';
 import { Transactions } from '@models/transactions';
 import { AssetService } from '@services/asset/asset.service';
 import { BrandService } from '@services/brand/brand.service';
+import { TransactionService } from '@services/transaction/transaction.service'
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2'
 
@@ -52,8 +55,12 @@ export class TransactionCheckOutComponent implements OnInit {
   optionsAsset!: Options
   optionsInventory!: Options
 
+  resInsert: InsertResDto = new InsertResDto()
+
   constructor(private brandService: BrandService,
-    private assetService: AssetService) { }
+    private assetService: AssetService,
+    private transactionService: TransactionService,
+    private router: Router) { }
 
   ngOnInit(): void {
     for (let i = 1; i <= trxAssignType.size; i++) {
@@ -241,7 +248,11 @@ export class TransactionCheckOutComponent implements OnInit {
     }
     this.dataAllTransaction.dataTransaction = this.dataTrx
     this.dataAllTransaction.dataDetailTransaction = this.dataDetailTrx
-    console.log(this.dataAllTransaction)
+    this.transactionService.insert(this.dataAllTransaction)?.subscribe(res => {
+      this.resInsert = res
+      console.log(this.dataAllTransaction)
+      // this.router.navigateByUrl('/glexy/transaction/check-in-list')
+    })
   }
 }
 

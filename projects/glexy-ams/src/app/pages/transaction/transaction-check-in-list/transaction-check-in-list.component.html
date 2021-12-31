@@ -17,9 +17,9 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Transaction Check In</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="listDataTrxDto" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code','assignType','assignTo','checkOutDate']"
+                    responsiveLayout="scroll" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
@@ -37,39 +37,34 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th pSortableColumn="codeStatusAsset">Code Trx <p-sortIcon field="codeStatusAsset">
+                            <th pSortableColumn="code">Code Trx <p-sortIcon field="code">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Assign Type<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="assignType">Assign Type<p-sortIcon field="assignType">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Assign To<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="assignTo">Assign To<p-sortIcon field="assignTo">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Date Check Out<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="checkOutDate">Date Check Out<p-sortIcon field="checkOutDate">
                                 </p-sortIcon>
                             </th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                    <ng-template pTemplate="body" let-trx let-rowIndex="rowIndex">
                         <tr>
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td>{{status.codeStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{trx.code}}</td>
+                            <td>{{trx.assignType}}</td>
+                            <td>{{trx.assignTo}}</td>
+                            <td>{{trx.checkOutDate}}</td>
                             <td>
-                                <button class="btn btn-success" (click)="checkIn()">Return</button>
+                                <button class="btn btn-success" (click)="checkIn(trx.id)">Return</button>
                             </td>
                         </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
-                        </div>
                     </ng-template>
                 </p-table>
             </div>
