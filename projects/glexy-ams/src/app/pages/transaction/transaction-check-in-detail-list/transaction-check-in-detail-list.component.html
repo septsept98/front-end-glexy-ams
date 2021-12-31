@@ -17,14 +17,15 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Transaction Detail Check In</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="listTrxDetail" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names','durationDate']"
+                    responsiveLayout="scroll" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="fa fa-arrow-left" class="bg-secondary" routerLink="/glexy/status-asset/new"></button>
+                            <button pButton pRipple icon="fa fa-arrow-left" class="bg-dark"
+                                routerLink="/glexy/transaction/check-in-list"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -39,16 +40,16 @@
                                 No
                             </th>
                             <th>Image</th>
-                            <th pSortableColumn="codeStatusAsset">Code Asset<p-sortIcon field="codeStatusAsset">
+                            <th pSortableColumn="assetId.code">Code Asset<p-sortIcon field="assetId.code">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Name Asset<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="assetId.names">Name Asset<p-sortIcon field="assetId.names">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Brand<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon field="assetId.brandId.names">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Duration Date<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="durationDate">Duration Date<p-sortIcon field="durationDate">
                                 </p-sortIcon>
                             </th>
                             <th>Action</th>
@@ -59,19 +60,20 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid" src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
-                            <td>{{status.codeStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
+                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
+                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
+                            <td>{{status.assetId.code}}</td>
+                            <td>{{status.assetId.names}}</td>
+                            <td>{{status.assetId.brandId.names}}</td>
+                            <td>{{status.durationDate ? status.durationDate : '-' }}</td>
                             <td>
-                                <button class="btn btn-success" (click)="checkIn()">Check In</button>
+                                <button class="btn btn-success" (click)="checkIn(status.id)">Check In</button>
                             </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                            In total there are {{listTrxDetail ? listTrxDetail.length : 0 }} products.
                         </div>
                     </ng-template>
                 </p-table>

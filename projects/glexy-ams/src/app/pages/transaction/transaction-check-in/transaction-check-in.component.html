@@ -21,23 +21,22 @@
             <div class="card-body">
                 <div class="form-row">
                     <div class="col-md-6">
-                        <h5><b>Lp11</b></h5>
-                        <h3 class="text-primary">Name Asset</h3>
-                        <h5>Samsung</h5>
+                        <h5><b>{{dataAssetTrxDetail.assetId?.code}}</b></h5>
+                        <h3 class="text-primary">{{dataAssetTrxDetail.assetId?.names}}</h3>
+                        <h5>{{dataAssetTrxDetail.assetId?.brandId?.names}}</h5>
                         <img src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="position-relative form-group"><label for="exampleSelect" class="">Status Asset Check In</label>
-                        <select name="select" id="exampleSelect" class="form-control">
-                            <option value="">Ready to Deploy</option>
-                            <option value="">Broke</option>
-                            <option value="">Repair</option>
+                        <select [(ngModel)]="dataAssetTrxDetail.statusTrCheckinId" name="select" id="exampleSelect" class="form-control">
+                            <option *ngFor="let data of listStatusTrx" [value]="data">{{data.nameStatusTr}}</option>
                         </select>
                     </div>
                 </div>
+                {{dataAssetTrxDetail | json}}
                 <button class="mt-2 btn btn-secondary mr-2">Back</button>
-                <button class="mt-2 btn btn-primary">Check Out</button>
+                <button class="mt-2 btn btn-primary" (click)="onSubmit()">Check Out</button>
             </div>
         </div>
     </div>

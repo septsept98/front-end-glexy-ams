@@ -99,33 +99,63 @@
                 <div class="position-relative form-group">
                     <div class="mb-3">
                         <h5 class="card-title">Assets Out</h5>
-                        <table class="mb-0 table table-bordered">
-                            <thead>
+                        <p-table #dt [value]="dataDetailTrx" [rows]="10" [paginator]="true"
+                            [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names']" responsiveLayout="scroll"
+                            [rowHover]="true" dataKey="id"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [showCurrentPageReport]="true">
+                            <ng-template pTemplate="caption">
+                                <div class="d-flex p-ai-center justify-content-end">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text"
+                                            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="Search..." />
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Brand</th>
+                                    <th style="width: 3rem">
+                                        No
+                                    </th>
+                                    <th pSortableColumn="assetId.code">Code<p-sortIcon field="assetId.code">
+                                        </p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="assetId.names">Name<p-sortIcon
+                                            field="assetId.names">
+                                        </p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon field="assetId.brandId.names">
+                                        </p-sortIcon>
+                                    </th>
                                     <th>Duration Date</th>
                                     <th>Action</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let d of dataDetailTrx; let i = index">
-                                    <th scope="row">{{i+1}}</th>
-                                    <td>{{d.assetId.code}}</td>
-                                    <td>{{d.assetId.names}}</td>
-                                    <td>{{d.assetId.brandId.names}}</td>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-asset let-rowIndex="rowIndex">
+                                <tr>
                                     <td>
-                                        <input [(ngModel)]="d.durationDate" name="state" id="exampleState" type="date"
+                                        {{rowIndex + 1}}
+                                    </td>
+                                    <td>{{asset.assetId.code}}</td>
+                                    <td>{{asset.assetId.names}}</td>
+                                    <td>{{asset.assetId.brandId.names}}</td>
+                                    <td>
+                                        <input [(ngModel)]="asset.durationDate" name="state" id="exampleState" type="date"
                                             class="form-control">
                                     </td>
                                     <td>
                                         <button class="btn btn-danger">Remove</button>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
+                            </ng-template>
+                            <ng-template pTemplate="summary">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    In total there are {{dataDetailTrx ? dataDetailTrx.length : 0 }} products.
+                                </div>
+                            </ng-template>
+                        </p-table>
                     </div>
                 </div>
                 <button (click)="onSubmit()" class="mt-2 btn btn-primary">Check Out</button>
