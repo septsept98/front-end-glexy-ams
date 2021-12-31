@@ -12,6 +12,39 @@
 </ul>
 
 <div class="tab-content">
+    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Asset form</h4>
+                <label>Code Asset : {{asset.code}}</label>
+                <div class="forms-sample">
+                    <div class="row">
+                        <div class="col-md-6 grid-margin">
+                            <div class="form-group">
+                                <label for="typeAsset">Type</label>
+                                <ng-select2 [options]='optionsAssetType' [(ngModel)]="asset.assetTypeId.id"> </ng-select2>
+                            </div>
+                            <div class="form-group">
+                                <label>Brand</label>
+                                <ng-select2 [options]='optionsBrand' [(ngModel)]="asset.brandId.id"> </ng-select2>
+                            </div>
+                            <div class="form-group">
+                                <label>Status Asset</label>
+                                <ng-select2 [options]='optionsStatusAsset' [(ngModel)]="asset.statusAssetId.id"> </ng-select2>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Expired</label>
+                                <input class="form-control" type="date" [(ngModel)]="asset.expiredDate" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
         <div class="card">
