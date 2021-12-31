@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -8,34 +8,40 @@ import { Roles } from '@models/roles';
 import { PermissionDetailService } from '@services/permission-detail/permission-detail.service';
 import { PermissionsService } from '@services/permissions/permissions.service';
 import { RolesService } from '@services/roles/roles.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-permission-detail-modify',
   templateUrl: './permission-detail-modify.component.html',
   styleUrls: ['./permission-detail-modify.component.css']
 })
-export class PermissionDetailModifyComponent implements OnInit {
+export class PermissionDetailModifyComponent implements OnInit, OnDestroy {
 
-  data :PermissionDetail = new PermissionDetail()
-  roles :Roles = new Roles()
-  permission :Permissions = new Permissions()
-  insertResDto :InsertResDto = new InsertResDto()
-  updateResDto :UpdateResDto = new UpdateResDto()
-  permissionDetailId? :string|null
-  listRole :Roles[] = []
-  listPermission :Permissions[] = []
-  save :boolean = true
+  data: PermissionDetail = new PermissionDetail()
+  roles: Roles = new Roles()
+  permission: Permissions = new Permissions()
+  insertResDto: InsertResDto = new InsertResDto()
+  updateResDto: UpdateResDto = new UpdateResDto()
+  permissionDetailId?: string | null
+  listRole: Roles[] = []
+  listPermission: Permissions[] = []
+  save: boolean = true
+  dataSubs?: Subscription
+  insertSubs?: Subscription
+  updateSubs?: Subscription
+  listRoleSubs?: Subscription
+  listPermissionSubs?: Subscription
 
-  constructor(private activatedRoute :ActivatedRoute,private router:Router, private permissionDetailService:PermissionDetailService,
-    private  roleService :RolesService, private permissionService :PermissionsService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private permissionDetailService: PermissionDetailService,
+    private roleService: RolesService, private permissionService: PermissionsService) { }
 
   ngOnInit(): void {
 
     this.permissionDetailId = this.activatedRoute.snapshot.paramMap.get('id')
 
-    if(this.permissionDetailId){
+    if (this.permissionDetailId) {
 
-      this.permissionDetailService.getById(this.permissionDetailId)?.subscribe(result=>{
+      this.dataSubs = this.permissionDetailService.getById(this.permissionDetailId)?.subscribe(result => {
         this.save = false
         this.data = result
       })
@@ -45,28 +51,38 @@ export class PermissionDetailModifyComponent implements OnInit {
     this.data.permissionsId = this.permission
     this.data.rolesId = this.roles
 
-    this.roleService.getAll()?.subscribe(result=> this.listRole = result)
-    this.permissionService.getAll()?.subscribe(result =>this.listPermission = result)
+    this.listRoleSubs = this.roleService.getAll()?.subscribe(result => this.listRole = result)
+    this.listPermissionSubs = this.permissionService.getAll()?.subscribe(result => this.listPermission = result)
   }
 
-  onCancel() :void{
+  onCancel(): void {
 
     this.router.navigateByUrl('/glexy/permission-detail/list')
 
   }
 
-  add() :void{
-    if(this.permissionDetailId){
+  add(): void {
+    if (this.permissionDetailId) {
 
-      this.permissionDetailService.update(this.data)?.subscribe(result=> this.updateResDto = result)
+      this.updateSubs = this.permissionDetailService.update(this.data)?.subscribe(result => this.updateResDto = result)
       this.router.navigateByUrl('/glexy/permission-detail/list')
-    }else{
-      this.permissionDetailService.insert(this.data)?.subscribe(result =>{
+    } else {
+      this.insertSubs = this.permissionDetailService.insert(this.data)?.subscribe(result => {
         this.insertResDto = result
         this.router.navigateByUrl('/glexy/permission-detail/list')
         console.log(this.insertResDto)
       })
     }
+  }
+
+  ngOnDestroy(): void {
+
+    this.dataSubs?.unsubscribe()
+    this.updateSubs?.unsubscribe()
+    this.insertSubs?.unsubscribe()
+    this.listRoleSubs?.unsubscribe()
+    this.listPermissionSubs?.unsubscribe()
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Users } from '@models/users';
 import { UsersService } from '@services/users/users.service';
@@ -9,23 +9,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile-detail.component.html',
   styleUrls: ['./profile-detail.component.css']
 })
-export class ProfileDetailComponent implements OnInit {
+export class ProfileDetailComponent implements OnInit, OnDestroy {
 
   users :Users = new Users()
 
-  private unSubs?: Subscription;
+  userSubs?: Subscription;
 
   constructor(private usersSevice :UsersService,private router :Router) { }
 
   ngOnInit(): void {
 
-    this.usersSevice.getByIdAuth()?.subscribe(result => {this.users = result
+   this.userSubs = this.usersSevice.getByIdAuth()?.subscribe(result => {this.users = result
     console.log(result)} )
   
-  }
-
-  ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
   }
 
   onModify(){
@@ -37,5 +33,10 @@ export class ProfileDetailComponent implements OnInit {
     this.router.navigateByUrl('/glexy/profile/password')
 
   }
+
+  ngOnDestroy(): void {
+    this.userSubs?.unsubscribe()
+  }
+
 
 }

@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Users } from '@models/users';
@@ -11,18 +11,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
 
   listUsers: Users[] = []
   selectedUsers: Users[] = []
   deleteResDto :DeleteResDto = new DeleteResDto()
-  private unSubs?: Subscription;
+  dataSubs?: Subscription
+  deleteSubs?: Subscription
+  dataDelSubs?: Subscription
 
   constructor(private usersService :UsersService, private router :Router) { }
 
   ngOnInit(): void {
 
-    this.usersService.getAll()?.subscribe(result => this.listUsers = result)
+    this.dataSubs = this.usersService.getAll()?.subscribe(result => this.listUsers = result)
 
   }
 
@@ -40,13 +42,15 @@ export class UsersListComponent implements OnInit {
 
   onDelete(id :string) :void{
 
-    this.usersService.delete(id)?.subscribe(result =>{this.deleteResDto = result
-    this.usersService.getAll()?.subscribe(result => this.listUsers = result)
+    this.deleteSubs = this.usersService.delete(id)?.subscribe(result =>{this.deleteResDto = result
+      this.dataDelSubs = this.usersService.getAll()?.subscribe(result => this.listUsers = result)
     } )
   }
 
   ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
+    this.dataSubs?.unsubscribe()
+    this.deleteSubs?.unsubscribe()
+    this.dataDelSubs?.unsubscribe()
   }
 
 }

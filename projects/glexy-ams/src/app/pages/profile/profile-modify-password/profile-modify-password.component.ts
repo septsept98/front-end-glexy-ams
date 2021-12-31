@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Users } from '@models/users';
@@ -10,26 +10,21 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile-modify-password.component.html',
   styleUrls: ['./profile-modify-password.component.css']
 })
-export class ProfileModifyPasswordComponent implements OnInit {
+export class ProfileModifyPasswordComponent implements OnInit, OnDestroy {
 
   users :Users = new Users()
   newPassword :string = ""
   confirm :string = ""
   updateResDto :UpdateResDto = new UpdateResDto()
-
-  private unSubs?: Subscription;
+  userSubs? :Subscription
 
   constructor(private usersSevice :UsersService, private router :Router) { }
 
   ngOnInit(): void {
 
-    this.usersSevice.getByIdAuth()?.subscribe(result => {this.users = result
+  this.userSubs =  this.usersSevice.getByIdAuth()?.subscribe(result => {this.users = result
       console.log(result)} )
 
-  }
-
-  ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
   }
 
   onUpdate(){
@@ -45,6 +40,10 @@ export class ProfileModifyPasswordComponent implements OnInit {
   onCancel(){
 
     this.router.navigateByUrl('/glexy/profile/detail')
+  }
+
+  ngOnDestroy(): void {
+    this.userSubs?.unsubscribe()
   }
 
 }

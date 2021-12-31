@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Permissions } from '@models/permissions';
@@ -10,42 +10,47 @@ import { Subscription } from 'rxjs';
   templateUrl: './permissions-list.component.html',
   styleUrls: ['./permissions-list.component.css']
 })
-export class PermissionsListComponent implements OnInit {
+export class PermissionsListComponent implements OnInit, OnDestroy {
 
   listPermission: Permissions[] = []
   selectedPermission: Permissions[] = []
-  deleteResDto :DeleteResDto = new DeleteResDto()
+  deleteResDto: DeleteResDto = new DeleteResDto()
 
-  private unSubs?: Subscription;
+  dataSubs?: Subscription
+  deleteSubs?: Subscription
+  dataDelSubs?: Subscription
 
-  constructor(private permissionsService :PermissionsService, private router:Router) { }
+  constructor(private permissionsService: PermissionsService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.permissionsService.getAll()?.subscribe(result => this.listPermission = result)
+    this.dataSubs = this.permissionsService.getAll()?.subscribe(result => this.listPermission = result)
 
   }
 
-  ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
-  }
-
-  onCreate(){
+  onCreate() {
 
     this.router.navigateByUrl('/glexy/permissions/new')
   }
 
-  onUpdate(id :String):void{
+  onUpdate(id: String): void {
 
     this.router.navigateByUrl(`/glexy/permissions/${id}`)
 
   }
 
-  onDelete(id :string):void{
+  onDelete(id: string): void {
 
-    this.permissionsService.delete(id)?.subscribe(result => {this.deleteResDto = result
-      this.permissionsService.getAll()?.subscribe(result => this.listPermission = result)
+      this.deleteSubs = this.permissionsService.delete(id)?.subscribe(result => {
+      this.deleteResDto = result
+      this.dataDelSubs = this.permissionsService.getAll()?.subscribe(result => this.listPermission = result)
     })
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubs?.unsubscribe()
+    this.deleteSubs?.unsubscribe()
+    this.dataDelSubs?.unsubscribe()
   }
 
 }

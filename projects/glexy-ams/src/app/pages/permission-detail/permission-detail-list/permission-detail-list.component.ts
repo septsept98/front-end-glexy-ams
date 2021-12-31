@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { PermissionDetail } from '@models/permission-detail';
@@ -10,43 +10,48 @@ import { Subscription } from 'rxjs';
   templateUrl: './permission-detail-list.component.html',
   styleUrls: ['./permission-detail-list.component.css']
 })
-export class PermissionDetailListComponent implements OnInit {
+export class PermissionDetailListComponent implements OnInit, OnDestroy {
 
   listPermissionDetail: PermissionDetail[] = []
   selectedPermissionDetail: PermissionDetail[] = []
-  deleteResDto :DeleteResDto = new DeleteResDto()
+  deleteResDto: DeleteResDto = new DeleteResDto()
 
-  private unSubs?: Subscription;
+  dataSubs?: Subscription
+  deleteSubs?: Subscription
+  dataDelSubs?: Subscription
 
-  constructor(private permissionDetailService :PermissionDetailService, private router :Router) { }
+  constructor(private permissionDetailService: PermissionDetailService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
+    this.dataSubs = this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
 
   }
 
-  onCreate() :void{
+  onCreate(): void {
 
     this.router.navigateByUrl('/glexy/permission-detail/new')
 
   }
 
-  onUpdate(id :string) :void{
+  onUpdate(id: string): void {
 
     this.router.navigateByUrl(`/glexy/permission-detail/${id}`)
 
   }
 
-  onDelete(id :string) :void{
+  onDelete(id: string): void {
 
-    this.permissionDetailService.delete(id)?.subscribe(result =>{this.deleteResDto = result
-    this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
-    } )
+      this.deleteSubs = this.permissionDetailService.delete(id)?.subscribe(result => {
+      this.deleteResDto = result
+      this.dataDelSubs = this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
+    })
   }
 
   ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
+    this.dataSubs?.unsubscribe()
+    this.deleteSubs?.unsubscribe()
+    this.dataDelSubs?.unsubscribe()
   }
 
 }

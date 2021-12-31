@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Roles } from '@models/roles';
@@ -10,42 +10,47 @@ import { Subscription } from 'rxjs';
   templateUrl: './roles-list.component.html',
   styleUrls: ['./roles-list.component.css']
 })
-export class RolesListComponent implements OnInit {
+export class RolesListComponent implements OnInit, OnDestroy {
 
   listRoles: Roles[] = []
   selectedRoles: Roles[] = []
-  deleteResDto :DeleteResDto = new DeleteResDto()
+  deleteResDto: DeleteResDto = new DeleteResDto()
 
-  private unSubs?: Subscription;
+  private listRoleSubs?: Subscription;
+  private deleteRoleSubs?: Subscription;
+  private listRoleDelSubs?: Subscription;
 
-  constructor(private rolesServices :RolesService, private router:Router) { }
+  constructor(private rolesServices: RolesService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
+    this.listRoleSubs = this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
 
   }
 
-  onCreate():void{
+  onCreate(): void {
 
     this.router.navigateByUrl('/glexy/roles/new')
   }
 
-  onUpdate(id :String):void{
+  onUpdate(id: String): void {
 
     this.router.navigateByUrl(`/glexy/roles/${id}`)
 
   }
 
-  onDelete(id :string):void{
+  onDelete(id: string): void {
 
-    this.rolesServices.delete(id)?.subscribe(result => {this.deleteResDto = result
-      this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
+    this.deleteRoleSubs = this.rolesServices.delete(id)?.subscribe(result => {
+      this.deleteResDto = result
+      this.listRoleDelSubs = this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
     })
   }
 
   ngOnDestroy(): void {
-    this.unSubs?.unsubscribe()
+    this.listRoleSubs?.unsubscribe()
+    this.deleteRoleSubs?.unsubscribe()
+    this.listRoleDelSubs?.unsubscribe()
   }
 
 }
