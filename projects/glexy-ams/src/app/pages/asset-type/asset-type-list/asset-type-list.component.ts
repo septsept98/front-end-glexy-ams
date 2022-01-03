@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssetType } from 'projects/core/src/app/model/asset-type';
 import { AssetTypeService } from 'projects/core/src/app/services/asset-type/asset-type.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class AssetTypeListComponent implements OnInit, OnDestroy {
 
-  constructor(private assetTypeService : AssetTypeService) { }
+  constructor(private assetTypeService : AssetTypeService, private router : Router) { }
   dataList : AssetType[] = []
   selectedData : AssetType[] = []
   obs? : Subscription
@@ -21,6 +22,10 @@ export class AssetTypeListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void{
     this.obs?.unsubscribe()
+  }
+
+  onUpdate(id : number): void{
+    this.router.navigateByUrl(`/glexy/asset-type/${id}`)
   }
 
 }

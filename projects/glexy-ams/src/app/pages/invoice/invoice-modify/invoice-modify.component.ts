@@ -31,7 +31,7 @@ export class InvoiceModifyComponent implements OnInit {
 
   onUpdate(): void {
     this.fileImg = this.selectedImg?.item(0);
-    this.invoiceService.update(this.invoice.code,this.fileImg!)?.subscribe(result => {
+    this.invoiceService.update(this.invoice,this.fileImg!)?.subscribe(result => {
       this.updateResDto = result
       if(this.updateResDto){
         this.router.navigateByUrl("/glexy/invoice/list")

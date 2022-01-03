@@ -30,6 +30,16 @@ export class CompanyService {
     return this.http.put<UpdateResDto>(`${baseUrl}companies/`, data)??""
   }
 
+  updateImage(data : Company, file : File) : Observable<UpdateResDto> | undefined {
+    const formData: FormData = new FormData();
+
+    formData.append('data', JSON.stringify(data));
+    formData.append('file', file);
+
+    return this.http.put<UpdateResDto>(`${baseUrl}companies/image`, formData)??""
+    
+  }
+
   getById(id : string) : Observable<Company> | undefined {
     return this.http.get<Company>(`${baseUrl}companies/${id}`)??""
   }

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Brand } from '@models/brand';
 import { BrandService } from '@services/brand/brand.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class BrandListComponent implements OnInit, OnDestroy {
 
-  constructor(private brandService : BrandService) { }
+  constructor(private brandService : BrandService, private router : Router) { }
   selectedBrand: Brand[] = []
   dataList: Brand[] = []
   obs? : Subscription
@@ -23,6 +24,10 @@ export class BrandListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void{
     this.obs?.unsubscribe()
+  }
+
+  onUpdate(id : number): void{
+    this.router.navigateByUrl(`/glexy/brand/${id}`)
   }
 
 }
