@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TransactionDetail } from '@models/transaction-detail';
+import { TransactionDetailService } from '@services/transaction-detail/transaction-detail.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,41 +10,29 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./history-detail.component.css']
 })
 export class HistoryDetailComponent implements OnInit, OnDestroy {
-  // listStatusAssets: StatusAsset[] = []
-  listStatusAssets: Asset[] = []
-  selectedStatusAssets!: Asset
- 
-  private unSubs?: Subscription;
-   constructor(private router: Router) { }
- 
+  
+  listTrxDetail: TransactionDetail[] = []
+  codeTrx!: string
+
+  private unSubs?: Subscription
+
+   constructor(private router: Router,
+    private route: ActivatedRoute,
+    private transactionDetailService: TransactionDetailService) { }
+
    ngOnInit(): void {
-   
-     this.listStatusAssets = [
-       {codeStatusAsset: 'ccc', nameStatusAsset:'s'},
-       {codeStatusAsset: 'aaa', nameStatusAsset:'df'},
-       {codeStatusAsset: 'xxx', nameStatusAsset:'ssd'},
-       {codeStatusAsset: 'ccc', nameStatusAsset:'fass'},
-       {codeStatusAsset: 'vvv', nameStatusAsset:'wee'},
-       {codeStatusAsset: 'ff', nameStatusAsset:'wwe'},
-       {codeStatusAsset: 'dsf', nameStatusAsset:'wwe'},
-       {codeStatusAsset: 'sss', nameStatusAsset:'wwe'},
-       {codeStatusAsset: 'uuy', nameStatusAsset:'wwe'},
-       {codeStatusAsset: 'uyj', nameStatusAsset:'kmm'},
-       {codeStatusAsset: 'kkk', nameStatusAsset:'oiu'},
-       {codeStatusAsset: 'aba', nameStatusAsset:'dds'},
-       {codeStatusAsset: 'acv', nameStatusAsset:'ggdg'}
-     ]
+    const idTrx: any = this.route.snapshot.paramMap.get('id');
+    this.transactionDetailService.getByTr(idTrx)?.subscribe(res => {
+      this.listTrxDetail = res
+      this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
+    })
    }
  
    ngOnDestroy(): void {
      this.unSubs?.unsubscribe()
    }
  
-   detailInfo(): void {
-     this.router.navigateByUrl("/glexy/histories/transaction-detail-info")
+   detailInfo(id: any): void {
+     this.router.navigateByUrl(`/glexy/histories/transaction-detail-info/${id}`)
    }
- }
- class Asset {
-   codeStatusAsset!: string
-   nameStatusAsset!: string
  }

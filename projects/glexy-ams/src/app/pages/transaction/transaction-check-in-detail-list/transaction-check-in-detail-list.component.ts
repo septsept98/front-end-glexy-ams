@@ -13,7 +13,7 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
 
   listTrxDetail: TransactionDetail[] = []
 
-  private unSubs?: Subscription;
+  private unSubs?: Subscription
 
   constructor(private router: Router,
     private route: ActivatedRoute,

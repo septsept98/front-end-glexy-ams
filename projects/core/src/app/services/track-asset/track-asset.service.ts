@@ -13,7 +13,7 @@ export class TrackAssetService {
   constructor(private http : HttpClient) { }
 
   getAll() : Observable<TrackAsset[]> | undefined {
-    return this.http.get<TrackAsset[]>(`${baseUrl}track-assets/`)??""
+    return this.http.get<TrackAsset[]>(`${baseUrl}track-assets`)??""
   }
 
   getByAssetTr(assetCode : string, trCode : string) : Observable<TrackAsset[]> | undefined {

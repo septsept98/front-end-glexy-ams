@@ -17,9 +17,9 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Transaction Detail Check In</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="listDataExpiredAsset" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['codeAsset','brand','statusAsset','typeAsset','expiredDate']" responsiveLayout="scroll"
+                    [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
@@ -37,19 +37,19 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th colspan="2" pSortableColumn="codeStatusAsset">Asset<p-sortIcon field="codeStatusAsset">
+                            <th colspan="2" pSortableColumn="codeAsset">Asset<p-sortIcon field="codeAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Brand<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="brand">Brand<p-sortIcon field="brand">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Status Asset<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="statusAsset">Status Asset<p-sortIcon field="statusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Type Asset<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="typeAsset">Type Asset<p-sortIcon field="typeAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Expired Date<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="expiredDate">Expired Date<p-sortIcon field="expiredDate">
                                 </p-sortIcon>
                             </th>
                         </tr>
@@ -61,16 +61,16 @@
                             </td>
                             <td><img style="width: 70px; height: 100%;" class="img-fluid"
                                     src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
-                            <td>{{status.codeStatusAsset}} - {{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{status.codeAsset}} - {{status.nameAsset}}</td>
+                            <td>{{status.brand}}</td>
+                            <td>{{status.statusAsset}}</td>
+                            <td>{{status.typeAsset}}</td>
+                            <td>{{status.expiredDate}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                            In total there are {{listDataExpiredAsset ? listDataExpiredAsset.length : 0 }} products.
                         </div>
                     </ng-template>
                 </p-table>
