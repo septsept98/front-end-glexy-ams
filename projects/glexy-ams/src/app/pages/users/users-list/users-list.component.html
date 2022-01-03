@@ -50,11 +50,12 @@
                          <th pSortableColumn="employeeId.companyId.names">Company <p-sortIcon field="employeeId.companyId.names">
                         </p-sortIcon>
                         </th>
-                        <th pSortableColumn="employeeId.phoneNumber">Phone Number <p-sortIcon field="employeeId.phoneNumber">
+                        <th pSortableColumn="employeeId.phoneNumber">Phone<p-sortIcon field="employeeId.phoneNumber">
                         </p-sortIcon>
                         </th>
-                       
+                        <th>Password</th>
                           <th>Action</th>
+                          
                       </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
@@ -67,13 +68,18 @@
                           <td>{{data.rolesId.nameRole}}</td>
                           <td>{{data.employeeId.companyId.names}}</td>
                           <td>{{data.employeeId.phoneNumber}}</td>
-                         
+                          <td>
+                            <button pButton
+                            class="p-button p-button-info" (click)="onResetPassword(data.id)">Reset</button>
+                          </td>
                           <td>
                               <button pButton pRipple icon="pi pi-pencil"
                                   class="p-button-rounded p-button-success mr-2" (click)="onUpdate(data.id)"></button>
                               <button pButton pRipple icon="pi pi-trash"
                                   class="p-button-rounded p-button-warning" (click)="onDelete(data.id)"></button>
+                                  
                           </td>
+                          
                       </tr>
                   </ng-template>
                   <ng-template pTemplate="summary">

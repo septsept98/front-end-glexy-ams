@@ -56,8 +56,8 @@
                         <div class="col-md-6 grid-margin">
 
                             <div class="form-group">
-                                <label for="codeInvoice">Code Invoice</label>
-                                <input type="text" class="form-control" id="codeInvoice" placeholder="Code Invoice" [(ngModel)]="assetInsert.invoiceId.code">
+                                <label for="codeInvoice">Invoice No</label>
+                                <input type="text" class="form-control" id="codeInvoice" placeholder="Invoice Number" [(ngModel)]="assetInsert.invoiceId.code">
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
@@ -65,29 +65,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Invoice Image</label><br>
-                                <input type="file" name="img[]" class="file-upload-default" (change)="selectImgInvo($event)">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Invoice Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
-                                </div>
+                                <input type="file" name="invoiceImg" class="form-control" (change)="selectImgInvo($event)">
                             </div>
                             <div class="form-group">
                                 <label>Asset Image </label><br>
-                                <input type="file" name="assetImg" class="file-upload-default" (change)="selectImgAsset($event)">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Asset Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
-                                </div>
+                                <input type="file" name="assetImg" class="form-control" (change)="selectImgAsset($event)">
                             </div>
-
                         </div>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="addData()">Submit</button>
+                        <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" (click)="addData()">Submit</button>
-                    <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                 </div>
             </div>
         </div>
@@ -100,18 +87,12 @@
                     <div class="row">
                         <div class="col">
                             <label class="text-center">Click on the beside text to download template asset excel file :
-                                <a href="../../../../assets/file/glexy-asset.xls" download="glexy-asset"> <b> download </b>
-                                </a>
-                            </label>
+                            <a href="../../../../assets/file/glexy-asset.xls" download="glexy-asset"> <b> download </b>
+                            </a>
+                        </label>
                             <div class="form-group mt-md-3">
                                 <label>Upload Excel </label><br>
-                                <input type="file" name="excel" class="file-upload-default" (change)="selectFile($event)" accept=".xls">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Excel">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
-                                </div>
+                                <input type="file" name="excel" class="form-control" (change)="selectFile($event)" accept=".xls">
                             </div>
                         </div>
                     </div>

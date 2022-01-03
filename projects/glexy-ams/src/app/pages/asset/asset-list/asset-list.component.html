@@ -17,7 +17,7 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Assets</h2>
-                <p-table #dt [value]="assetList" [rows]="8" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="assetList" [rows]="10" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
@@ -65,6 +65,8 @@
                                 <p-sortIcon field="invoice">
                                 </p-sortIcon>
                             </th>
+                            <th pSortableColumn="expired">Expired Date
+                            </th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
@@ -85,6 +87,7 @@
                             <td>{{asset.inventoryId.code}}</td>
                             <td>{{asset.companyId.names}}</td>
                             <td>{{asset.invoiceId.code}}</td>
+                            <td>{{asset.expiredDate}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>

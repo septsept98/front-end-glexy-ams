@@ -48,6 +48,7 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
     this.assetTypeService.getAll()?.subscribe(result => this.assetType = result)
     this.companyService.getAll()?.subscribe(result => this.company = result)
     this.brandService.getAll()?.subscribe(result => this.brand = result)
+    this.statusAssetSerive.getAll()?.subscribe(result => this.statusAsset = result)
 
     this.optionsBrand = {
       width:'100%',
@@ -143,9 +144,18 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
     this.selectedImg = event.target.files;
   }
 
+  onUpdate() : void {
+    this.assetService.update(this.asset)?.subscribe(result => {
+      this.dataUpdate = result
+        if(this.dataUpdate){
+          this.router.navigateByUrl("/glexy/asset/list")
+        }
+    })
+  }
+
   onUpdateImg(): void {
     this.fileImg = this.selectedImg?.item(0)
-      this.assetService.updateImage(this.asset.code, this.fileImg!)?.subscribe(result => {
+      this.assetService.updateImage(this.asset.id, this.fileImg!)?.subscribe(result => {
         this.dataUpdate = result
         if(this.dataUpdate){
           this.router.navigateByUrl("/glexy/asset/list")

@@ -63,6 +63,11 @@ export class AssetService {
     return this.http.post<InsertResDto>(`${baseUrl}assets/`, formData)
   }
 
+  update(data : Asset) : Observable<UpdateResDto> {
+    
+    return this.http.put<UpdateResDto>(`${baseUrl}assets/`, data)
+  }
+
   uploadFile(file: File): Observable<InsertResDto> | undefined {
     const formData: FormData = new FormData();
 

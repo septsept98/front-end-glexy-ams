@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Company } from '@models/company';
 import { File } from '@models/file';
 import { CompanyService } from '@services/company/company.service';
@@ -15,7 +16,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   dataList: Company[] = []
   obs? : Subscription
   
-  constructor(private companyService : CompanyService) { }
+  constructor(private companyService : CompanyService, private router : Router) { }
   
   ngOnInit(): void {
     this.companyService.getAll()?.subscribe(result => this.dataList = result)
@@ -28,6 +29,10 @@ export class CompanyListComponent implements OnInit, OnDestroy {
     } else {
       return false
     }
+  }
+
+  onUpdate(id : number): void{
+    this.router.navigateByUrl(`/glexy/company/${id}`)
   }
 
   ngOnDestroy(): void {

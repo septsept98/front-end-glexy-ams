@@ -1,17 +1,22 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Asset Type Form</h4>
+        <label *ngIf="tab">Code Asset Type : {{assetTypeInsert.code}}</label>
         <div class="forms-sample">
             <div class="form-group">
                 <label for="nameType">Name Type</label>
                 <input type="text" class="form-control" id="nameType" placeholder="Name Type" [(ngModel)]="assetTypeInsert.names">
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="save">
                 <label for="code">Code</label>
                 <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="assetTypeInsert.code">
             </div>
+            <div class="form-check" *ngIf="tab">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="assetTypeInsert.isActive" checked>
+                <label> Active </label>
+            </div>
             <button type="submit" class="btn btn-primary mr-2" (click)="addDb()">Submit</button>
-            <button class="btn btn-dark">Cancel</button>
+            <button class="btn btn-dark" (click)="onCancel()">Cancel</button>
         </div>
     </div>
 </div>

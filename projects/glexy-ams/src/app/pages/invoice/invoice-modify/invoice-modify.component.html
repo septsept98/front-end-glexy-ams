@@ -5,19 +5,11 @@
         <div class="forms-sample">
             <div class="form-group mt-md-3">
                 <label>Upload Image </label><br>
-                <input type="file" id="myfile" class="file-upload-default" (change)="selectFile($event)" accept="image/*">
-                <div class="input-group col-xs-12">
-                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                    <span class="input-group-append">
-                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                    </span>
-                </div>
+                <input type="file" id="myfile" class="form-control" (change)="selectFile($event)" accept="image/*">
             </div>
             <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" [(ngModel)]="invoice.isActive" checked>
-                  Active
-                </label>
+                <input type="checkbox" class="form-check-input" [(ngModel)]="invoice.isActive" checked>
+                <label> Active </label>
             </div>
             <button type="submit" class="btn btn-primary mr-2" (click)="onUpdate()">Submit</button>
             <button class="btn btn-dark" routerLink="/glexy/invoice/list/">Cancel</button>

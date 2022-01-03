@@ -42,17 +42,27 @@ export class UsersService {
     return this.http.get<Users>(`${baseUrl}users/profile`)??""
   }
 
-  insert(data : Users, file: File | null) : Observable<InsertResDto> | undefined {
-    const formData : FormData = new FormData()
-    formData.append('data', JSON.stringify(data))
-    formData.append('file', file!)
-    console.log('asdasdfgbd '+ file)
-    return this.http.post<InsertResDto>(`${baseUrl}users/`, formData)??""
+  insert(data : Users) : Observable<InsertResDto> | undefined {
+  
+    return this.http.post<InsertResDto>(`${baseUrl}users/`, data)??""
   }
 
   update(data : Users) : Observable<UpdateResDto> | undefined {
     
     return this.http.put<UpdateResDto>(`${baseUrl}users/`, data)??""
+  }
+
+  updatePhoto(data : Users, file: File | null) : Observable<UpdateResDto> | undefined {
+    const formData : FormData = new FormData()
+    formData.append('data', JSON.stringify(data))
+    formData.append('file', file!)
+    return this.http.put<UpdateResDto>(`${baseUrl}users/update-photo`, formData)??""
+  }
+
+  resetPassword(id : string) : Observable<UpdateResDto> | undefined {
+    let data :Users = new Users()
+    data.id = id
+    return this.http.put<UpdateResDto>(`${baseUrl}users/reset-password/`,data)??""
   }
   
 }
