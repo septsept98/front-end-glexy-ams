@@ -6,7 +6,9 @@
         <form class="forms-sample">
             <div class="row">
                 <div class="col-md-6  grid-margin">
-                    <img width="200" height="200" class="rounded-circle mb-5 ml-5" src="data:image/{{users.usersImg?.extension}};base64,{{users.usersImg?.file}}" alt="">
+                    <img width="200" height="200" class="rounded-circle mb-5 ml-5" src="../../../assets/images/account-logo.png" alt="" *ngIf = "!photo">
+                    <img width="200" height="200" class="rounded-circle mb-5 ml-5" src="data:image/{{users.usersImg?.extension}};base64,{{users.usersImg?.file}}" alt="" *ngIf = "photo">
+                    <input name="file" id="exampleFile" type="file" class="form-control-file mb-3" accept="image/*" (change)="selectFile($event)"><button type="submit" class="btn btn-primary mb-5" (click)="onUpdatePhoto()">Change Photo</button>
                     <div class="form-group">
                         <label for="namePermission">Name</label>
                         <input type="text" class="form-control" disabled="" id="namePermission" value="{{users.employeeId?.nameEmployee}}">

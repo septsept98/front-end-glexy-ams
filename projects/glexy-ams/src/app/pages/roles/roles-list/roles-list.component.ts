@@ -40,11 +40,13 @@ export class RolesListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: string): void {
-
+    this.rolesServices.getById(id)?.subscribe(result => {
+      if (confirm("Are you sure to delete " + result.nameRole)) {
     this.deleteRoleSubs = this.rolesServices.delete(id)?.subscribe(result => {
       this.deleteResDto = result
       this.listRoleDelSubs = this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
     })
+  }})
   }
 
   ngOnDestroy(): void {

@@ -40,10 +40,12 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(idDelete :string) :void{
-
+      this.employeeService.getById(idDelete)?.subscribe(result => {
+        if (confirm("Are you sure to delete " + result.nameEmployee)) {
       this.deleteSubs = this.employeeService.delete(idDelete)?.subscribe(result => { this.deleteResDto = result
         this.dataDelSubs = this.employeeService.getAll()?.subscribe(result => this.listEmployee = result)
     })
+  }})
   }
 
   ngOnDestroy(): void {

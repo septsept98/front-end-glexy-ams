@@ -1,5 +1,4 @@
 <div class="card">
-    {{selectedFile|json}}
     {{data|json}}
     <div class="card-body">
         <h4 class="card-title">User form</h4>
@@ -37,9 +36,6 @@
                         <select class="form-control" id="brand" [(ngModel)]="data.rolesId.id" >
                           <option *ngFor="let list of listRoles" [value]="list.id">{{list.nameRole}}</option>
                         </select>
-                    </div>
-                    <div class="position-relative form-group" *ngIf = "save"><label for="exampleFile" class="" *ngIf = "save">Photo</label><input name="file" id="exampleFile" type="file" class="form-control-file" accept="image/*" (change)="selectFile($event)" *ngIf = "save">
-                        <small class="form-text text-muted" *ngIf = "save">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                     </div>
 
                     <label for="codePermission" >Is Active</label>
