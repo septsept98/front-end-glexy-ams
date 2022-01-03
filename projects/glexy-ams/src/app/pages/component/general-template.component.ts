@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Users } from '@models/users';
+import { PermissionDetailService } from '@services/permission-detail/permission-detail.service';
+import { UsersService } from '@services/users/users.service';
 
 @Component({
   selector: 'app-general-template',
@@ -7,13 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralTemplateComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private userService :UsersService, private permissionDetailService :PermissionDetailService) { }
 
   dashboard: boolean = true
   master: boolean = true
   auth: boolean = true
+  data :Users = new Users()
 
   ngOnInit(): void {
+    
+    this.userService.getByIdAuth()?.subscribe(result => this.data = result)
 
   }
 

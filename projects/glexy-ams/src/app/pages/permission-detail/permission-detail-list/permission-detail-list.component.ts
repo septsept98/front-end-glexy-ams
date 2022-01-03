@@ -41,11 +41,13 @@ export class PermissionDetailListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: string): void {
-
+      this.permissionDetailService.getById(id)?.subscribe(result => {
+        if (confirm("Are you sure to delete " + result.rolesId.nameRole+` & `+result.permissionsId.namePermission)) {
       this.deleteSubs = this.permissionDetailService.delete(id)?.subscribe(result => {
       this.deleteResDto = result
       this.dataDelSubs = this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
     })
+  }})
   }
 
   ngOnDestroy(): void {

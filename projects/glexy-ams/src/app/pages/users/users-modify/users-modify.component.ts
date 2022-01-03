@@ -28,8 +28,6 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
   listCompany :Company[] = []
   listRoles :Roles[] = []
   save :boolean = true
-  selectedFile!:FileList
-  file! :File |null 
   dataSubs? :Subscription
   insertSubs? :Subscription
   updateSubs? :Subscription
@@ -61,18 +59,14 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
    this.listRoleSubs = this.rolesService.getAll()?.subscribe(result => this.listRoles = result)
 
   }
-
-  selectFile(event :any) :void{
-
-    this.selectedFile = event.target.files
-    
-  }
   
   onCancel() :void{
 
     this.router.navigateByUrl('/glexy/users/list')
 
   }
+
+
 
   add() :void{
     this.data.employeeId.emailEmployee = this.data.email
@@ -81,8 +75,8 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
       this.updateSubs = this.usersService.update(this.data)?.subscribe(result => this.updateResDto = result)
       this.router.navigateByUrl('/glexy/users/list')
     }else{
-    this.file = this.selectedFile?.item(0)
-      this.insertSubs = this.usersService.insert(this.data,this.file)?.subscribe(result =>{
+    
+      this.insertSubs = this.usersService.insert(this.data)?.subscribe(result =>{
       this.insertResDto = result
     })
     this.router.navigateByUrl('/glexy/users/list')
