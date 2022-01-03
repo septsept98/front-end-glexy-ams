@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { StatusTransaction } from '@models/status-transaction';
 import { TransactionDetail } from '@models/transaction-detail';
 import { StatusTransactionService } from '@services/status-transaction/status-transaction.service';
@@ -18,6 +19,8 @@ export class TransactionCheckInComponent implements OnInit {
 
   statusTrxSelected!: string
 
+  resUpdate!: UpdateResDto
+
   constructor(private route: ActivatedRoute,
     private transactionDetailService: TransactionDetailService,
     private statusTrxService: StatusTransactionService) { }
@@ -34,10 +37,9 @@ export class TransactionCheckInComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // let statusTransaction: StatusTransaction = new StatusTransaction()
-    // statusTransaction.id = this.statusTrxSelected
-    // this.dataAssetTrxDetail.statusTrCheckinId = statusTransaction
-    console.log(this.dataAssetTrxDetail)
+    this.transactionDetailService.update(this.dataAssetTrxDetail)?.subscribe(res => {
+      this.resUpdate = res
+    })
   }
 
 }

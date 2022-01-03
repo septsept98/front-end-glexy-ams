@@ -10963,7 +10963,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(244, 54, 118, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(89, 54, 244, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -10976,12 +10976,12 @@ fieldset:disabled a.btn {
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
   background-color: #0c2f4d;
-  border-color: #ba0a46;
+  border-color: #390aba;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(244, 54, 118, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(73, 54, 244, 0.5);
 }
 
 .btn-secondary {
@@ -18514,7 +18514,7 @@ input:focus {
   border-color: transparent;
   outline: none;
 }
-
+/* 
 @font-face {
   font-family: 'Roboto';
   src: url("../../fonts/Roboto/Roboto-Light.eot");
@@ -18553,7 +18553,7 @@ input:focus {
   src: url("../../fonts/Roboto/Roboto-Black.eot?#iefix") format("embedded-opentype"), url("../../fonts/Roboto/Roboto-Black.woff2") format("woff2"), url("../../fonts/Roboto/Roboto-Black.woff") format("woff"), url("../../fonts/Roboto/Roboto-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
-}
+} */
 
 .bg-twitter {
   background: #2caae1;

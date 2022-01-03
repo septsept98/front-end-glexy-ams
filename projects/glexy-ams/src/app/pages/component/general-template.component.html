@@ -217,8 +217,8 @@
             <a class="navbar-brand brand-logo-mini" href="index.html">
                 <img src="../../../assets/images/Logo--.png" alt="">
             </a>
-            <button (click)="iconOnly()" class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button"
-                id="minimize">
+            <button (click)="iconOnly()" class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex"
+                type="button" id="minimize">
                 <span class='bx bx-menu'></span>
             </button>
         </div>
@@ -241,13 +241,13 @@
                     </div>
                 </li>
             </ul>
-            <button (click)="openMenu()" class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                id="offcanvas">
+            <button (click)="openMenu()" class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+                type="button" id="offcanvas">
                 <span class='bx bx-menu'></span>
             </button>
         </div>
     </nav>
-    <div class="container-fluid page-body-wrapper">
+    <div class="page-body-wrapper">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
@@ -267,13 +267,15 @@
                     </div>
                     <p class="sidebar-menu-title">Dash menu</p>
                 </li>
-                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
+                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)"
+                    (mouseleave)="hoverClose($event.target)">
                     <a class="nav-link" routerLink="/glexy/dashboard">
                         <i class="bx bx-user menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
+                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)"
+                    (mouseleave)="hoverClose($event.target)">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                         aria-controls="ui-basic">
                         <i class="bx bx-user menu-icon"></i>
@@ -283,18 +285,15 @@
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/status-trx/list"
-                                    routerLinkActive="active">
+                                <a class="nav-link" routerLink="/glexy/status-trx/list" routerLinkActive="active">
                                     <i class="bx bx-user"></i>&nbsp; Buttons</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/roles/list"
-                                    routerLinkActive="active">
+                                <a class="nav-link" routerLink="/glexy/roles/list" routerLinkActive="active">
                                     <i class="bx bx-user"></i>&nbsp; Dropdowns</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/status-asset/list"
-                                    routerLinkActive="active">
+                                <a class="nav-link" routerLink="/glexy/status-asset/list" routerLinkActive="active">
                                     <i class="bx bx-user"></i>&nbsp; Typography</a>
                             </li>
                         </ul>
