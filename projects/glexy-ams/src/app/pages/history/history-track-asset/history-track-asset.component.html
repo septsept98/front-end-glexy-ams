@@ -17,9 +17,9 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Track Assets</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [(selection)]="selectedStatusAssets" [rowHover]="true" dataKey="id"
+                <p-table #dt [value]="listTrackAsset" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['codeAsset','nameActivity','dateActivity','transactionCode']" responsiveLayout="scroll"
+                    [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
@@ -37,34 +37,34 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th pSortableColumn="codeStatusAsset">Code Asset<p-sortIcon field="codeStatusAsset">
+                            <th pSortableColumn="codeAsset">Code Asset<p-sortIcon field="codeAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Name Activity<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="nameActivity">Name Activity<p-sortIcon field="nameActivity">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Date Activity<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="dateActivity">Date Activity<p-sortIcon field="nameStatusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Transaction Code<p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="transactionCode">Transaction Code<p-sortIcon field="transactionCode">
                                 </p-sortIcon>
                             </th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                    <ng-template pTemplate="body" let-trxAsset let-rowIndex="rowIndex">
                         <tr>
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td>{{status.codeStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
-                            <td>{{status.nameStatusAsset}}</td>
+                            <td>{{trxAsset.codeAsset}}</td>
+                            <td>{{trxAsset.nameActivity}}</td>
+                            <td>{{trxAsset.dateActivity}}</td>
+                            <td>{{trxAsset.transactionCode}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusAssets ? listStatusAssets.length : 0 }} products.
+                            In total there are {{listTrackAsset ? listTrackAsset.length : 0 }} products.
                         </div>
                     </ng-template>
                 </p-table>

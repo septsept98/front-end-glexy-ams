@@ -4,4 +4,5 @@ export class GetAllTrx {
     assignType!: string
     assignTo!: string
     checkOutDate!: string
+    description!: string
 }

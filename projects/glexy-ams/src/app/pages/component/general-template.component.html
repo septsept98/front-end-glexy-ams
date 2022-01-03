@@ -253,7 +253,7 @@
                 <li class="nav-item">
                     <div class="d-flex sidebar-profile">
                         <div class="sidebar-profile-image">
-                            <img src="images/faces/face29.png" alt="image">
+                            <img src="" alt="image">
                             <span class="sidebar-status-indicator"></span>
                         </div>
                         <div class="sidebar-profile-name">
@@ -295,6 +295,81 @@
                             <li class="nav-item">
                                 <a class="nav-link" routerLink="/glexy/status-asset/list" routerLinkActive="active">
                                     <i class="bx bx-user"></i>&nbsp; Typography</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)"
+                    (mouseleave)="hoverClose($event.target)">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                        aria-controls="ui-basic">
+                        <i class="bx bx-user menu-icon"></i>
+                        <span class="menu-title">UI Elements</span>
+                        <i class='bx bxs-chevron-right menu-arrow'></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/status-trx/list" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Buttons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/roles/list" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Dropdowns</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/status-asset/list" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Typography</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)"
+                    (mouseleave)="hoverClose($event.target)">
+                    <a class="nav-link" data-toggle="collapse" href="#trx" aria-expanded="false"
+                        aria-controls="trx">
+                        <i class="bx bx-user menu-icon"></i>
+                        <span class="menu-title">Transactions</span>
+                        <i class='bx bxs-chevron-right menu-arrow'></i>
+                    </a>
+                    <div class="collapse" id="trx">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/transaction/check-out" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Transactions Check Out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/transaction/check-in-list" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Transactions Check In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)"
+                    (mouseleave)="hoverClose($event.target)">
+                    <a class="nav-link" data-toggle="collapse" href="#history" aria-expanded="false"
+                        aria-controls="history">
+                        <i class="bx bxs-archive menu-icon"></i>
+                        <span class="menu-title">History</span>
+                        <i class='bx bxs-chevron-right menu-arrow'></i>
+                    </a>
+                    <div class="collapse" id="history">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/histories/transaction" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Transactions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/histories/track-assets" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Track Assets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/histories/asset-expired" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Assets License Expired</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/glexy/histories/transaction-expired" routerLinkActive="active">
+                                    <i class="bx bx-user"></i>&nbsp; Transaction Expired</a>
                             </li>
                         </ul>
                     </div>

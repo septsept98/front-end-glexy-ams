@@ -6,6 +6,7 @@ import { baseUrl } from '../../constance/root';
 import { TransactionDetail } from '../../model/transaction-detail';
 import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
 import { UpdateResDto } from '../../dto/all-respons/update-res-dto';
+import { TrxOutofDate } from '@dto/report/trx-out-of-date';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,7 @@ export class TransactionDetailService {
     return this.http.get<TransactionDetail>(`${baseUrl}transaction-details/${id}`)??""
   }
 
+  getOutDate() : Observable<TrxOutofDate[]> | undefined {
+    return this.http.get<TrxOutofDate[]>(`${baseUrl}transaction-details/out-date`)??""
+  }
 }

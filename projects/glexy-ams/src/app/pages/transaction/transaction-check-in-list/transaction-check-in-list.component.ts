@@ -15,25 +15,25 @@ export class TransactionCheckInListComponent implements OnInit, OnDestroy {
 
   listDataTransaction: Transactions[] = []
   listDataTrxDto: GetAllTrx[] = []
- 
- private unSubs?: Subscription;
+
+  private unSubs?: Subscription;
   constructor(private router: Router,
     private transactionService: TransactionService) { }
 
   ngOnInit(): void {
     this.transactionService.getAll()?.subscribe(res => {
       this.listDataTransaction = res
-      for(let i=0;i<this.listDataTransaction.length;i++){
+      for (let i = 0; i < this.listDataTransaction.length; i++) {
         let dataTrxDto: GetAllTrx = new GetAllTrx()
         dataTrxDto.id = this.listDataTransaction[i].id
         dataTrxDto.code = this.listDataTransaction[i].codeTransaction
-        if(this.listDataTransaction[i].locationId != null){
+        if (this.listDataTransaction[i].locationId != null) {
           dataTrxDto.assignType = String(trxAssignType.get(2)?.[1])
           dataTrxDto.assignTo = this.listDataTransaction[i].locationId.namePlace
-        } else if(this.listDataTransaction[i].assetGeneralId != null){
+        } else if (this.listDataTransaction[i].assetGeneralId != null) {
           dataTrxDto.assignType = String(trxAssignType.get(3)?.[1])
-          dataTrxDto.assignTo = this.listDataTransaction[i].assetGeneralId.code  + " - " + this.listDataTransaction[i].assetGeneralId.names
-        } else if(this.listDataTransaction[i].employeeId != null){
+          dataTrxDto.assignTo = this.listDataTransaction[i].assetGeneralId.code + " - " + this.listDataTransaction[i].assetGeneralId.names
+        } else if (this.listDataTransaction[i].employeeId != null) {
           dataTrxDto.assignType = String(trxAssignType.get(1)?.[1])
           dataTrxDto.assignTo = this.listDataTransaction[i].employeeId.nameEmployee
         } else {

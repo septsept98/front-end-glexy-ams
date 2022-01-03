@@ -10356,7 +10356,7 @@ pre code {
   border: 0;
 }
 
-.form-control, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead,
+.form-control, .typeahead,
 .tt-query,
 .tt-hint {
   display: block;
@@ -10375,14 +10375,14 @@ pre code {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .form-control, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead,
+  .form-control, .typeahead,
   .tt-query,
   .tt-hint {
     transition: none;
   }
 }
 
-.form-control::-ms-expand, .select2-container--default .select2-selection--single::-ms-expand, .select2-container--default .select2-selection--single .select2-search__field::-ms-expand, .typeahead::-ms-expand,
+.form-control::-ms-expand, .typeahead::-ms-expand,
 .tt-query::-ms-expand,
 .tt-hint::-ms-expand {
   background-color: transparent;
@@ -10872,7 +10872,7 @@ textarea.is-invalid.tt-hint {
     align-items: center;
     margin-bottom: 0;
   }
-  .form-inline .form-control, .form-inline .select2-container--default .select2-selection--single, .select2-container--default .form-inline .select2-selection--single, .form-inline .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-inline .select2-search__field, .form-inline .typeahead,
+  .form-inline .form-control, .form-inline, .select2-container--default .form-inline .select2-selection--single, .form-inline .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-inline .select2-search__field, .form-inline .typeahead,
   .form-inline .tt-query,
   .form-inline .tt-hint {
     display: inline-block;
@@ -11934,7 +11934,7 @@ input[type="button"].btn-block {
   width: 100%;
 }
 
-.input-group > .form-control, .select2-container--default .input-group > .select2-selection--single, .select2-container--default .select2-selection--single .input-group > .select2-search__field, .input-group > .typeahead,
+.input-group > .form-control, .input-group > .typeahead,
 .input-group > .tt-query,
 .input-group > .tt-hint,
 .input-group > .form-control-plaintext,
@@ -11998,7 +11998,7 @@ input[type="button"].btn-block {
   margin-left: -1px;
 }
 
-.input-group > .form-control:focus, .select2-container--default .input-group > .select2-selection--single:focus, .select2-container--default .select2-selection--single .input-group > .select2-search__field:focus, .input-group > .typeahead:focus,
+.input-group > .form-control:focus, .input-group > .typeahead:focus,
 .input-group > .tt-query:focus,
 .input-group > .tt-hint:focus,
 .input-group > .custom-select:focus,
@@ -12098,14 +12098,14 @@ input[type="button"].btn-block {
   margin-top: 0;
 }
 
-.input-group-lg > .form-control:not(textarea), .select2-container--default .input-group-lg > .select2-selection--single:not(textarea), .select2-container--default .select2-selection--single .input-group-lg > .select2-search__field:not(textarea), .input-group-lg > .typeahead:not(textarea),
+.input-group-lg > .form-control:not(textarea), .input-group-lg > .typeahead:not(textarea),
 .input-group-lg > .tt-query:not(textarea),
 .input-group-lg > .tt-hint:not(textarea),
 .input-group-lg > .custom-select {
   height: calc(1.5em + 1rem + 2px);
 }
 
-.input-group-lg > .form-control, .select2-container--default .input-group-lg > .select2-selection--single, .select2-container--default .select2-selection--single .input-group-lg > .select2-search__field, .input-group-lg > .typeahead,
+.input-group-lg > .form-control, .input-group-lg > .typeahead,
 .input-group-lg > .tt-query,
 .input-group-lg > .tt-hint,
 .input-group-lg > .custom-select,
@@ -12119,14 +12119,14 @@ input[type="button"].btn-block {
   border-radius: 0.3rem;
 }
 
-.input-group-sm > .form-control:not(textarea), .select2-container--default .input-group-sm > .select2-selection--single:not(textarea), .select2-container--default .select2-selection--single .input-group-sm > .select2-search__field:not(textarea), .input-group-sm > .typeahead:not(textarea),
+.input-group-sm > .form-control:not(textarea), .input-group-sm > .typeahead:not(textarea),
 .input-group-sm > .tt-query:not(textarea),
 .input-group-sm > .tt-hint:not(textarea),
 .input-group-sm > .custom-select {
   height: calc(1.5em + 0.5rem + 2px);
 }
 
-.input-group-sm > .form-control, .select2-container--default .input-group-sm > .select2-selection--single, .select2-container--default .select2-selection--single .input-group-sm > .select2-search__field, .input-group-sm > .typeahead,
+.input-group-sm > .form-control, .input-group-sm > .typeahead,
 .input-group-sm > .tt-query,
 .input-group-sm > .tt-hint,
 .input-group-sm > .custom-select,
@@ -18389,7 +18389,7 @@ body {
   overflow-x: hidden;
 }
 
-.form-control, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead,
+.form-control, .select2-container--default .select2-selection--single .select2-search__field, .typeahead,
 .tt-query,
 .tt-hint, .form-control:focus, .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .typeahead:focus,
 .tt-query:focus,
@@ -20532,7 +20532,7 @@ code {
   color: #262626;
 }
 
-.form-control, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-search__field, .typeahead,
+.form-control, .typeahead,
 .tt-query,
 .tt-hint {
   border: 1px solid #e8eff9;
@@ -20663,7 +20663,7 @@ select.border-dark.tt-hint:focus {
   margin-bottom: .5rem;
 }
 
-.form-group.has-danger .form-control, .form-group.has-danger .select2-container--default .select2-selection--single, .select2-container--default .form-group.has-danger .select2-selection--single, .form-group.has-danger .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-group.has-danger .select2-search__field, .form-group.has-danger .typeahead,
+.form-group.has-danger .form-control, .form-group.has-danger, .select2-container--default .form-group.has-danger .select2-selection--single, .form-group.has-danger .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .form-group.has-danger .select2-search__field, .form-group.has-danger .typeahead,
 .form-group.has-danger .tt-query,
 .form-group.has-danger .tt-hint {
   border-color: #cd1818;
@@ -22594,73 +22594,6 @@ body.avgrund-active {
   border-color: #e8eff9;
 }
 
-/* Select2 */
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background: #235784;
-}
-
-.select2-container--default .select2-selection--single,
-.select2-container--default .select2-dropdown,
-.select2-container--default .select2-selection--multiple {
-  border-color: #e8eff9;
-}
-
-.select2-container--default .select2-selection--single .select2-search__field,
-.select2-container--default .select2-dropdown .select2-search__field,
-.select2-container--default .select2-selection--multiple .select2-search__field {
-  border-color: #e8eff9;
-}
-
-.select2-container--default .select2-selection--single {
-  height: auto;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  line-height: 14px;
-}
-
-.select2-container--default .select2-dropdown {
-  font-size: .8125rem;
-}
-
-.select2-container--default.select2-container--focus .select2-selection--multiple {
-  border-color: #e8eff9;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-  color: #ffffff;
-  border: 0;
-  border-radius: 3px;
-  padding: 6px;
-  font-size: .625rem;
-  font-family: inherit;
-  line-height: 1;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
-  color: #ffffff;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+1) {
-  background: #235784;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+2) {
-  background: #116530;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+3) {
-  background: #235784;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+4) {
-  background: #cd1818;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice:nth-child(5n+5) {
-  background: #ffca05;
-}
-
 /* TinyMCE Editor */
 .mce-tinymce.mce-panel,
 .mce-tinymce .mce-panel {
@@ -22921,7 +22854,7 @@ body.avgrund-active {
   background: transparent;
 }
 
-.auth .auth-form-transparent .form-control, .auth .auth-form-transparent .select2-container--default .select2-selection--single, .select2-container--default .auth .auth-form-transparent .select2-selection--single, .auth .auth-form-transparent .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth .auth-form-transparent .select2-search__field, .auth .auth-form-transparent .typeahead,
+.auth .auth-form-transparent .form-control, .auth .auth-form-transparent, .select2-container--default .auth .auth-form-transparent .select2-selection--single, .auth .auth-form-transparent .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth .auth-form-transparent .select2-search__field, .auth .auth-form-transparent .typeahead,
 .auth .auth-form-transparent .tt-query,
 .auth .auth-form-transparent .tt-hint,
 .auth .auth-form-transparent .input-group-text {
@@ -22969,7 +22902,7 @@ body.avgrund-active {
   font-size: .8125rem;
 }
 
-.auth form .form-group .form-control, .auth form .form-group .select2-container--default .select2-selection--single, .select2-container--default .auth form .form-group .select2-selection--single, .auth form .form-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth form .form-group .select2-search__field, .auth form .form-group .typeahead,
+.auth form .form-group .form-control, .auth form .form-group, .select2-container--default .auth form .form-group .select2-selection--single, .auth form .form-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth form .form-group .select2-search__field, .auth form .form-group .typeahead,
 .auth form .form-group .tt-query,
 .auth form .form-group .tt-hint {
   background: transparent;
@@ -23062,7 +22995,7 @@ body.avgrund-active {
   display: none;
 }
 
-.auth.multi-step-login .step-form .form-control, .auth.multi-step-login .step-form .select2-container--default .select2-selection--single, .select2-container--default .auth.multi-step-login .step-form .select2-selection--single, .auth.multi-step-login .step-form .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth.multi-step-login .step-form .select2-search__field, .auth.multi-step-login .step-form .typeahead,
+.auth.multi-step-login .step-form .form-control, .auth.multi-step-login .step-form .typeahead,
 .auth.multi-step-login .step-form .tt-query,
 .auth.multi-step-login .step-form .tt-hint {
   height: 40px;
@@ -23418,7 +23351,7 @@ body.avgrund-active {
   margin: 0 1.562rem 1rem 1.562rem;
 }
 
-.sidebar .nav-search .form-control, .sidebar .nav-search .select2-container--default .select2-selection--single, .select2-container--default .sidebar .nav-search .select2-selection--single, .sidebar .nav-search .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .sidebar .nav-search .select2-search__field, .sidebar .nav-search .typeahead,
+.sidebar .nav-search .form-control, .sidebar .nav-search .typeahead,
 .sidebar .nav-search .tt-query,
 .sidebar .nav-search .tt-hint {
   background: transparent;
@@ -23715,7 +23648,7 @@ body.avgrund-active {
   padding: .75rem;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .input-group-text {
@@ -23725,7 +23658,7 @@ body.avgrund-active {
   padding: 0;
 }
 
-.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single, .select2-container--default .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-selection--single, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .select2-search__field, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .form-control, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group, .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .typeahead,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-query,
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-search .input-group .tt-hint {
   margin-left: .5rem;
@@ -25150,7 +25083,7 @@ body.avgrund-active {
   border: none;
 }
 
-.chat-card .type-chat form .form-control, .chat-card .type-chat form .select2-container--default .select2-selection--single, .select2-container--default .chat-card .type-chat form .select2-selection--single, .chat-card .type-chat form .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .chat-card .type-chat form .select2-search__field, .chat-card .type-chat form .typeahead,
+.chat-card .type-chat form .form-control, .chat-card .type-chat form, .select2-container--default .chat-card .type-chat form .select2-selection--single, .chat-card .type-chat form .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .chat-card .type-chat form .select2-search__field, .chat-card .type-chat form .typeahead,
 .chat-card .type-chat form .tt-query,
 .chat-card .type-chat form .tt-hint {
   border: none;

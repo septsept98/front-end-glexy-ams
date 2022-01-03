@@ -7,6 +7,7 @@ import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { InsertReqDataAssetTransactionDto } from '@dto/transaction/insert-req-data-asset-transaction-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
+import { AssetExpired } from '@dto/report/asset-expired';
 
 
 @Injectable({
@@ -79,5 +80,8 @@ export class AssetService {
 
     return this.http.put<UpdateResDto>(`${baseUrl}assets/image`, formData)??""
     
+  }
+  getExpiredAsset() : Observable<AssetExpired[]> | undefined {
+    return this.http.get<AssetExpired[]>(`${baseUrl}assets/expired-asset/`)??""
   }
 }
