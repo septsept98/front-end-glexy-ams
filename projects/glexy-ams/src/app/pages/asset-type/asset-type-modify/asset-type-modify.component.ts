@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
+import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { AssetType } from '@models/asset-type';
 import { AssetTypeService } from '@services/asset-type/asset-type.service';
 import { Subscription } from 'rxjs';
@@ -12,31 +13,59 @@ import { Subscription } from 'rxjs';
 })
 export class AssetTypeModifyComponent implements OnInit, OnDestroy {
 
-  constructor(private assetTypeService : AssetTypeService, private router: Router) { }
-  assetTypeInsert! : AssetType
-  dataAssetType? : InsertResDto
-  obs? : Subscription
+  constructor(private assetTypeService : AssetTypeService, private router: Router, private activedRoute:ActivatedRoute) { }
+  assetTypeInsert : AssetType = new AssetType()
+  dataAssetType : InsertResDto = new InsertResDto()
+  updateResDto: UpdateResDto = new UpdateResDto()
+  save: boolean = true
+  tab: boolean = false
+  assetTypeId? : string | null
+  dataSubs?: Subscription
+  insertSubs?: Subscription
+  updateSubs?: Subscription
 
   ngOnInit(): void {
-    this.dataAssetType = new InsertResDto();
-    this.assetTypeInsert = new AssetType();
+    this.assetTypeId = this.activedRoute.snapshot.paramMap.get('id')
+
+    if(this.assetTypeId){
+      this.dataSubs = this.assetTypeService.getById(this.assetTypeId)?.subscribe(result => {
+        this.save = false
+        this.tab = true
+        this.assetTypeInsert = result
+      })
+    }
+    
   }
 
   addDb(): void {
-    this.assetTypeService.insert(this.assetTypeInsert)?.subscribe(result => {
-      if(result.data) {
-        this.dataAssetType = result
-        if(this.dataAssetType){
-          this.router.navigateByUrl("/glexy/asset-type/list")
-
+    if(this.assetTypeId) {
+      this.updateSubs = this.assetTypeService.update(this.assetTypeInsert)?.subscribe( result => {
+        this.updateResDto = result
+        this.router.navigateByUrl('/glexy/asset-type/list')
+      })
+    } else {
+      this.assetTypeService.insert(this.assetTypeInsert)?.subscribe(result => {
+        if(result.data) {
+          this.dataAssetType = result
+          if(this.dataAssetType){
+            this.router.navigateByUrl("/glexy/asset-type/list")
+  
+          }
         }
-      }
-    })
+      })
+    }
+    
   }
 
   ngOnDestroy(): void{
-    this.obs?.unsubscribe()
+    this.dataSubs?.unsubscribe()
+    this.insertSubs?.unsubscribe()
+    this.updateSubs?.unsubscribe()
   }
 
+  onCancel() :void{
+    this.router.navigateByUrl('/glexy/asset-type/list')
+
+  }
 
 }

@@ -21,7 +21,7 @@
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset-type/new/"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -54,7 +54,7 @@
                             <td>{{type.code}}</td>
                             <td>{{type.names}}</td>
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(type.id)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
                             </td>
                         </tr>

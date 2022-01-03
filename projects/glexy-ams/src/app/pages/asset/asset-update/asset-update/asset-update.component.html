@@ -22,29 +22,33 @@
                         <div class="col-md-6 grid-margin">
                             <div class="form-group">
                                 <label for="typeAsset">Type</label>
-                                <ng-select2 [options]='optionsAssetType' [(ngModel)]="asset.assetTypeId.id"> </ng-select2>
+                                <select class="browser-default custom-select" id="typeAsset" [(ngModel)]="asset.assetTypeId.id">
+                                    <option *ngFor="let db of assetType" [value]="db.id" >{{db.names}}</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Brand</label>
-                                <ng-select2 [options]='optionsBrand' [(ngModel)]="asset.brandId.id"> </ng-select2>
+                                <label for="brandSelect">Brand</label>
+                                <select class="browser-default custom-select" id="brandSelect" [(ngModel)]="asset.brandId.id">
+                                    <option *ngFor="let db of brand" [value]="db.id" >{{db.names}}</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Status Asset</label>
-                                <ng-select2 [options]='optionsStatusAsset' [(ngModel)]="asset.statusAssetId.id"> </ng-select2>
+                                <label for="statAssetSelect">Status Asset</label>
+                                <select class="browser-default custom-select" id="statAssetSelect" [(ngModel)]="asset.statusAssetId.id">
+                                    <option *ngFor="let db of statusAsset" [value]="db.id" >{{db.nameStatusAsset}}</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Date Expired</label>
                                 <input class="form-control" type="date" [(ngModel)]="asset.expiredDate" />
                             </div>
                             <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" checked>
-                                  Active
-                                </label>
+                                <input type="checkbox" class="form-check-input" checked>
+                                <label> Active </label>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" (click)="onUpdate()">Submit</button>
                     <button class="btn btn-dark" routerLink="/glexy/asset/list">Cancel</button>
                 </div>
             </div>
@@ -61,19 +65,11 @@
                         <div class="col">
                             <div class="form-group mt-md-3">
                                 <label>Upload Image </label><br>
-                                <input type="file" id="myfile" class="file-upload-default" (change)="selectFile($event)" accept="image/*">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
-                                </div>
+                                <input type="file" id="myfile" class="form-control" (change)="selectFile($event)" accept="image/*">
                             </div>
                             <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" checked>
-                                  Active
-                                </label>
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="asset.isActive" checked>
+                                <label> Active </label>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     CompanyListComponent,
-    CompanyModifyComponent
+    CompanyModifyComponent,
   ],
   imports: [
     CommonModule,

@@ -30,13 +30,13 @@ export class InvoiceService {
     return this.http.delete<DeleteResDto>(`${baseUrl}invoices/${id}`)??""
   }
 
-  update(code : string, file : File) : Observable<UpdateResDto> | undefined {
+  update(data : Invoice, file : File) : Observable<UpdateResDto> | undefined {
     const formData: FormData = new FormData();
 
-    formData.append('code', code)
+    formData.append('data', JSON.stringify(data));
     formData.append('file', file);
 
-    return this.http.put<UpdateResDto>(`${baseUrl}invoices/image`, formData)??""
+    return this.http.put<UpdateResDto>(`${baseUrl}invoices/`, formData)??""
     
   }
 }
