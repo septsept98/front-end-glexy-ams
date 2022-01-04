@@ -11,7 +11,7 @@
                 <label for="code">Code</label>
                 <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="brandInsert.code">
             </div>
-            <div class="form-check">
+            <div class="form-check" *ngIf="tab">
                 <input type="checkbox" class="form-check-input" [(ngModel)]="brandInsert.isActive" checked>
                 <label> Active </label>
             </div>

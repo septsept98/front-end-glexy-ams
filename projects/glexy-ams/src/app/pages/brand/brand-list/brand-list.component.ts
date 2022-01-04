@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Brand } from '@models/brand';
-import { BrandService } from '@services/brand/brand.service';
+import { BrandService } from '../../../../../../core/src/app/services/brand/brand.service';
+import { DeleteResDto } from '../../../../../../core/src/app/dto/all-respons/delete-res-dto'
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class BrandListComponent implements OnInit, OnDestroy {
 
   constructor(private brandService : BrandService, private router : Router) { }
+  deleteResDto : DeleteResDto = new DeleteResDto()
   selectedBrand: Brand[] = []
   dataList: Brand[] = []
   obs? : Subscription
@@ -28,6 +30,15 @@ export class BrandListComponent implements OnInit, OnDestroy {
 
   onUpdate(id : number): void{
     this.router.navigateByUrl(`/glexy/brand/${id}`)
+  }
+
+  onDelete(id : string): void {
+    this.brandService.delete(id)?.subscribe(result => {
+      this.deleteResDto = result
+      if(this.deleteResDto) {
+        window.location.reload()
+      }
+    })
   }
 
 }

@@ -54,6 +54,10 @@
                         <label>Company Logo </label><br>
                         <input type="file" name="img" class="form-control" accept="image/*" (change)="selectFile($event)">
                     </div>
+                    <div class="form-check" *ngIf="tab">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="companyInsert.isActive" checked>
+                        <label> Active </label>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2" (click)="addData()">Submit</button>
                     <button class="btn btn-dark" (click)="onCancel()">Cancel</button>
                 </div>

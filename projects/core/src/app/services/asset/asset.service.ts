@@ -86,7 +86,9 @@ export class AssetService {
     return this.http.put<UpdateResDto>(`${baseUrl}assets/image`, formData)??""
     
   }
+
   getExpiredAsset() : Observable<AssetExpired[]> | undefined {
     return this.http.get<AssetExpired[]>(`${baseUrl}assets/expired-asset/`)??""
   }
+
 }
