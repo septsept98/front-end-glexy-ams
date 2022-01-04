@@ -20,6 +20,7 @@ export class AuthService {
   saveUserData(data :LoginResDto):void{
 
     localStorage.setItem('data',JSON.stringify(data))
+    
 
   }
 

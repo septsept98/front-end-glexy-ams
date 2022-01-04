@@ -26,7 +26,7 @@ export class PermissionDetailService {
     return this.http.put<UpdateResDto>(`${baseUrl}permission-details/`, data)??""
   }
 
-  getByRoleCode(code : string) : Observable<PermissionDetail[]> | undefined {
+  getByRoleCode(code? : string) : Observable<PermissionDetail[]> | undefined {
     return this.http.get<PermissionDetail[]>(`${baseUrl}permission-details/role/${code}`)??""
   }
 
