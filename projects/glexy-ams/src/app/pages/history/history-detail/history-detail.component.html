@@ -60,8 +60,8 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
-                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
+                            <td><img *ngIf="isDisplayAvail(trxDetail.assetId.assetImg)" style="width: 70px; height: 100%;" class="img-fluid"
+                                    src="data:image/png;base64,{{trxDetail.assetId.assetImg.file}}" alt=""></td>
                             <td>{{trxDetail.assetId.code}} - {{trxDetail.assetId.names}}</td>
                             <td>{{trxDetail.statusTrCheckinId?trxDetail.statusTrCheckinId.nameStatusTr : 'assign'}}</td>
                             <td>{{trxDetail.durationDate?trxDetail.durationDate:'-'}}</td>

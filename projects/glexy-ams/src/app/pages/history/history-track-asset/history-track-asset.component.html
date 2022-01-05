@@ -59,7 +59,7 @@
                             <td>{{trxAsset.codeAsset}}</td>
                             <td>{{trxAsset.nameActivity}}</td>
                             <td>{{trxAsset.dateActivity}}</td>
-                            <td>{{trxAsset.transactionCode}}</td>
+                            <td>{{trxAsset.transactionCode?trxAsset.transactionCode:'-'}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
