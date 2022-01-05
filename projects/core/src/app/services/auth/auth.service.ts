@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { baseUrl } from '@constant/root';
 import { LoginReqDto } from '@dto/users/login-req-dto';
 import { LoginResDto } from '@dto/users/login-res-dto';
+import { PermissionDetail } from '@models/permission-detail';
+import { PermissionDetailService } from '@services/permission-detail/permission-detail.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private permissionDetailService :PermissionDetailService) { }
 
   login(data :LoginReqDto) :Observable<LoginResDto>{
 
@@ -22,6 +24,23 @@ export class AuthService {
     localStorage.setItem('data',JSON.stringify(data))
     
 
+  }
+
+  savePermission():void{
+    let list :PermissionDetail[] = []
+    this.permissionDetailService.getByRoleCode(this.getRoles())?.subscribe(result => list = result)
+    localStorage.setItem('permission',JSON.stringify(list))
+    
+
+  }
+
+  getPermission() :PermissionDetail[]|undefined{
+    let permission = localStorage.getItem('permission')
+    if(permission){
+      let list :PermissionDetail[] = JSON.parse(permission)
+      return list
+    }
+    return undefined
   }
 
   getToken():string|undefined{
@@ -45,6 +64,8 @@ export class AuthService {
     }
     return undefined
   }
+
+ 
 
   clearStorage():void{
 

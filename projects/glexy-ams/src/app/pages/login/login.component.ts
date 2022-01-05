@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.data).subscribe(result=>{
       this.authService.saveUserData(result)
+      this.authService.savePermission()
       this.token = this.authService.getToken()
       console.log(this.token)
       this.router.navigateByUrl('/glexy/dashboard')

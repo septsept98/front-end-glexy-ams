@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DeleteResDto } from '../../dto/all-respons/delete-res-dto';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { baseUrl } from '../../constance/root';
 import { Users } from '../../model/users';
 import { UpdateResDto } from '../../dto/all-respons/update-res-dto';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  data? :Observer<void>; 
+  data$? :Observable<void>
+  
+  constructor(private http : HttpClient ) { 
 
-  constructor(private http : HttpClient) { }
+   this.data$ = new Observable(
+      obs => this.data = obs
+    ) 
+  }
 
   getAll() : Observable<Users[]> | undefined {
     return this.http.get<Users[]>(`${baseUrl}users/`)??""
@@ -63,6 +71,12 @@ export class UsersService {
     let data :Users = new Users()
     data.id = id
     return this.http.put<UpdateResDto>(`${baseUrl}users/reset-password/`,data)??""
+  }
+
+  updateProfilePicture() :void{
+  
+    this.data?.next()
+
   }
   
 }

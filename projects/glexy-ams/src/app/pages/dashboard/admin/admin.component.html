@@ -1,1 +1,111 @@
-<p>admin works!</p>
+<div class="col-xl-4 d-flex grid-margin stretch-card">
+    <div class="card mr-4">
+      <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between">
+          <h4 class="card-title mb-3">ASSETS</h4>
+        </div>
+        <div class="row ">
+          <div class="col-12">
+            <div class="mb-5">
+              <div class="mr-1">
+                <div class="text-info mb-1">
+                  Total
+                </div>
+                <h2 class="mb-2 mt-2 font-weight-bold">{{totalAsset}} Units</h2>
+              </div>
+              <hr>
+              <div class="mr-1">
+                <div class="text-info mb-1">
+                  Deploylable
+                </div>
+                <h2 class="mb-2 mt-2  font-weight-bold">{{deployableAsset}} Units</h2>
+              </div>
+              <hr>
+              <div class="mr-1">
+                <div class="text-info mb-1">
+                  Undeploylable
+                </div>
+                <h2 class="mb-2 mt-2  font-weight-bold">{{undeployableAsset}} Units</h2>
+              </div>
+            </div>
+            
+            <canvas id="barChartStacked"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mr-4">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">CHECK OUT</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-5">  
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Employee
+                  </div>
+                  <h2 class="mb-2 mt-2  font-weight-bold">30 Transactions</h2>
+                </div>
+                <hr>
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Location
+                  </div>
+                  <h2 class="mb-2 mt-2 font-weight-bold">20 Transactions</h2>
+                </div>
+                <hr>
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                General Component
+                  </div>
+                  <h2 class="mb-2 mt-2  font-weight-bold">10 Transactions</h2>
+                </div>
+              </div>
+              <canvas id="barChartStacked"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card ">
+        <div class="card-body">
+          <div class="d-flex flex-wrap justify-content-between">
+            <h4 class="card-title mb-3">CHECK IN</h4>
+          </div>
+          <div class="row ">
+            <div class="col-12">
+              <div class="mb-5">
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Close to Expired
+                  </div>
+                  <h2 class="mb-2 mt-2 font-weight-bold">10 Assets</h2>
+                </div>
+                <hr>
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Expired
+                  </div>
+                  <h2 class="mb-2 mt-2  font-weight-bold">5 Assets</h2>
+                  <div class="font-weight-bold">
+                </div>
+                <hr>
+                <div class="mr-1">
+                  <div class="text-info mb-1">
+                    Completed
+                  </div>
+                  <h2 class="mb-2 mt-2  font-weight-bold">20 Assets</h2>
+                  <div class="font-weight-bold">
+                </div>
+              </div>
+              <canvas id="barChartStacked"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  

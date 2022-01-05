@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Users } from '@models/users';
+import { AuthService } from '@services/auth/auth.service';
 import { UsersService } from '@services/users/users.service';
 import { Subscription } from 'rxjs';
 
@@ -20,6 +21,7 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   file! :File |null 
   updateResDto :UpdateResDto = new UpdateResDto()
   photo :boolean = false
+  // @Output() messageEvent = new EventEmitter<Users>()
   
   constructor(private usersService :UsersService,private router :Router) { }
 
@@ -56,9 +58,12 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
      this.usersService.updatePhoto(this.users,this.file)?.subscribe(result =>{
       this.updateResDto = result
       this.photo = true
+      if(result.msg == 'ok'){
+        this.usersService.updateProfilePicture()
+      }
       this.userSubs = this.usersService.getByIdAuth()?.subscribe(result => {this.users = result
         console.log(result)
-      window.location.reload()
+       this.usersService.updateProfilePicture ()
       } )
     })
   }
@@ -66,6 +71,6 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userSubs?.unsubscribe()
   }
-
+ 
 
 }

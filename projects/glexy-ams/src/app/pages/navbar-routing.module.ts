@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard } from '@services/auth-guard/auth-guard.guard';
 import { GeneralTemplateComponent } from './component/general-template.component';
 
 const routes: Routes = [
@@ -17,94 +18,112 @@ const routes: Routes = [
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./roles/roles.module').then(m => m.RolesModule)
+    loadChildren : () => import('./roles/roles.module').then(m => m.RolesModule),
+    canActivate : [AuthGuardGuard]
 
   },
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./permissions/permissions.module').then(m => m.PermissionsModule)
+    loadChildren : () => import('./permissions/permissions.module').then(m => m.PermissionsModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./users/users.module').then(m => m.UsersModule)
+    loadChildren : () => import('./users/users.module').then(m => m.UsersModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./permission-detail/permission-detail.module').then(m => m.PermissionDetailModule)
+    loadChildren : () => import('./permission-detail/permission-detail.module').then(m => m.PermissionDetailModule),
+    canActivate : [AuthGuardGuard]
   },
 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./asset/asset.module').then(m => m.AssetModule)
+    loadChildren : () => import('./asset/asset.module').then(m => m.AssetModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./brand/brand.module').then(m => m.BrandModule)
+    loadChildren : () => import('./brand/brand.module').then(m => m.BrandModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./company/company.module').then(m => m.CompanyModule)
+    loadChildren : () => import('./company/company.module').then(m => m.CompanyModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./asset-type/asset-type.module').then(m => m.AssetTypeModule)
+    loadChildren : () => import('./asset-type/asset-type.module').then(m => m.AssetTypeModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./employee/employee.module').then(m => m.EmployeeModule)
+    loadChildren : () => import('./employee/employee.module').then(m => m.EmployeeModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./inventory/inventory.module').then(m => m.InventoryModule)
+    loadChildren : () => import('./inventory/inventory.module').then(m => m.InventoryModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./invoice/invoice.module').then(m => m.InvoiceModule)
+    loadChildren : () => import('./invoice/invoice.module').then(m => m.InvoiceModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./location/location.module').then(m => m.LocationModule)
+    loadChildren : () => import('./location/location.module').then(m => m.LocationModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {  
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
+    loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule),
+    canActivate : [AuthGuardGuard]
   }, 
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule)
+    loadChildren : () => import('./status-asset/status-asset.module').then(m => m.StatusAssetModule),
+    canActivate : [AuthGuardGuard]
   },
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./status-transaction/status-transaction.module').then(m => m.StatusTransactionModule)
+    loadChildren : () => import('./status-transaction/status-transaction.module').then(m => m.StatusTransactionModule),
+    canActivate : [AuthGuardGuard]
   },
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./transaction/transaction.module').then(m => m.TransactionModule)
+    loadChildren : () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+    canActivate : [AuthGuardGuard]
   },
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./history/history.module').then(m => m.HistoryModule)
+    loadChildren : () => import('./history/history.module').then(m => m.HistoryModule),
+    canActivate : [AuthGuardGuard]
   },
   {
     path : '',
     component : GeneralTemplateComponent,
-    loadChildren : () => import('./profile/profile.module').then(m => m.ProfileModule)
+    loadChildren : () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canActivate : [AuthGuardGuard]
   }
 ];
 
