@@ -23,13 +23,20 @@
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                        <div class="d-flex p-ai-center justify-content-between">
-                            <span class="p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input pInputText type="text"
-                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                    placeholder="Search..." />
-                            </span>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <a href="http://localhost:1234/assets/pdf" target="__blank" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search..." />
+                                </span>
+                            </div>
                         </div>
                     </ng-template>
                     <ng-template pTemplate="header">
@@ -59,8 +66,8 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
-                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
+                            <td><img *ngIf="isDisplayAvail(status.image)" style="width: 70px; height: 100%;" class="img-fluid"
+                                src="data:image/png;base64,{{status.image}}" alt=""></td>
                             <td>{{status.codeAsset}} - {{status.nameAsset}}</td>
                             <td>{{status.brand}}</td>
                             <td>{{status.statusAsset}}</td>

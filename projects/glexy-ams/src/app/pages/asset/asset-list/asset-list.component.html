@@ -21,7 +21,7 @@
                 <p-table #dt [value]="assetList" [rows]="10" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                        <div class="d-flex p-ai-center justify-content-between">
+                        <!-- <div class="d-flex p-ai-center justify-content-between">
                             <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show"></button>
                             <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>
                             <span class="p-input-icon-left">
@@ -30,6 +30,20 @@
                                     (input)="dt.filterGlobal($any($event.target).value, 'contains')"
                                     placeholder="Search..." />
                             </span>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show"></button>
+                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>    
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search..." />
+                                </span>
+                            </div>
                         </div>
                     </ng-template>
                     <ng-template pTemplate="header">

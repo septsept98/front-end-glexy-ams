@@ -23,20 +23,20 @@
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <button pButton pRipple icon="pi pi-plus" class="bg-primary"
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <button pButton pRipple icon="pi pi-plus" class="bg-primary"
                                     routerLink="/glexy/status-asset/new"></button>
-                                </div>
-                                <div class="col-md-6 col-12 d-flex justify-content-end">
-                                    <span class="p-input-icon-left">
-                                        <i class="pi pi-search"></i>
-                                        <input pInputText type="text"
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
                                         (input)="dt.filterGlobal($any($event.target).value, 'contains')"
                                         placeholder="Search..." />
-                                    </span>
-                                </div>
+                                </span>
                             </div>
+                        </div>
                     </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
@@ -61,9 +61,10 @@
                             <td>{{status.nameStatusAsset}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2" (click)="onUpdate(status.id)"></button>
-                                <button pButton pRipple icon="pi pi-trash"
-                                    class="p-button-rounded p-button-warning" (click)="onDelete(status.id)"></button>
+                                    class="p-button-rounded p-button-success mr-2"
+                                    (click)="onUpdate(status.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="onDelete(status.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -73,6 +74,7 @@
                         </div>
                     </ng-template>
                 </p-table>
+                <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
             </div>
         </div>
     </div>

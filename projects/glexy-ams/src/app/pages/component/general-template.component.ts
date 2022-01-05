@@ -76,8 +76,11 @@ export class GeneralTemplateComponent implements OnInit {
           this.employeeMenu = true
           this.transactionMenu =true
           this.ciMenu = true
+          this.coMenu = true
           this.historyMenu = true
+          this.historyTransactionMenu = true
           this.assetExpiredMenu = true
+          this.trackAssetMenu = true
           this.transactionExpriredMenu = true
           this.inventoryMenu = true
         }

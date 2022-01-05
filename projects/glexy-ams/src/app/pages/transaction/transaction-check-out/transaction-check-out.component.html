@@ -54,15 +54,17 @@
                 </div>
             </div>
         </div>
-        <div class="main-card mb-3 card">
+        <div *ngIf="employeeOn || locationOn || assetOn" class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Choose Assets</h5>
                 <div class="form-row">
                     <div class="col-md-5">
                         <div class="position-relative form-group">
                             <label for="exampleCity" class="">Asset</label>
-                            <ng-select2 [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
+                            <ng-select2 *ngIf="employeeOn || locationOn" [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
                                 [options]='optionsInventory'></ng-select2>
+                            <ng-select2 *ngIf="assetOn" [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
+                                [options]='optionsInventoryComponent'></ng-select2>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -82,7 +84,8 @@
                     </div>
                     <div class="col-md-2">
                         <div class="position-relative form-group"><label for="exampleState" class="">Quantity</label>
-                            <input [(ngModel)]="qtyTrx" name="state" id="exampleState" type="number" class="form-control">
+                            <input [(ngModel)]="qtyTrx" name="state" id="exampleState" type="number"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -94,14 +97,14 @@
                 </div>
             </div>
         </div>
-        <div class="main-card mb-3 card">
+        <div *ngIf="employeeOn || locationOn || assetOn" class="main-card mb-3 card">
             <div class="card-body">
                 <div class="position-relative form-group">
                     <div class="mb-3">
                         <h5 class="card-title">Assets Out</h5>
                         <p-table #dt [value]="dataDetailTrx" [rows]="10" [paginator]="true"
-                            [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names']" responsiveLayout="scroll"
-                            [rowHover]="true" dataKey="id"
+                            [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names']"
+                            responsiveLayout="scroll" [rowHover]="true" dataKey="id"
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                             [showCurrentPageReport]="true">
                             <ng-template pTemplate="caption">
@@ -122,11 +125,11 @@
                                     <th pSortableColumn="assetId.code">Code<p-sortIcon field="assetId.code">
                                         </p-sortIcon>
                                     </th>
-                                    <th pSortableColumn="assetId.names">Name<p-sortIcon
-                                            field="assetId.names">
+                                    <th pSortableColumn="assetId.names">Name<p-sortIcon field="assetId.names">
                                         </p-sortIcon>
                                     </th>
-                                    <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon field="assetId.brandId.names">
+                                    <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon
+                                            field="assetId.brandId.names">
                                         </p-sortIcon>
                                     </th>
                                     <th>Duration Date</th>
@@ -142,8 +145,8 @@
                                     <td>{{asset.assetId?.names}}</td>
                                     <td>{{asset.assetId?.brandId?.names}}</td>
                                     <td>
-                                        <input [(ngModel)]="asset.durationDate" name="state" id="exampleState" type="date"
-                                            class="form-control">
+                                        <input [(ngModel)]="asset.durationDate" name="state" id="exampleState"
+                                            type="date" class="form-control">
                                     </td>
                                     <td>
                                         <button class="btn btn-danger" (click)="onRemove(rowIndex)">Remove</button>

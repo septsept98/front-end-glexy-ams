@@ -56,6 +56,7 @@ export class TransactionCheckOutComponent implements OnInit {
   optionsLocation!: Options
   optionsAsset!: Options
   optionsInventory!: Options
+  optionsInventoryComponent!: Options
 
   resInsert: InsertResDto = new InsertResDto()
 
@@ -76,8 +77,8 @@ export class TransactionCheckOutComponent implements OnInit {
 
     this.optionsEmployee = {
       width: '100%',
-      ajax: { 
-        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
+      ajax: {
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
         url: 'http://localhost:1234/employees/search/',
         data: function (params) {
           var query = {
@@ -106,7 +107,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsLocation = {
       width: '100%',
       ajax: {
-        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
         url: 'http://localhost:1234/locations/search/',
         data: function (params) {
           var query = {
@@ -135,7 +136,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsAsset = {
       width: '100%',
       ajax: {
-        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
         url: 'http://localhost:1234/assets/search-general-asset/',
         data: function (params) {
           var query = {
@@ -164,8 +165,37 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsInventory = {
       width: '100%',
       ajax: {
-        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
         url: 'http://localhost:1234/inventories/search',
+        data: function (params) {
+          var query = {
+            query: params.term,
+          }
+          return query;
+        },
+        processResults: function (data) {
+          const result: Inventory[] = data;
+          const select2Data: Select2OptionData[] = []
+          for (const Inventory of result) {
+            select2Data.push(
+              {
+                id: Inventory.id!,
+                text: Inventory.code! + " - " + Inventory.nameAsset!
+              }
+            )
+          }
+          return {
+            results: select2Data
+          };
+        }
+      }
+    }
+
+    this.optionsInventoryComponent = {
+      width: '100%',
+      ajax: {
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
+        url: 'http://localhost:1234/inventories/search-component',
         data: function (params) {
           var query = {
             query: params.term,
@@ -199,18 +229,33 @@ export class TransactionCheckOutComponent implements OnInit {
       this.assetOn = false
       this.locationSelected = new Location()
       this.assetGeneralSelected = new Asset()
+      this.dataAllTransaction = new InsertReqTransactionDto()
+      this.dataTrx = new Transactions()
+      this.dataDetailTrx = []
+      this.listDataReqAsset = []
+      this.dataReqAsset = new InsertReqDataAssetTransactionDto()
     } else if (trxAssignType.get(2)?.[0] == this.assignTypeChange) {
       this.employeeOn = false
       this.locationOn = true
       this.assetOn = false
       this.employeeSelected = new Employee()
       this.assetGeneralSelected = new Asset()
+      this.dataAllTransaction = new InsertReqTransactionDto()
+      this.dataTrx = new Transactions()
+      this.dataDetailTrx = []
+      this.listDataReqAsset = []
+      this.dataReqAsset = new InsertReqDataAssetTransactionDto()
     } else if (trxAssignType.get(3)?.[0] == this.assignTypeChange) {
       this.employeeOn = false
       this.locationOn = false
       this.assetOn = true
       this.locationSelected = new Location()
       this.employeeSelected = new Employee()
+      this.dataAllTransaction = new InsertReqTransactionDto()
+      this.dataTrx = new Transactions()
+      this.dataDetailTrx = []
+      this.listDataReqAsset = []
+      this.dataReqAsset = new InsertReqDataAssetTransactionDto()
     }
   }
 
@@ -237,11 +282,11 @@ export class TransactionCheckOutComponent implements OnInit {
       this.assetService.getByInventBrand(this.dataReqAsset)?.subscribe(result => {
         this.listAssets = result
         for (let j = 0; j < this.dataDetailTrx.length; j++) {
-          this.listAssets = this.listAssets.filter(result => 
+          this.listAssets = this.listAssets.filter(result =>
             this.dataDetailTrx[j].assetId.id != result.id
           )
         }
-        this.stockAsset = this.listAssets.length        
+        this.stockAsset = this.listAssets.length
       })
     }
   }
@@ -249,17 +294,21 @@ export class TransactionCheckOutComponent implements OnInit {
   onAddAsset(): void {
     this.dataReqAsset.qty = this.qtyTrx
     this.dataReqAsset.stock = this.stockAsset
-    if(this.qtyTrx > 0 && this.qtyTrx <= this.stockAsset){
-      for (let i = 0; i < this.qtyTrx; i++) {
-        let detailTrx: TransactionDetail = new TransactionDetail()
-        detailTrx.assetId = this.listAssets[i]
-        this.dataDetailTrx.push(detailTrx)
-      }
-      this.listDataReqAsset.push(this.dataReqAsset)
-      this.stockAsset = 0
-      this.qtyTrx = 0
+    if (this.dataReqAsset.brandId == null) {
+      this.toastr.error("Fill The Form", 'Error')
     } else {
-      this.toastr.error("Out of Stock", 'Error')
+      if (this.qtyTrx > 0 && this.qtyTrx <= this.stockAsset) {
+        for (let i = 0; i < this.qtyTrx; i++) {
+          let detailTrx: TransactionDetail = new TransactionDetail()
+          detailTrx.assetId = this.listAssets[i]
+          this.dataDetailTrx.push(detailTrx)
+        }
+        this.listDataReqAsset.push(this.dataReqAsset)
+        this.stockAsset = 0
+        this.qtyTrx = 0
+      } else {
+        this.toastr.error("Out of Stock", 'Error')
+      }
     }
   }
 
@@ -269,20 +318,24 @@ export class TransactionCheckOutComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.employeeSelected.id != null) {
-      this.dataTrx.employeeId = this.employeeSelected
-    } else if (this.locationSelected.id != null) {
-      this.dataTrx.locationId = this.locationSelected
-    } else if (this.assetGeneralSelected.id != null) {
-      this.dataTrx.assetGeneralId = this.assetGeneralSelected
+    if (this.dataTrx.description == null && this.dataDetailTrx == null) {
+      this.toastr.error("Fill The Form", 'Error')
+    } else {
+      if (this.employeeSelected.id != null) {
+        this.dataTrx.employeeId = this.employeeSelected
+      } else if (this.locationSelected.id != null) {
+        this.dataTrx.locationId = this.locationSelected
+      } else if (this.assetGeneralSelected.id != null) {
+        this.dataTrx.assetGeneralId = this.assetGeneralSelected
+      }
+      this.dataAllTransaction.dataTransaction = this.dataTrx
+      this.dataAllTransaction.dataDetailTransaction = this.dataDetailTrx
+      this.transactionService.insert(this.dataAllTransaction)?.subscribe(res => {
+        this.resInsert = res
+        console.log(this.dataAllTransaction)
+        this.router.navigateByUrl('/glexy/transaction/check-in-list')
+      })
     }
-    this.dataAllTransaction.dataTransaction = this.dataTrx
-    this.dataAllTransaction.dataDetailTransaction = this.dataDetailTrx
-    this.transactionService.insert(this.dataAllTransaction)?.subscribe(res => {
-      this.resInsert = res
-      console.log(this.dataAllTransaction)
-      this.router.navigateByUrl('/glexy/transaction/check-in-list')
-    })
   }
 }
 

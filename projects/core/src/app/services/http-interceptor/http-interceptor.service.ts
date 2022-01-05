@@ -18,7 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         let data: HttpResponse<any> = succes
         if(data.body && data.body.msg){
 
-          this.toastr.success(data.body.msg)
+          this.toastr.success(data.body.msg, 'Success')
           console.log(succes)
 
         }
@@ -27,7 +27,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       },
       error :(err) =>{
         let errorMessage :HttpErrorResponse=err
-        this.toastr.error('error',errorMessage.error.msg)
+        this.toastr.error(errorMessage.error.msg, 'Error')
       }
     }))
   }
