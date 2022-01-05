@@ -57,7 +57,7 @@ export class BrandModifyComponent implements OnInit, OnDestroy{
   }
 
   onCancel() :void{
-    this.router.navigateByUrl('/glexy/company/list')
+    this.router.navigateByUrl('/glexy/brand/list')
 
   }
 
