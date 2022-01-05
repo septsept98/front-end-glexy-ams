@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpHeaders, HttpEvent  } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Asset } from '../../model/asset';
 import { baseUrl } from '../../constance/root';
@@ -77,11 +77,11 @@ export class AssetService {
     
   }
 
-  updateImage(data : string, file : File) : Observable<UpdateResDto> | undefined {
-    const formData: FormData = new FormData();
+  updateImage(data : Asset, file : File) : Observable<UpdateResDto> | undefined {
+    const formData: FormData = new FormData()
 
-    formData.append('data', data)
-    formData.append('file', file);
+    formData.append('data', JSON.stringify(data))
+    formData.append('file', file)
 
     return this.http.put<UpdateResDto>(`${baseUrl}assets/image`, formData)??""
     
@@ -89,6 +89,10 @@ export class AssetService {
 
   getExpiredAsset() : Observable<AssetExpired[]> | undefined {
     return this.http.get<AssetExpired[]>(`${baseUrl}assets/expired-asset/`)??""
+  }
+
+  getAllUndeployAsset() : Observable<Asset[]> | undefined {
+    return this.http.get<Asset[]>(`${baseUrl}assets/undeploy-asset`)??""
   }
 
 }

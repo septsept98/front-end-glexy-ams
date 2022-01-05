@@ -155,7 +155,7 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
 
   onUpdateImg(): void {
     this.fileImg = this.selectedImg?.item(0)
-      this.assetService.updateImage(this.asset.id, this.fileImg!)?.subscribe(result => {
+      this.assetService.updateImage(this.asset, this.fileImg!)?.subscribe(result => {
         this.dataUpdate = result
         if(this.dataUpdate){
           this.router.navigateByUrl("/glexy/asset/list")
