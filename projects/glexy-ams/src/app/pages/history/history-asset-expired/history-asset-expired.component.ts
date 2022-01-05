@@ -27,4 +27,12 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unSubs?.unsubscribe()
   }
+
+  isDisplayAvail(file: File): boolean {
+    if (file) {
+      return true
+    } else {
+      return false
+    }
+  }
 }

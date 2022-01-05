@@ -55,7 +55,6 @@ export class GeneralTemplateComponent implements OnInit {
   ngOnInit(): void {
     this.initData()
     this.userService.data$?.subscribe(data => this.initData())
-   
   }
 
   iconOnly(): void {
