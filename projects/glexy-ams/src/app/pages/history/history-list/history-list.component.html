@@ -49,9 +49,6 @@
                             <th pSortableColumn="checkOutDate">Date Check Out<p-sortIcon field="checkOutDate">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="description">Describe<p-sortIcon field="description">
-                                </p-sortIcon>
-                            </th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
@@ -64,7 +61,6 @@
                             <td>{{trx.assignType}}</td>
                             <td>{{trx.assignTo}}</td>
                             <td>{{trx.checkOutDate}}</td>
-                            <td>{{trx.description}}</td>
                             <td>
                                 <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
                             </td>

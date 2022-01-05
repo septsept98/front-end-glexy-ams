@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h2 class="card-title">Transaction Detail Check In</h2>
                 <p-table #dt [value]="listTrxDetail" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names','durationDate']"
+                    [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names','durationDate','dateCheckin']"
                     responsiveLayout="scroll" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
@@ -26,6 +26,7 @@
                         <div class="d-flex p-ai-center justify-content-between">
                             <button pButton pRipple icon="fa fa-arrow-left" class="bg-dark"
                                 routerLink="/glexy/transaction/check-in-list"></button>
+                                <h5>{{codeTrx}}</h5>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -40,10 +41,7 @@
                                 No
                             </th>
                             <th>Image</th>
-                            <th pSortableColumn="assetId.code">Code Asset<p-sortIcon field="assetId.code">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="assetId.names">Name Asset<p-sortIcon field="assetId.names">
+                            <th pSortableColumn="assetId.code">Asset<p-sortIcon field="assetId.code">
                                 </p-sortIcon>
                             </th>
                             <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon field="assetId.brandId.names">
@@ -52,22 +50,31 @@
                             <th pSortableColumn="durationDate">Duration Date<p-sortIcon field="durationDate">
                                 </p-sortIcon>
                             </th>
+                            <th>Status</th>
+                            <th pSortableColumn="dateCheckin">Check In Date<p-sortIcon field="dateCheckin">
+                                </p-sortIcon>
+                            </th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                    <ng-template pTemplate="body" let-trx let-rowIndex="rowIndex">
                         <tr>
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
-                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
-                            <td>{{status.assetId.code}}</td>
-                            <td>{{status.assetId.names}}</td>
-                            <td>{{status.assetId.brandId.names}}</td>
-                            <td>{{status.durationDate ? status.durationDate : '-' }}</td>
+                            <td><img *ngIf="isDisplayAvail(trx.assetId.assetImg)" style="width: 70px; height: 100%;" class="img-fluid"
+                                    src="data:image/png;base64,{{trx.assetId.assetImg.file}}" alt=""></td>
+                            <td>{{trx.assetId.code}} - {{trx.assetId.names}}</td>
+                            <td>{{trx.assetId.brandId.names}}</td>
+                            <td>{{trx.durationDate ? trx.durationDate : '-' }}</td>
                             <td>
-                                <button class="btn btn-success" (click)="checkIn(status.id)">Check In</button>
+                                <label *ngIf="trx.statusOut" class="badge badge-danger">Assign</label>
+                                <label *ngIf="trx.statusIn" class="badge badge-success">Completed</label>
+                            </td>
+                            <td>{{trx.dateCheckin ? trx.dateCheckin : '-'}}</td>
+                            <td>
+                                <button *ngIf="trx.statusOut" class="btn btn-success" (click)="checkIn(trx.id)">Check In</button>
+                                <label *ngIf="trx.statusIn" class="badge badge-success">Completed</label>
                             </td>
                         </tr>
                     </ng-template>

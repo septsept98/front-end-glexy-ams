@@ -29,14 +29,20 @@ export class TransactionCheckInComponent implements OnInit {
     const id: any = this.route.snapshot.paramMap.get('id')
     this.transactionDetailService.getById(id)?.subscribe(res => {
       this.dataAssetTrxDetail = res
+      this.statusTrxSelected = this.dataAssetTrxDetail.statusTrCheckinId?this.dataAssetTrxDetail.statusTrCheckinId.id:" - "
     })
-
     this.statusTrxService.getAll()?.subscribe(res => {
       this.listStatusTrx = res
     })
   }
 
   onSubmit(): void {
+
+    console.log(this.statusTrxSelected)
+    let statusTrx: StatusTransaction = new StatusTransaction()
+    statusTrx.id = this.statusTrxSelected
+    this.dataAssetTrxDetail.statusTrCheckinId = statusTrx
+    console.log(this.dataAssetTrxDetail)
     this.transactionDetailService.update(this.dataAssetTrxDetail)?.subscribe(res => {
       this.resUpdate = res
     })

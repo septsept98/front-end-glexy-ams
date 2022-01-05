@@ -17,6 +17,7 @@ import { TransactionService } from '@services/transaction/transaction.service'
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-transaction-check-out',
@@ -62,7 +63,8 @@ export class TransactionCheckOutComponent implements OnInit {
     private assetService: AssetService,
     private transactionService: TransactionService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     for (let i = 1; i <= trxAssignType.size; i++) {
@@ -74,7 +76,8 @@ export class TransactionCheckOutComponent implements OnInit {
 
     this.optionsEmployee = {
       width: '100%',
-      ajax: {
+      ajax: { 
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/employees/search/',
         data: function (params) {
           var query = {
@@ -103,6 +106,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsLocation = {
       width: '100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/locations/search/',
         data: function (params) {
           var query = {
@@ -131,6 +135,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsAsset = {
       width: '100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/assets/search-general-asset/',
         data: function (params) {
           var query = {
@@ -159,6 +164,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.optionsInventory = {
       width: '100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/inventories/search',
         data: function (params) {
           var query = {
@@ -275,7 +281,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.transactionService.insert(this.dataAllTransaction)?.subscribe(res => {
       this.resInsert = res
       console.log(this.dataAllTransaction)
-      // this.router.navigateByUrl('/glexy/transaction/check-in-list')
+      this.router.navigateByUrl('/glexy/transaction/check-in-list')
     })
   }
 }

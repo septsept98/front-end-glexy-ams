@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy {
 
   listTrxDetail: TransactionDetail[] = []
+  
+  codeTrx!: string
 
   private unSubs?: Subscription
 
@@ -23,7 +25,24 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
     const idTrx: any = this.route.snapshot.paramMap.get('id');
     this.transactionDetailService.getByTr(idTrx)?.subscribe(res => {
       this.listTrxDetail = res
+      this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
+      this.listTrxDetail.forEach(result => {
+        result.statusIn = false
+        result.statusOut = true
+        if(result.dateCheckin != null){
+          result.statusIn = true
+          result.statusOut = false
+        }
+      })
     })
+  }
+
+  isDisplayAvail(file: File) : boolean {
+    if(file) {
+      return true
+    } else {
+      return false
+    }
   }
 
   ngOnDestroy(): void {
