@@ -17,11 +17,13 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Assets</h2>
+                <label *ngIf="show">Code Inventory : {{assetList[0].inventoryId.code}}</label>
                 <p-table #dt [value]="assetList" [rows]="10" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show"></button>
+                            <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -53,7 +55,7 @@
                                 <p-sortIcon field="statusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="inventory">Inventory Code
+                            <th pSortableColumn="inventory" *ngIf="!show">Inventory Code
                                 <p-sortIcon field="inventory">
                                 </p-sortIcon>
                             </th>
@@ -67,7 +69,7 @@
                             </th>
                             <th pSortableColumn="expired">Expired Date
                             </th>
-                            <th>Action</th>
+                            <th *ngIf="!show" class="px-5">Action</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-asset let-rowIndex="rowIndex">
@@ -80,17 +82,25 @@
                             <td>{{asset.code}}</td>
                             <td>{{asset.brandId.names}}</td>
                             <td class="text-center">
-                                <div class="badge badge-success">
+                                <div class="badge {{checkStatus(asset.statusAssetId.nameStatusAsset)}}">
                                     {{asset.statusAssetId.nameStatusAsset}}
                                 </div>
                             </td>
-                            <td>{{asset.inventoryId.code}}</td>
+                            <td *ngIf="!show">{{asset.inventoryId.code}}</td>
                             <td>{{asset.companyId.names}}</td>
                             <td>{{asset.invoiceId.code}}</td>
                             <td>{{asset.expiredDate}}</td>
-                            <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                            <td *ngIf="!show" class="px-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)"></button>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </ng-template>

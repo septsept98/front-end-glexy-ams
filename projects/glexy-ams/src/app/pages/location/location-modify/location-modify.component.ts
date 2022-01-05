@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
+import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Company } from '@models/company';
 import { Location } from '@models/location';
+import { AuthService } from '@services/auth/auth.service';
 import { LocationService } from '@services/location/location.service';
 import { Select2OptionData } from 'ng-select2';
 import { Subscription } from 'rxjs';
@@ -15,20 +17,36 @@ import { Options } from 'select2';
 })
 export class LocationModifyComponent implements OnInit, OnDestroy {
 
-  locationInsert! : Location
-  dataLocation? : InsertResDto
-  optionsCompany! : Options;
-  obs? : Subscription
+  locationInsert : Location = new Location()
+  dataLocation : InsertResDto = new InsertResDto()
+  updateResDto: UpdateResDto = new UpdateResDto()
+  optionsCompany! : Options
+  save: boolean = true
+  tab: boolean = false
+  locationId? : string | null
+  dataSubs?: Subscription
+  insertSubs?: Subscription
+  updateSubs?: Subscription
 
-  constructor(private locationService : LocationService, private router: Router) { }
+  constructor(private activedRoute:ActivatedRoute, private locationService : LocationService, private router: Router, private authService : AuthService) { }
 
   ngOnInit(): void {
-    this.locationInsert = new Location()
-    this.dataLocation = new InsertResDto()
+    this.locationInsert.companyId = new Company()
+
+    this.locationId = this.activedRoute.snapshot.paramMap.get('id')
+
+    if(this.locationId) {
+      this.dataSubs = this.locationService.getById(this.locationId)?.subscribe(result => {
+        this.save = false
+        this.tab = true
+        this.locationInsert = result
+      })
+    }
 
     this.optionsCompany = {
       width:'100%',
       ajax: {
+        headers: {Authorization: `Bearer ${this.authService.getToken()}`},
         url: 'http://localhost:1234/companies/search/',
         data: function (params) {
           var query = {
@@ -57,19 +75,35 @@ export class LocationModifyComponent implements OnInit, OnDestroy {
   }
 
   addDb(): void {
-    this.locationService.insert(this.locationInsert)?.subscribe(result => {
-      if(result.data) {
-        this.dataLocation = result
-        if(this.dataLocation){
-          this.router.navigateByUrl("/glexy/location/list")
-
+    if(this.locationId) { 
+      this.updateSubs = this.locationService.update(this.locationInsert)?.subscribe( result => {
+        this.updateResDto = result
+        this.router.navigateByUrl('/glexy/location/list')
+      })
+    } else {
+      this.insertSubs = this.locationService.insert(this.locationInsert)?.subscribe(result => {
+        if(result.data) {
+          this.dataLocation = result
+          if(this.dataLocation){
+            this.router.navigateByUrl("/glexy/location/list")
+  
+          }
         }
-      }
-    })
+      })
+
+    }
+
   }
 
-  ngOnDestroy(): void{
-    this.obs?.unsubscribe()
+  onCancel() :void{
+    this.router.navigateByUrl('/glexy/location/list')
+
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubs?.unsubscribe()
+    this.insertSubs?.unsubscribe()
+    this.updateSubs?.unsubscribe()
   }
 
 }

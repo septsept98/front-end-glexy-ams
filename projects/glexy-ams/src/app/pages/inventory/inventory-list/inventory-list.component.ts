@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Inventory } from '@models/inventory';
 import { InventoryService } from '@services/inventory/inventory.service';
 import { Subscription } from 'rxjs';
@@ -14,12 +15,19 @@ export class InventoryListComponent implements OnInit {
   dataList: Inventory[] = []
   obs? : Subscription
   
-  constructor(private inventoryService : InventoryService) { }
+  constructor(private inventoryService : InventoryService, private router : Router) { }
 
   ngOnInit(): void {
     this.inventoryService.getAll()?.subscribe(result => this.dataList = result)
-    
+  
+  }
 
+  onDetail(id : number): void{
+    this.router.navigateByUrl(`/glexy/asset/invent/${id}`)
+  }
+
+  ngOnDestroy(): void {
+    this.obs?.unsubscribe
   }
 
 }

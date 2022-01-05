@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path:'asset/:id',
     component : AssetUpdateComponent
+  },
+  {
+    path:'asset/invent/:id',
+    component : AssetListComponent
   }
 
 ];
