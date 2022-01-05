@@ -91,4 +91,8 @@ export class AssetService {
     return this.http.get<AssetExpired[]>(`${baseUrl}assets/expired-asset/`)??""
   }
 
+  getAllUndeployAsset() : Observable<Asset[]> | undefined {
+    return this.http.get<Asset[]>(`${baseUrl}assets/undeploy-asset`)??""
+  }
+
 }

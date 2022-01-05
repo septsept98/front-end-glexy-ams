@@ -15,10 +15,6 @@ import { UsersService } from '@services/users/users.service';
 })
 export class GeneralTemplateComponent implements OnInit {
 
-
-  constructor(private userService :UsersService, private permissionDetailService :PermissionDetailService,
-    private authService :AuthService, private router :Router) { }
-
   dashboard: boolean = true
   master: boolean = true
   auth: boolean = true
@@ -51,104 +47,15 @@ export class GeneralTemplateComponent implements OnInit {
   companyMenu :boolean = false
   photo :boolean = false
 
+  constructor(private userService :UsersService, private permissionDetailService :PermissionDetailService,
+    private authService :AuthService, private router :Router) { }
+
+
+
   ngOnInit(): void {
-    
-    this.userService.getByIdAuth()?.subscribe(result =>{ this.data = result
-    if(this.data.usersImg == null){
-      this.photo = true
-    }
-      this.permissionDetailService.getByRoleCode(this.rolesCode)?.subscribe(result => {this.listMenu = result
-        if(this.rolesCode == 'SA'){
-          this.manageUserMenu = true
-          this.userMenu = true
-          this.roleMenu = true
-          this.permissionMenu = true
-          this.permissionDetailMenu = true
-          this.masterMenu = true
-          this.assetMenu = true
-          this.assetStatusMenu = true
-          this.assetTypeMenu = true
-          this.statusTransactionMenu = true
-          this.brandMenu = true
-          this.locationMenu = true
-          this.invoiceMenu = true
-          this.companyMenu = true
-          this.employeeMenu = true
-          this.transactionMenu =true
-          this.ciMenu = true
-          this.historyMenu = true
-          this.assetExpiredMenu = true
-          this.transactionExpriredMenu = true
-          this.inventoryMenu = true
-        }
-        for(let data of this.listMenu){
-          
-          if(data.permissionsId.code == MenuPermission.ASSET || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.assetMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.ASSETSTATUS || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.assetStatusMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.ASSETTYPE || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.assetTypeMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.STATUSTRANSACTION || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.statusTransactionMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.BRAND || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.brandMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.LOCATION || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.locationMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.INVOICE || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.invoiceMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.COMPANY || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.companyMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.EMPLOYEE || this.rolesCode == 'SA'){
-            this.masterMenu = true
-            this.employeeMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.CHECKOUT || this.rolesCode == 'SA'){
-            this.transactionMenu =true
-            this.coMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.CHECKIN || this.rolesCode == 'SA'){
-            this.transactionMenu =true
-            this.ciMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.TRANSACTION || this.rolesCode == 'SA'){
-            this.historyMenu = true
-            this.historyTransactionMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.TRACKASSET || this.rolesCode == 'SA'){
-            this.historyMenu = true
-            this.trackAssetMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.ASSETLICENCEEXPIRED || this.rolesCode == 'SA'){
-            this.historyMenu = true
-            this.assetExpiredMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.TRANSACTIONEXPIRED || this.rolesCode == 'SA'){
-            this.historyMenu = true
-            this.transactionExpriredMenu = true
-          }
-          if(data.permissionsId.code == MenuPermission.INVENTORY || this.rolesCode == 'SA'){
-            this.inventoryMenu = true
-          }
-        }
-      })
-    })
+    this.initData()
+    this.userService.data$?.subscribe(data => this.initData())
+   
   }
 
   iconOnly(): void {
@@ -188,5 +95,115 @@ export class GeneralTemplateComponent implements OnInit {
     this.authService.clearStorage()
     this.router.navigateByUrl('/login')
   }
-
+  onUpdatePhoto(){
+    
+    this.userService.getByIdAuth()?.subscribe(result =>{ this.data = result
+      if(this.data.usersImg == null){
+        this.photo = true
+      }})
+  }
+  receiveMessage(user :any){
+    this.data = user
+  }
+  initData():void{
+    this.userService.getByIdAuth()?.subscribe(result =>{ this.data = result
+      if(this.data.usersImg == null){
+        this.photo = true
+      }
+        this.permissionDetailService.getByRoleCode(this.rolesCode)?.subscribe(result => {this.listMenu = result
+          if(this.rolesCode == 'SA'){
+            this.manageUserMenu = true
+            this.userMenu = true
+            this.roleMenu = true
+            this.permissionMenu = true
+            this.permissionDetailMenu = true
+            this.masterMenu = true
+            this.assetMenu = true
+            this.assetStatusMenu = true
+            this.assetTypeMenu = true
+            this.statusTransactionMenu = true
+            this.brandMenu = true
+            this.locationMenu = true
+            this.invoiceMenu = true
+            this.companyMenu = true
+            this.employeeMenu = true
+            this.transactionMenu =true
+            this.ciMenu = true
+            this.coMenu = true
+            this.historyMenu = true
+            this.historyTransactionMenu = true
+            this.trackAssetMenu = true
+            this.assetExpiredMenu = true
+            this.transactionExpriredMenu = true
+            this.inventoryMenu = true
+          }
+          for(let data of this.listMenu){
+            
+            if(data.permissionsId.code == MenuPermission.ASSET || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.assetMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.ASSETSTATUS || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.assetStatusMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.ASSETTYPE || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.assetTypeMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.STATUSTRANSACTION || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.statusTransactionMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.BRAND || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.brandMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.LOCATION || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.locationMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.INVOICE || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.invoiceMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.COMPANY || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.companyMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.EMPLOYEE || this.rolesCode == 'SA'){
+              this.masterMenu = true
+              this.employeeMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.CHECKOUT || this.rolesCode == 'SA'){
+              this.transactionMenu =true
+              this.coMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.CHECKIN || this.rolesCode == 'SA'){
+              this.transactionMenu =true
+              this.ciMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.TRANSACTION || this.rolesCode == 'SA'){
+              this.historyMenu = true
+              this.historyTransactionMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.TRACKASSET || this.rolesCode == 'SA'){
+              this.historyMenu = true
+              this.trackAssetMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.ASSETLICENCEEXPIRED || this.rolesCode == 'SA'){
+              this.historyMenu = true
+              this.assetExpiredMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.TRANSACTIONEXPIRED || this.rolesCode == 'SA'){
+              this.historyMenu = true
+              this.transactionExpriredMenu = true
+            }
+            if(data.permissionsId.code == MenuPermission.INVENTORY || this.rolesCode == 'SA'){
+              this.inventoryMenu = true
+            }
+          }
+        })
+      })
+  }
 }
