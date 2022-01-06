@@ -1,5 +1,4 @@
 <div class="card">
-    {{data|json}}
     <div class="card-body">
         <h4 class="card-title">User form</h4>
         <div class="forms-sample">
@@ -38,10 +37,10 @@
                         </select>
                     </div>
 
-                    <label for="codePermission" >Is Active</label>
+                    <label for="codePermission" *ngIf = "!save">Is Active</label>
                     <div class="position-relative form-check mb-3">
-                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive" > 
-                        <label class="form-check-label" >
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive" *ngIf = "!save"> 
+                        <label class="form-check-label" *ngIf = "!save">
                         True</label>
                     </div>
 

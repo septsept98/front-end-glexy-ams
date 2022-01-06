@@ -105,8 +105,9 @@ export class GeneralTemplateComponent implements OnInit {
     this.data = user
   }
   initData():void{
+    
     this.userService.getByIdAuth()?.subscribe(result =>{ this.data = result
-      if(this.data.usersImg == null){
+      if(this.data.usersImg){
         this.photo = true
       }
         this.permissionDetailService.getByRoleCode(this.rolesCode)?.subscribe(result => {this.listMenu = result
