@@ -34,6 +34,10 @@ export class AssetService {
     return this.http.get<Asset[]>(`${baseUrl}assets/invent/${id}`)??""
   }
 
+  getByInvoice(invoId : string) : Observable<Asset[]> | undefined {
+    return this.http.get<Asset[]>(`${baseUrl}assets/invoice/${invoId}`)??""
+  }
+
   getByInventBrand(data : InsertReqDataAssetTransactionDto) : Observable<Asset[]> | undefined {
     return this.http.get<Asset[]>(`${baseUrl}assets/get-invent-brand/?invent-id=${data.inventId}&&brand-id=${data.brandId}`)??""
   }

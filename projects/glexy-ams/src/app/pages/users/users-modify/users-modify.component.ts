@@ -78,8 +78,9 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
     
       this.insertSubs = this.usersService.insert(this.data)?.subscribe(result =>{
       this.insertResDto = result
+      this.router.navigateByUrl('/glexy/users/list')
     })
-    this.router.navigateByUrl('/glexy/users/list')
+    
   }
   }
 

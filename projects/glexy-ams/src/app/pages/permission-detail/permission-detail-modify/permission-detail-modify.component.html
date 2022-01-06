@@ -1,7 +1,6 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Permission Detail form</h4>
-        {{data|json}}
         <div class="forms-sample">
             <div class="row">
                 <div class="col-md-6 grid-margin">
@@ -19,8 +18,13 @@
                         </select>
                     </div>
   
-                    <label for="codePermission">Is Active</label>
-                    <div class="position-relative form-check mb-3"><label class="form-check-label"><input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive"> True</label></div>
+                    <label for="codePermission" *ngIf="!save">Is Active</label>
+                    <div class="position-relative form-check mb-3" *ngIf="!save">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive" *ngIf="!save">
+                        <label class="form-check-label" *ngIf="!save">
+                            True
+                        </label>
+                    </div>
   
                 </div>
               
