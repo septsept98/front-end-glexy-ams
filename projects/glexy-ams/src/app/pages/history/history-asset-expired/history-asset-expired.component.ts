@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResDto } from '@dto/all-respons/res-dto';
 import { AssetExpired } from '@dto/report/asset-expired';
 import { AssetService } from '@services/asset/asset.service';
 import { Subscription } from 'rxjs';
@@ -14,6 +15,8 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
   listDataExpiredAsset: AssetExpired[] = []
 
   private unSubs?: Subscription
+  
+  private resDto!: ResDto
 
   constructor(private router: Router,
     private assetService: AssetService) { }
@@ -34,5 +37,17 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
     } else {
       return false
     }
+  }
+  
+  downloadPdf(): void {
+    this.assetService.downloadPdf()?.subscribe(res => {
+      this.resDto.msg = "Downloaded"
+    })
+  }
+
+  sendEmail(): void {
+    this.assetService.sendEmail()?.subscribe(res => {
+      this.resDto = res
+    })
   }
 }

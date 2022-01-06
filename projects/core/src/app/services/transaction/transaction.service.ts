@@ -19,6 +19,14 @@ export class TransactionService {
     return this.http.get<Transactions[]>(`${baseUrl}transactions/`)??""
   }
 
+  getAllNotCheckIn() : Observable<Transactions[]> | undefined {
+    return this.http.get<Transactions[]>(`${baseUrl}transactions/not-check-in`)??""
+  }
+
+  getAllCheckIn() : Observable<Transactions[]> | undefined {
+    return this.http.get<Transactions[]>(`${baseUrl}transactions/check-in`)??""
+  }
+
   getById(id : string) : Observable<Transactions> | undefined {
     return this.http.get<Transactions>(`${baseUrl}transactions/${id}`)??""
   }

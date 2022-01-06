@@ -21,14 +21,18 @@ export class StatusAssetListComponent implements OnInit, OnDestroy {
 
   resDelete: DeleteResDto = new DeleteResDto()
 
-  constructor(private statusAssetService: StatusAssetService, 
+  constructor(private statusAssetService: StatusAssetService,
     private router: Router,
     private confirmDialogService: ConfirmationService) { }
 
   ngOnInit(): void {
-     this.unSubs = this.statusAssetService.getAll()?.subscribe(data => {
-       this.listStatusAssets = data
-     })
+    this.initData()
+  }
+
+  initData(): void {
+    this.unSubs = this.statusAssetService.getAll()?.subscribe(data => {
+      this.listStatusAssets = data
+    })
   }
 
   ngOnDestroy(): void {
@@ -36,20 +40,21 @@ export class StatusAssetListComponent implements OnInit, OnDestroy {
     this.delUnSubs?.unsubscribe()
   }
 
-  onUpdate(id: string) :void {
+  onUpdate(id: string): void {
     this.router.navigateByUrl(`/glexy/status-asset/${id}`)
   }
 
-  onDelete(id: string) :void {
+  onDelete(id: string): void {
     this.unSubs = this.statusAssetService.getById(id)?.subscribe(result => {
-     this.confirmDialogService.confirm({
-       message: 'Are you sure to delete '+result.nameStatusAsset+' ?',
-       accept: () => {
-         this.delUnSubs = this.statusAssetService.delete(id)?.subscribe(result => {
-           this.resDelete = result
-         })
-       }
-     })
+      this.confirmDialogService.confirm({
+        message: 'Are you sure to delete ' + result.nameStatusAsset + ' ?',
+        accept: () => {
+          this.delUnSubs = this.statusAssetService.delete(id)?.subscribe(result => {
+            this.resDelete = result
+            this.initData()
+          })
+        }
+      })
     })
   }
 }

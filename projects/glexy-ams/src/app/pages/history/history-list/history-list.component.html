@@ -17,17 +17,173 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">History Check In & Check Out</h2>
-                <p-table #dt [value]="listDataTrxDto" [rows]="10" [paginator]="true"
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            <label for="exampleSelect" class="">Type History</label>
+                            <select (change)="typeChange($event.target)" name="select"
+                                id="exampleSelect" class="form-control">
+                                <option *ngFor="let typeH of listTypeHistory" [value]="typeH.code">{{typeH.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <p-table *ngIf="allHist" #dt [value]="listDataTrxDto" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['code','assignType','assignTo','checkOutDate']" responsiveLayout="scroll"
                     [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="row">
-                            <div class="col-md-6 col-12">
-                                <button pButton pRipple icon="pi pi-plus" class="bg-primary"></button>
+                            <div class="col-md-3 col-12">
+                                <button (click)="downloadPdf()" class="btn btn-lg btn-success">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
+                                <button (click)="sendEmail()" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
                             </div>
-                            <div class="col-md-6 col-12 d-flex justify-content-end">
+                            <div class="col-md-5 col-12 text-center">
+                                <h5>All Transaction Histories</h5>
+                            </div>
+                            <div class="col-md-4 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search..." />
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="code">Code Trx <p-sortIcon field="code">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="assignType">Assign Type<p-sortIcon field="assignType">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="assignTo">Assign To<p-sortIcon field="assignTo">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="checkOutDate">Date Check Out<p-sortIcon field="checkOutDate">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-trx let-i="rowIndex">
+                        <tr>
+                            <td>
+                                {{i + 1}}
+                            </td>
+                            <td>{{trx.code}}</td>
+                            <td>{{trx.assignType}}</td>
+                            <td>{{trx.assignTo}}</td>
+                            <td>{{trx.checkOutDate}}</td>
+                            <td>
+                                <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{listDataTrxDto ? listDataTrxDto.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+                <p-table *ngIf="outHist" #dt [value]="listDataTrxDto" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code','assignType','assignTo','checkOutDate']" responsiveLayout="scroll"
+                    [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="row">
+                            <div class="col-md-3 col-12">
+                                <button (click)="downloadPdf()" class="btn btn-lg btn-success">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
+                                <button (click)="sendEmail()" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
+                            </div>
+                            <div class="col-md-5 col-12 text-center">
+                                <h5>Check Out Transaction Histories</h5>
+                            </div>
+                            <div class="col-md-4 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search..." />
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                No
+                            </th>
+                            <th pSortableColumn="code">Code Trx <p-sortIcon field="code">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="assignType">Assign Type<p-sortIcon field="assignType">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="assignTo">Assign To<p-sortIcon field="assignTo">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="checkOutDate">Date Check Out<p-sortIcon field="checkOutDate">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-trx let-i="rowIndex">
+                        <tr>
+                            <td>
+                                {{i + 1}}
+                            </td>
+                            <td>{{trx.code}}</td>
+                            <td>{{trx.assignType}}</td>
+                            <td>{{trx.assignTo}}</td>
+                            <td>{{trx.checkOutDate}}</td>
+                            <td>
+                                <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{listDataTrxDto ? listDataTrxDto.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+                <p-table *ngIf="inHist" #dt [value]="listDataTrxDto" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code','assignType','assignTo','checkOutDate']" responsiveLayout="scroll"
+                    [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="row">
+                            <div class="col-md-3 col-12">
+                                <button (click)="downloadPdf()" class="btn btn-lg btn-success">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
+                                <button (click)="sendEmail()" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
+                            </div>
+                            <div class="col-md-5 col-12 text-center">
+                                <h5>Check In Transaction Histories</h5>
+                            </div>
+                            <div class="col-md-4 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">
                                     <i class="pi pi-search"></i>
                                     <input pInputText type="text"

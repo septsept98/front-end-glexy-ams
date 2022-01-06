@@ -8,6 +8,7 @@ import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { InsertReqDataAssetTransactionDto } from '@dto/transaction/insert-req-data-asset-transaction-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { AssetExpired } from '@dto/report/asset-expired';
+import { ResDto } from '@dto/all-respons/res-dto';
 
 
 @Injectable({
@@ -97,6 +98,14 @@ export class AssetService {
 
   getAllUndeployAsset() : Observable<Asset[]> | undefined {
     return this.http.get<Asset[]>(`${baseUrl}assets/undeploy-asset`)??""
+  }
+
+  sendEmail() : Observable<ResDto> | undefined {
+    return this.http.get<ResDto>(`${baseUrl}assets/send-email`)??""
+  }
+
+  downloadPdf() : Observable<ResDto> | undefined {
+    return this.http.get<ResDto>(`${baseUrl}assets/pdf`)??""
   }
 
 }

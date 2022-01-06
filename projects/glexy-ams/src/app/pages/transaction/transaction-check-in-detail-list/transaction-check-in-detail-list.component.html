@@ -50,10 +50,10 @@
                             <th pSortableColumn="durationDate">Duration Date<p-sortIcon field="durationDate">
                                 </p-sortIcon>
                             </th>
-                            <th>Status</th>
                             <th pSortableColumn="dateCheckin">Check In Date<p-sortIcon field="dateCheckin">
                                 </p-sortIcon>
                             </th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
@@ -67,11 +67,11 @@
                             <td>{{trx.assetId.code}} - {{trx.assetId.names}}</td>
                             <td>{{trx.assetId.brandId.names}}</td>
                             <td>{{trx.durationDate ? trx.durationDate : '-' }}</td>
+                            <td>{{trx.dateCheckin ? trx.dateCheckin : '-'}}</td>
                             <td>
                                 <label *ngIf="trx.statusOut" class="badge badge-danger">Assign</label>
-                                <label *ngIf="trx.statusIn" class="badge badge-success">Completed</label>
+                                <label *ngIf="trx.statusIn" class="badge badge-primary">Completed</label>
                             </td>
-                            <td>{{trx.dateCheckin ? trx.dateCheckin : '-'}}</td>
                             <td>
                                 <button *ngIf="trx.statusOut" class="btn btn-success" (click)="checkIn(trx.id)">Check In</button>
                                 <label *ngIf="trx.statusIn" class="badge badge-success">Completed</label>

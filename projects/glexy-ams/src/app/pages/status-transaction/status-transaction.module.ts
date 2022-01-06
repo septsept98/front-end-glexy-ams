@@ -9,6 +9,7 @@ import { StatusTransactionListComponent } from './status-transaction-list/status
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -24,7 +25,8 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     TableModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule
 
   ]
 })
