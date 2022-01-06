@@ -17,16 +17,24 @@ export class AssetListComponent implements OnInit, OnDestroy {
   assetList: Asset[] = []
   selectedAsset: Asset[] = []
   invenId? : string | null
+  invoiceId? : string | null
   show : boolean = false
+  showInvoice : boolean = false
   dataSubs?: Subscription
   obs? : Subscription
 
   ngOnInit(): void {
     this.invenId = this.activedRoute.snapshot.paramMap.get('id')
+    this.invoiceId = this.activedRoute.snapshot.paramMap.get('invoId')
     if(this.invenId) {
       this.dataSubs = this.assetService.getByInvent(this.invenId)?.subscribe(result => {
         this.assetList = result
         this.show = true
+      })
+    } else if(this.invoiceId) {
+      this.dataSubs = this.assetService.getByInvoice(this.invoiceId)?.subscribe(result => {
+        this.assetList = result
+        this.showInvoice = true
       })
     } else {
       this.obs = this.assetService.getAll()?.subscribe(result => this.assetList = result)
@@ -51,6 +59,10 @@ export class AssetListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/glexy/inventory/list`)
   }
 
+  backToInvoice(): void {
+    this.router.navigateByUrl(`/glexy/invoice/list`)
+  }
+
   onUpdate(id : number): void{
     this.router.navigateByUrl(`/glexy/asset/${id}`)
   }
@@ -61,13 +73,13 @@ export class AssetListComponent implements OnInit, OnDestroy {
     if (stat == statusAss.get(1)) {
       badgeStatus = "badge-success"
     } else if (stat == statusAss.get(2)) {
-      badgeStatus = "badge-danger"
+      badgeStatus = "badge-secondary"
     } else if (stat == statusAss.get(3)) {
       badgeStatus = "badge-info"
     } else if (stat == statusAss.get(4)) {
       badgeStatus = "badge-warning"
     } else if (stat == statusAss.get(5)) {
-      badgeStatus = "badge-primary"
+      badgeStatus = "badge-danger"
     }
 
     return badgeStatus
