@@ -57,6 +57,7 @@ export class TransactionCheckOutComponent implements OnInit {
   optionsAsset!: Options
   optionsInventory!: Options
   optionsInventoryComponent!: Options
+  optionsInventoryLicense!: Options
 
   resInsert: InsertResDto = new InsertResDto()
 
@@ -68,6 +69,7 @@ export class TransactionCheckOutComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.dataDetailTrx
     for (let i = 1; i <= trxAssignType.size; i++) {
       let assignType: AssignType = new AssignType()
       assignType.code = trxAssignType.get(i)?.[0] ?? ""
@@ -219,6 +221,35 @@ export class TransactionCheckOutComponent implements OnInit {
         }
       }
     }
+
+    this.optionsInventoryLicense = {
+      width: '100%',
+      ajax: {
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` },
+        url: 'http://localhost:1234/inventories/search-not-license',
+        data: function (params) {
+          var query = {
+            query: params.term,
+          }
+          return query;
+        },
+        processResults: function (data) {
+          const result: Inventory[] = data;
+          const select2Data: Select2OptionData[] = []
+          for (const Inventory of result) {
+            select2Data.push(
+              {
+                id: Inventory.id!,
+                text: Inventory.code! + " - " + Inventory.nameAsset!
+              }
+            )
+          }
+          return {
+            results: select2Data
+          };
+        }
+      }
+    }
   }
 
   assignChange(data: any) {
@@ -318,10 +349,10 @@ export class TransactionCheckOutComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.dataTrx.description == null && this.dataDetailTrx == null) {
-      this.toastr.error("Fill The Form", 'Error')
+    if (this.dataTrx.description == null || this.dataDetailTrx.length <= 0) {
+    this.toastr.error("Fill The Form", 'Error')
     } else {
-      if (this.employeeSelected.id != null) {
+    if (this.employeeSelected.id != null) {
         this.dataTrx.employeeId = this.employeeSelected
       } else if (this.locationSelected.id != null) {
         this.dataTrx.locationId = this.locationSelected

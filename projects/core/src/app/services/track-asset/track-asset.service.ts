@@ -4,6 +4,7 @@ import { InsertResDto } from '../../dto/all-respons/insert-res-dto';
 import { Observable } from 'rxjs';
 import { TrackAsset } from '../../model/track-asset';
 import { baseUrl } from '../../constance/root';
+import { ResDto } from '@dto/all-respons/res-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,14 @@ export class TrackAssetService {
 
   insert(data : TrackAsset) : Observable<InsertResDto> | undefined {
     return this.http.post<InsertResDto>(`${baseUrl}track-assets/`, data)??""
+  }
+
+  sendEmail() : Observable<ResDto> | undefined {
+    return this.http.get<ResDto>(`${baseUrl}track-assets/send-email`)??""
+  }
+
+  downloadPdf() : Observable<ResDto> | undefined {
+    return this.http.get<ResDto>(`${baseUrl}track-assets/pdf`)??""
   }
   
 }

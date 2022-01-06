@@ -61,10 +61,12 @@
                     <div class="col-md-5">
                         <div class="position-relative form-group">
                             <label for="exampleCity" class="">Asset</label>
-                            <ng-select2 *ngIf="employeeOn || locationOn" [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
-                                [options]='optionsInventory'></ng-select2>
-                            <ng-select2 *ngIf="assetOn" [(ngModel)]="dataReqAsset.inventId" (valueChanged)="onAssetChange($event)"
-                                [options]='optionsInventoryComponent'></ng-select2>
+                            <ng-select2 *ngIf="employeeOn" [(ngModel)]="dataReqAsset.inventId"
+                                (valueChanged)="onAssetChange($event)" [options]='optionsInventory'></ng-select2>
+                            <ng-select2 *ngIf="locationOn" [(ngModel)]="dataReqAsset.inventId"
+                                (valueChanged)="onAssetChange($event)" [options]='optionsInventoryLicense'></ng-select2>
+                            <ng-select2 *ngIf="assetOn" [(ngModel)]="dataReqAsset.inventId"
+                                (valueChanged)="onAssetChange($event)" [options]='optionsInventoryComponent'></ng-select2>
                         </div>
                     </div>
                     <div class="col-md-2">

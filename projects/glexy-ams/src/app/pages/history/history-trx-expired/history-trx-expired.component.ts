@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResDto } from '@dto/all-respons/res-dto';
 import { TrxOutofDate } from '@dto/report/trx-out-of-date';
 import { TransactionDetailService } from '@services/transaction-detail/transaction-detail.service';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,8 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
 
   private unSubs?: Subscription
 
+  private resDto!: ResDto
+
   constructor(private router: Router,
     private transactionDetailService: TransactionDetailService) { }
 
@@ -24,7 +27,27 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
     })
   }
 
+  isDisplayAvail(file: File): boolean {
+    if (file) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   ngOnDestroy(): void {
     this.unSubs?.unsubscribe()
+  }
+  
+  downloadPdf(): void {
+    this.transactionDetailService.downloadPdf()?.subscribe(res => {
+      this.resDto.msg = "Downloaded"
+    })
+  }
+
+  sendEmail(): void {
+    this.transactionDetailService.sendEmail()?.subscribe(res => {
+      this.resDto = res
+    })
   }
 }

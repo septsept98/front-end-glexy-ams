@@ -25,9 +25,12 @@
                     <ng-template pTemplate="caption">
                         <div class="row">
                             <div class="col-md-6 col-12">
-                                <a href="http://localhost:1234/track-assets/pdf" target="__blank" class="btn btn-lg btn-primary">
+                                <button (click)="downloadPdf()" class="btn btn-lg btn-success">
                                     <i class='bx bxs-file-pdf'></i>
-                                </a>
+                                </button>
+                                <button (click)="sendEmail()" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
                             </div>
                             <div class="col-md-6 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">

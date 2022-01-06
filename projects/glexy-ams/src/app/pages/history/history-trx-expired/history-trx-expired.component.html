@@ -25,9 +25,12 @@
                     <ng-template pTemplate="caption">
                         <div class="row">
                             <div class="col-md-6 col-12">
-                                <a href="http://localhost:1234/transaction-details/pdf" target="__blank" class="btn btn-lg btn-primary">
+                                <button (click)="downloadPdf()" class="btn btn-lg btn-success">
                                     <i class='bx bxs-file-pdf'></i>
-                                </a>
+                                </button>
+                                <button (click)="sendEmail()" class="btn btn-lg btn-primary">
+                                    <i class='bx bxs-file-pdf'></i>
+                                </button>
                             </div>
                             <div class="col-md-6 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">
@@ -53,9 +56,6 @@
                             <th pSortableColumn="employeeName">Name<p-sortIcon field="employeeName">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="email">Email<p-sortIcon field="email">
-                                </p-sortIcon>
-                            </th>
                             <th colspan="2" pSortableColumn="codeAsset">Asset<p-sortIcon field="codeAsset">
                                 </p-sortIcon>
                             </th>
@@ -67,20 +67,19 @@
                             </th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                    <ng-template pTemplate="body" let-trxExp let-rowIndex="rowIndex">
                         <tr>
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td>{{status.codeTrx}}</td>
-                            <td>{{status.nip}}</td>
-                            <td>{{status.employeeName}}</td>
-                            <td>{{status.Email}}</td>
-                            <td><img style="width: 70px; height: 100%;" class="img-fluid"
-                                    src="https://www.lg.com/id/images/tv/md05970757/gallery/medium02.jpg" alt=""></td>
-                            <td>{{status.codeAsset}} - {{status.nameAsset}}</td>
-                            <td>{{status.checkinDate}}</td>
-                            <td>{{status.dueDate}}</td>
+                            <td>{{trxExp.codeTrx}}</td>
+                            <td>{{trxExp.nip}}</td>
+                            <td>{{trxExp.employeeName}}</td>
+                            <td><img *ngIf="isDisplayAvail(trxExp.image)" style="width: 70px; height: 100%;" class="img-fluid"
+                                src="data:image/png;base64,{{trxExp.image}}" alt=""></td>
+                            <td>{{trxExp.codeAsset}} - {{trxExp.nameAsset}}</td>
+                            <td>{{trxExp.dueDate}}</td>
+                            <td>{{trxExp.checkinDate}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">

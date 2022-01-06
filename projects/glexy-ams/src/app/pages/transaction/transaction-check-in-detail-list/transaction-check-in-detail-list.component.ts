@@ -23,7 +23,7 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
 
   ngOnInit(): void {
     const idTrx: any = this.route.snapshot.paramMap.get('id');
-    this.transactionDetailService.getByTr(idTrx)?.subscribe(res => {
+    this.transactionDetailService.getByTrNotCheckIn(idTrx)?.subscribe(res => {
       this.listTrxDetail = res
       this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
       this.listTrxDetail.forEach(result => {

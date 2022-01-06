@@ -4,11 +4,14 @@ import { StatusTransaction } from '@models/status-transaction';
 import { Subscription } from 'rxjs';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Router } from '@angular/router';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-status-transaction-list',
   templateUrl: './status-transaction-list.component.html',
-  styleUrls: ['./status-transaction-list.component.css']
+  styleUrls: ['./status-transaction-list.component.css'],
+  providers: [ConfirmationService]
 })
 export class StatusTransactionListComponent implements OnInit, OnDestroy {
 
@@ -19,9 +22,15 @@ export class StatusTransactionListComponent implements OnInit, OnDestroy {
 
   resDelete: DeleteResDto = new DeleteResDto()
 
-  constructor(private statusTransactionService: StatusTransactionService, private router: Router) { }
+  constructor(private statusTransactionService: StatusTransactionService, 
+    private router: Router,
+    private confirmDialogService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.initData()
+  }
+
+  initData(): void {
     this.unSubs = this.statusTransactionService.getAll()?.subscribe(res => {
       this.listDataStatusTrx = res
     })
@@ -36,14 +45,17 @@ export class StatusTransactionListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/glexy/status-trx/${id}`)
   }
 
-  onDelete(id: string) :void {
+  onDelete(id: string): void {
     this.unSubs = this.statusTransactionService.getById(id)?.subscribe(result => {
-      if (confirm("Are you sure to delete " + result.nameStatusTr)) {
-        this.delUnSubs = this.statusTransactionService.deleteById(id)?.subscribe(result => {
-          this.resDelete = result
-          window.location.reload();
-        })
-      }
+      this.confirmDialogService.confirm({
+        message: 'Are you sure to delete ' + result.nameStatusTr + ' ?',
+        accept: () => {
+          this.delUnSubs = this.statusTransactionService.deleteById(id)?.subscribe(result => {
+            this.resDelete = result
+            this.initData()
+          })
+        }
+      })
     })
   }
 }

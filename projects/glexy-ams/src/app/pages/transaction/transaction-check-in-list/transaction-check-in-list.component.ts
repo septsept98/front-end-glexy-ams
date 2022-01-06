@@ -21,8 +21,9 @@ export class TransactionCheckInListComponent implements OnInit, OnDestroy {
     private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    this.transactionService.getAll()?.subscribe(res => {
+    this.transactionService.getAllNotCheckIn()?.subscribe(res => {
       this.listDataTransaction = res
+      console.log(res)
       for (let i = 0; i < this.listDataTransaction.length; i++) {
         let dataTrxDto: GetAllTrx = new GetAllTrx()
         dataTrxDto.id = this.listDataTransaction[i].id
