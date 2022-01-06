@@ -1,7 +1,6 @@
 <div class="card">
     <div class="card-body">
-        {{data|json}}
-        <h4 class="card-title">Permission form</h4>
+        <h4 class="card-title">Roles form</h4>
         <div class="forms-sample">
             <div class="row">
                 <div class="col-md-6 grid-margin">
@@ -11,9 +10,9 @@
                             [(ngModel)]="data.roles.nameRole">
                     </div>
                     <div class="form-group">
-                        <label for="codePermission">Code</label>
+                        <label for="codePermission" *ngIf="save">Code</label>
                         <input type="text" class="form-control" id="nameAsset" placeholder="Code Permission"
-                            [(ngModel)]="data.roles.code">
+                            [(ngModel)]="data.roles.code" *ngIf="save">
                     </div>
                     <label for="codePermission" *ngIf="save">Permission</label>
                     <div *ngFor="let list of permissionList">
@@ -26,10 +25,10 @@
                         </div>
                     </div>
 
-                    <label for="codePermission">Is Active</label>
-                    <div class="position-relative form-check mb-3">
-                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.roles.isActive">
-                        <label class="form-check-label">
+                    <label for="codePermission" *ngIf="!save">Is Active</label>
+                    <div class="position-relative form-check mb-3" *ngIf="!save">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.roles.isActive" *ngIf="!save">
+                        <label class="form-check-label" *ngIf="!save">
                             True
                         </label>
                     </div>

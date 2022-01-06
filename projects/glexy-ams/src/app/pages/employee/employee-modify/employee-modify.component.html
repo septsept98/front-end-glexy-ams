@@ -1,7 +1,6 @@
 <div class="card">
     <div class="card-body">
-        {{data|json}}
-        <h4 class="card-title">User form</h4>
+        <h4 class="card-title">Employee form</h4>
         <div class="forms-sample">
             <div class="row">
                 <div class="col-md-6 grid-margin">
@@ -10,8 +9,8 @@
                         <input type="text" class="form-control" id="nameEmployee" placeholder="Name Employee" [(ngModel)] = "data.nameEmployee">
                     </div>
                     <div class="form-group">
-                        <label for="nipEmployee">NIP</label>
-                        <input type="text" class="form-control" id="nipEmployee" placeholder="NIP Employee" [(ngModel)]="data.nip">
+                        <label for="nipEmployee" *ngIf = "save">NIP</label>
+                        <input type="text" class="form-control" id="nipEmployee" placeholder="NIP Employee" [(ngModel)]="data.nip" *ngIf = "save">
                     </div>
                     <div class="form-group">
                         <label for="emailEmployee">Email</label>
@@ -32,8 +31,13 @@
                         </select>
                     </div>
 
-                    <label for="codePermission">Is Active</label>
-                    <div class="position-relative form-check mb-3"><label class="form-check-label"><input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive"> True</label></div>
+                    <label for="codePermission" *ngIf="!save">Is Active</label>
+                    <div class="position-relative form-check mb-3" *ngIf="!save">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="data.isActive" *ngIf="!save">
+                        <label class="form-check-label" *ngIf="!save">
+                            True
+                        </label>
+                    </div>
 
                 </div>
               
