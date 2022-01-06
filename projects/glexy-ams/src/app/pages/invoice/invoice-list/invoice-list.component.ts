@@ -38,5 +38,9 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/glexy/invoice/${id}`)
   }
 
+  onDetail(invoId : number): void{
+    this.router.navigateByUrl(`/glexy/asset/invoice/${invoId}`)
+  }
+
 }
 

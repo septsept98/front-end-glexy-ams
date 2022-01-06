@@ -31,6 +31,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
   assetInsert : Asset = new Asset();
   insertResDto: InsertResDto = new InsertResDto();
   obs? : Subscription;
+  insertSubs? : Subscription;
   selectedImgAsset!: FileList;
   selectedImgInvo!: FileList;
   selectedExcel!: FileList;
@@ -184,7 +185,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
 
   upload() {
     this.currentFile = this.selectedExcel?.item(0);
-    this.assetService.uploadFile(this.currentFile!)?.subscribe(result => {
+    this.obs = this.assetService.uploadFile(this.currentFile!)?.subscribe(result => {
       this.insertResDto = result
       if(this.insertResDto){
         this.router.navigateByUrl("/glexy/asset/list")
@@ -195,7 +196,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
   addData(){
     this.fileInvoice = this.selectedImgInvo?.item(0)
     this.fileAsset = this.selectedImgAsset?.item(0)
-    this.assetService.insert(this.assetInsert, this.fileInvoice!, this.fileAsset!)?.subscribe(result => {
+    this.insertSubs = this.assetService.insert(this.assetInsert, this.fileInvoice!, this.fileAsset!)?.subscribe(result => {
       this.insertResDto = result
       if(this.insertResDto){
         this.router.navigateByUrl("/glexy/asset/list")
@@ -205,6 +206,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.obs?.unsubscribe()
+    this.insertSubs?.unsubscribe()
   }
 
 }

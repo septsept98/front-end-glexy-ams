@@ -18,6 +18,7 @@
             <div class="card-body">
                 <h2 class="card-title">Assets</h2>
                 <label *ngIf="show">Code Inventory : {{assetList[0].inventoryId.code}}</label>
+                <label *ngIf="showInvoice">Code Invoice : {{assetList[0].invoiceId.code}}</label>
                 <p-table #dt [value]="assetList" [rows]="10" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
@@ -33,8 +34,9 @@
                         </div> -->
                         <div class="row">
                             <div class="col-md-6 col-12">
-                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show"></button>
-                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>    
+                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show && !showInvoice"></button>
+                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>
+                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvoice()" *ngIf="showInvoice"></button>
                             </div>
                             <div class="col-md-6 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">
@@ -77,7 +79,7 @@
                                 <p-sortIcon field="company">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="invoice">Invoice Code
+                            <th pSortableColumn="invoice" *ngIf="!showInvoice">Invoice Code
                                 <p-sortIcon field="invoice">
                                 </p-sortIcon>
                             </th>
