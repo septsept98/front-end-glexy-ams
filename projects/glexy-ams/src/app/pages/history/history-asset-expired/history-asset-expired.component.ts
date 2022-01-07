@@ -41,7 +41,10 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
   
   downloadPdf(): void {
     this.assetService.downloadPdf()?.subscribe(res => {
-      this.resDto.msg = "Downloaded"
+      var a = document.createElement("a")
+      a.href = URL.createObjectURL(res)
+      a.download = "asset-license-expired.pdf"
+      a.click()
     })
   }
 

@@ -1,22 +1,8 @@
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="pe-7s-portfolio icon-gradient bg-happy-itmeo">
-                </i>
-            </div>
-            <div>Brand Tables
-                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h2 class="card-title">Brand</h2>
+                <h2 class="card-title">Brands</h2>
                 <p-table #dt [value]="dataList" [rows]="10" [paginator]="true" [globalFilterFields]="['names','code']" responsiveLayout="scroll" [(selection)]="selectedBrand" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
@@ -71,11 +57,6 @@
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(bran.id)"></button>
                             </td>
                         </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{dataList ? dataList.length : 0 }} products.
-                        </div>
                     </ng-template>
                 </p-table>
             </div>

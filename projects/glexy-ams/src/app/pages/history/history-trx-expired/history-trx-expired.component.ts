@@ -41,7 +41,10 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
   
   downloadPdf(): void {
     this.transactionDetailService.downloadPdf()?.subscribe(res => {
-      this.resDto.msg = "Downloaded"
+      var a = document.createElement("a")
+      a.href = URL.createObjectURL(res)
+      a.download = "trx-expired.pdf"
+      a.click()
     })
   }
 

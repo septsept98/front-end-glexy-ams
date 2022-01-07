@@ -37,8 +37,8 @@ export class TrackAssetService {
     return this.http.get<ResDto>(`${baseUrl}track-assets/send-email`)??""
   }
 
-  downloadPdf() : Observable<ResDto> | undefined {
-    return this.http.get<ResDto>(`${baseUrl}track-assets/pdf`)??""
+  downloadPdf() : Observable<any> | undefined {
+    return this.http.get<any>(`${baseUrl}track-assets/pdf`,{responseType: 'blob' as 'json'})??""
   }
   
 }

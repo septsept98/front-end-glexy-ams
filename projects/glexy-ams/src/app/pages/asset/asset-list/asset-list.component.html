@@ -1,17 +1,3 @@
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="pe-7s-box2 icon-gradient bg-happy-itmeo">
-                </i>
-            </div>
-            <div>Assets Tables
-                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
@@ -22,21 +8,11 @@
                 <p-table #dt [value]="assetList" [rows]="10" [paginator]="true" [globalFilterFields]="['image', 'names', 'code', 'brand', 'statusAsset', 'inventory', 'company', 'invoice']" responsiveLayout="scroll" [(selection)]="selectedAsset" [rowHover]="true" dataKey="id"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                        <!-- <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show"></button>
-                            <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>
-                            <span class="p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input pInputText type="text"
-                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                    placeholder="Search..." />
-                            </span>
-                        </div> -->
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/asset/new" *ngIf="!show && !showInvoice"></button>
-                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvent()" *ngIf="show"></button>
-                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-danger" (click)="backToInvoice()" *ngIf="showInvoice"></button>
+                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-dark" (click)="backToInvent()" *ngIf="show"></button>
+                                <button pButton pRipple icon="bx bx-arrow-back" class="bg-dark" (click)="backToInvoice()" *ngIf="showInvoice"></button>
                             </div>
                             <div class="col-md-6 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">
@@ -105,7 +81,7 @@
                             <td *ngIf="!show">{{asset.inventoryId.code}}</td>
                             <td>{{asset.companyId.names}}</td>
                             <td>{{asset.invoiceId.code}}</td>
-                            <td>{{asset.expiredDate}}</td>
+                            <td>{{asset.expiredDate?asset.expiredDate:'-'}}</td>
                             <td *ngIf="!show" class="px-6">
                                 <div class="row">
                                     <div class="col-6">
@@ -119,11 +95,6 @@
                                 </div>
                             </td>
                         </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{assetList ? assetList.length : 0 }} products.
-                        </div>
                     </ng-template>
                 </p-table>
             </div>
