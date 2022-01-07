@@ -87,7 +87,7 @@
                             <td>{{trx.assignTo}}</td>
                             <td>{{trx.checkOutDate}}</td>
                             <td>
-                                <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
+                                <button class="btn btn-primary" (click)="detailTrx(trx.id,'ALL')">Details</button>
                             </td>
                         </tr>
                     </ng-template>
@@ -155,7 +155,7 @@
                             <td>{{trx.assignTo}}</td>
                             <td>{{trx.checkOutDate}}</td>
                             <td>
-                                <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
+                                <button class="btn btn-primary" (click)="detailTrx(trx.id,'OUT')">Details</button>
                             </td>
                         </tr>
                     </ng-template>
@@ -223,7 +223,7 @@
                             <td>{{trx.assignTo}}</td>
                             <td>{{trx.checkOutDate}}</td>
                             <td>
-                                <button class="btn btn-primary" (click)="detailTrx(trx.id)">Details</button>
+                                <button class="btn btn-primary" (click)="detailTrx(trx.id,'IN')">Details</button>
                             </td>
                         </tr>
                     </ng-template>

@@ -20,6 +20,14 @@ export class TransactionDetailService {
     return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/`)??""
   }
 
+  getAllCheckIn() : Observable<TransactionDetail[]> | undefined {
+    return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/all-check-in`)??""
+  }
+
+  getAllNotCheckIn() : Observable<TransactionDetail[]> | undefined {
+    return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/all-not-check-in`)??""
+  }
+
   getAllExpDurationAssign() : Observable<TransactionDetail[]> | undefined {
     return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/exp-duration`)??""
   }
@@ -30,6 +38,10 @@ export class TransactionDetailService {
 
   getByTrNotCheckIn(id : String) : Observable<TransactionDetail[]> | undefined {
     return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/details-not-checkin/${id}`)??""
+  }
+
+  getByTrCheckIn(id : String) : Observable<TransactionDetail[]> | undefined {
+    return this.http.get<TransactionDetail[]>(`${baseUrl}transaction-details/details-checkin/${id}`)??""
   }
 
   insert(data : TransactionDetail) : Observable<InsertResDto> | undefined {

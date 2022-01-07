@@ -14,7 +14,5 @@ export class TransactionDetail {
 	statusEmail! : boolean;
 	statusTrCheckinId! : StatusTransaction;
 	isActive! : boolean;
-	statusIn! : boolean;
-	statusOut! : boolean;
 	
 }

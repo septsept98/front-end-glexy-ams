@@ -13,7 +13,7 @@ const routes: Routes = [
     component : HistoryListComponent
   },
   {
-    path : 'histories/transaction-detail/:id',
+    path : 'histories/transaction-detail/:type/:id',
     component : HistoryDetailComponent
   },
   {

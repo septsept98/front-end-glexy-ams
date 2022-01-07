@@ -26,15 +26,27 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
     this.transactionDetailService.getByTrNotCheckIn(idTrx)?.subscribe(res => {
       this.listTrxDetail = res
       this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
-      this.listTrxDetail.forEach(result => {
-        result.statusIn = false
-        result.statusOut = true
-        if(result.dateCheckin != null){
-          result.statusIn = true
-          result.statusOut = false
-        }
-      })
     })
+  }
+  
+  statusTrx(data: any): string {
+    let badge: string = ""
+    if(data == null){
+      badge = "badge-danger"
+    }else {
+      badge = "badge-primary"
+    }
+    return badge
+  }
+
+  statusName(data: any): string {
+    let name: string = ""
+    if(data == null){
+      name = "ASSIGN"
+    }else {
+      name = "COMPLETE"
+    }
+    return name
   }
 
   isDisplayAvail(file: File) : boolean {

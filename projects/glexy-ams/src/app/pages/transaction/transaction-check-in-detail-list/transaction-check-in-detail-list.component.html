@@ -69,8 +69,7 @@
                             <td>{{trx.durationDate ? trx.durationDate : '-' }}</td>
                             <td>{{trx.dateCheckin ? trx.dateCheckin : '-'}}</td>
                             <td>
-                                <label *ngIf="trx.statusOut" class="badge badge-danger">Assign</label>
-                                <label *ngIf="trx.statusIn" class="badge badge-primary">Completed</label>
+                                <label class="badge {{statusTrx(trx.dateCheckin)}}">{{statusName(trx.dateCheckin)}}</label>
                             </td>
                             <td>
                                 <button *ngIf="trx.statusOut" class="btn btn-success" (click)="checkIn(trx.id)">Check In</button>
