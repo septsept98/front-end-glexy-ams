@@ -79,7 +79,7 @@
                                 src="data:image/png;base64,{{trxExp.image}}" alt=""></td>
                             <td>{{trxExp.codeAsset}} - {{trxExp.nameAsset}}</td>
                             <td>{{trxExp.dueDate}}</td>
-                            <td>{{trxExp.checkinDate}}</td>
+                            <td>{{trxExp.checkinDate?trxExp.checkinDate:'-'}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
