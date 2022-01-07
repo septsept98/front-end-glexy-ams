@@ -1,29 +1,17 @@
 <div class="row">
-  <div class="col-lg-12">
-      <div class="main-card mb-3 card">
-          <div class="card-body">
-              <h2 class="card-title">Roles</h2>
-              <p-table #dt [value]="listRoles" [rows]="10" [paginator]="true"
-                  [globalFilterFields]="['code','nameRole']" responsiveLayout="scroll"
-                  [(selection)]="selectedRoles" [rowHover]="true" dataKey="id"
-                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                  [showCurrentPageReport]="true">
-                  <ng-template pTemplate="caption">
-                      <!-- <div class="d-flex p-ai-center justify-content-between">
-                          <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click) = "onCreate()"></button>
-                          <span class="p-input-icon-left">
-                              <i class="pi pi-search"></i>
-                              <input pInputText type="text"
-                                  (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                  placeholder="Search..." />
-                          </span>
-                      </div> -->
-                      <div class="row">
-                          <div class="col-md-6 col-12">
-                              <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
-                          </div>
-                          <div class="col-md-6 col-12 d-flex justify-content-end">
-                              <span class="p-input-icon-left">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <h2 class="card-title">Roles</h2>
+                <p-table #dt [value]="listRoles" [rows]="10" [paginator]="true" [globalFilterFields]="['code','nameRole']" responsiveLayout="scroll" [(selection)]="selectedRoles" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
+                            </div>
+                            <div class="col-md-6 col-12 d-flex justify-content-end">
+                                <span class="p-input-icon-left">
                                   <i class="pi pi-search"></i>
                                   <input pInputText type="text"
                                       (input)="dt.filterGlobal($any($event.target).value, 'contains')"

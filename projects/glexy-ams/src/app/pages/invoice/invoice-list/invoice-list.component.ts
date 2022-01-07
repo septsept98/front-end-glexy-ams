@@ -18,7 +18,9 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   constructor(private invoiceService : InvoiceService, private router : Router) { }
 
   ngOnInit(): void {
-    this.invoiceService.getAll()?.subscribe(result => this.dataList = result)
+    this.invoiceService.getAll()?.subscribe(result => {
+      this.dataList = result
+    })
     
   }
 
@@ -31,7 +33,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.obs?.unsubscribe
+    this.obs?.unsubscribe()
   }
 
   onUpdate(id : number): void{

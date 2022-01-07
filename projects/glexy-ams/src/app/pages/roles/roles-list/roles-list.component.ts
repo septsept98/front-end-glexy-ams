@@ -24,7 +24,9 @@ export class RolesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.listRoleSubs = this.rolesServices.getAll()?.subscribe(result => this.listRoles = result)
+    this.listRoleSubs = this.rolesServices.getAll()?.subscribe(result => {
+      this.listRoles = result
+    })
 
   }
 

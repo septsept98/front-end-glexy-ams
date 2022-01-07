@@ -9,7 +9,7 @@
             </span>
 
             <div class="wrap-input100 mt-5">
-                <input class="input100" (blur)="hasVal($event.target)" type="text" name="email"  [(ngModel)]= "data.email">
+                <input class="input100" (blur)="hasVal($event.target)" type="text" name="email" [(ngModel)]="data.email">
                 <span class="focus-input100" data-placeholder="Email"></span>
             </div>
 
@@ -17,7 +17,7 @@
                 <span class="btn-show-pass" (click)="onShow()">
                     <i id="icon-eye" class="fa fa-eye"></i>
                 </span>
-                <input class="input100" (blur)="hasVal($event.target)" type="password" name="pass" id="show-pass" [(ngModel)]= "data.pass">
+                <input class="input100" (blur)="hasVal($event.target)" type="password" name="pass" id="show-pass" [(ngModel)]="data.pass">
                 <span class="focus-input100" data-placeholder="Password"></span>
             </div>
 

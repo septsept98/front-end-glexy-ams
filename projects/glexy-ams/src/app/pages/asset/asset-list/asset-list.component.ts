@@ -37,11 +37,14 @@ export class AssetListComponent implements OnInit, OnDestroy {
         this.showInvoice = true
       })
     } else {
-      this.obs = this.assetService.getAll()?.subscribe(result => this.assetList = result)
+      this.obs = this.assetService.getAll()?.subscribe(result => {
+        this.assetList = result
+      })
 
     }
 
   }
+  
   isDisplayAvail(file: File) : boolean {
     if(file) {
       return true
@@ -51,8 +54,8 @@ export class AssetListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataSubs?.unsubscribe
-    this.obs?.unsubscribe
+    this.dataSubs?.unsubscribe()
+    this.obs?.unsubscribe()
   }
 
   backToInvent(): void {
@@ -84,6 +87,7 @@ export class AssetListComponent implements OnInit, OnDestroy {
 
     return badgeStatus
   }
+
 
 }
 

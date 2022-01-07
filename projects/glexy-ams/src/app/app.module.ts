@@ -20,7 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi : true}],
   bootstrap: [AppComponent]

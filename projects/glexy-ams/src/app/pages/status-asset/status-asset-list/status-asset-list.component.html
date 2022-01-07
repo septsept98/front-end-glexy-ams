@@ -3,16 +3,12 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Status Assets</h2>
-                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll"
-                    [rowHover]="true" dataKey="id"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                <p-table #dt [value]="listStatusAssets" [rows]="10" [paginator]="true" [globalFilterFields]="['nameStatusAsset','codeStatusAsset']" responsiveLayout="scroll" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="row">
                             <div class="col-md-6 col-12">
-                                <button pButton pRipple icon="pi pi-plus" class="bg-primary"
-                                    routerLink="/glexy/status-asset/new"></button>
+                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" routerLink="/glexy/status-asset/new"></button>
                             </div>
                             <div class="col-md-6 col-12 d-flex justify-content-end">
                                 <span class="p-input-icon-left">
@@ -29,10 +25,12 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th pSortableColumn="codeStatusAsset">Code Status Asset <p-sortIcon field="codeStatusAsset">
+                            <th pSortableColumn="codeStatusAsset">Code Status Asset
+                                <p-sortIcon field="codeStatusAsset">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nameStatusAsset">Name Status Asset <p-sortIcon field="nameStatusAsset">
+                            <th pSortableColumn="nameStatusAsset">Name Status Asset
+                                <p-sortIcon field="nameStatusAsset">
                                 </p-sortIcon>
                             </th>
                             <th>Action</th>
@@ -46,11 +44,8 @@
                             <td>{{status.codeStatusAsset}}</td>
                             <td>{{status.nameStatusAsset}}</td>
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"
-                                    (click)="onUpdate(status.id)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="onDelete(status.id)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(status.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(status.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
