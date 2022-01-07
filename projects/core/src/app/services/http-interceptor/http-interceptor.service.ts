@@ -11,6 +11,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   constructor(private toastr: ToastrService, private authService:AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
     const token:string|undefined = this.authService.getToken()
     const newReq = req.clone({setHeaders:{Authorization:`Bearer ${token}`}})
     return next.handle(newReq).pipe(tap({
