@@ -88,7 +88,7 @@ export class GeneralTemplateComponent implements OnInit {
       data.classList.remove('hover-open')
     }
   }
-
+  
   onLogOut() :void{
 
     this.authService.clearStorage()
@@ -104,6 +104,7 @@ export class GeneralTemplateComponent implements OnInit {
   receiveMessage(user :any){
     this.data = user
   }
+
   initData():void{
     
     this.userService.getByIdAuth()?.subscribe(result =>{ this.data = result

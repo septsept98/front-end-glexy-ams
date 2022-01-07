@@ -4,6 +4,7 @@ import { Brand } from '@models/brand';
 import { BrandService } from '../../../../../../core/src/app/services/brand/brand.service';
 import { DeleteResDto } from '../../../../../../core/src/app/dto/all-respons/delete-res-dto'
 import { Subscription } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-brand-list',
@@ -12,20 +13,28 @@ import { Subscription } from 'rxjs';
 })
 export class BrandListComponent implements OnInit, OnDestroy {
 
-  constructor(private brandService : BrandService, private router : Router) { }
+  constructor(private brandService : BrandService, private router : Router, private confirmDialogService: ConfirmationService) { }
+
   deleteResDto : DeleteResDto = new DeleteResDto()
   selectedBrand: Brand[] = []
   dataList: Brand[] = []
   obs? : Subscription
+  delSubs? : Subscription
 
   ngOnInit(): void {
+    this.initData()
+  }
+  
+  initData(): void {
+    this.brandService.getAll()?.subscribe(result => {
+      this.dataList = result
+    })
     
-    this.brandService.getAll()?.subscribe(result => this.dataList = result)
-
   }
 
   ngOnDestroy(): void{
     this.obs?.unsubscribe()
+    this.delSubs?.unsubscribe()
   }
 
   onUpdate(id : number): void{
@@ -33,11 +42,16 @@ export class BrandListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id : string): void {
-    this.brandService.delete(id)?.subscribe(result => {
-      this.deleteResDto = result
-      if(this.deleteResDto) {
-        window.location.reload()
-      }
+    this.obs = this.brandService.getById(id)?.subscribe(result => {
+      this.confirmDialogService.confirm({
+        message: 'Are you sure to delete ' + result.names + ' ?',
+        accept: () => {
+          this.delSubs = this.brandService.delete(id)?.subscribe(result => {
+            this.deleteResDto = result
+            this.initData()
+          })
+        }
+      })
     })
   }
 

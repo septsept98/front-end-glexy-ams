@@ -11,27 +11,15 @@
             </div>
         </div>
     </div>
-  </div>
-  <div class="row">
+</div>
+<div class="row">
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Employees</h2>
-                <p-table #dt [value]="listEmployee" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['nameEmployee','nip','emailEmployee','companyId.names','phoneNumber']" responsiveLayout="scroll"
-                    [(selection)]="selectedEmployee" [rowHover]="true" dataKey="id"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                <p-table #dt [value]="listEmployee" [rows]="10" [paginator]="true" [globalFilterFields]="['nameEmployee','nip','emailEmployee','companyId.names','phoneNumber']" responsiveLayout="scroll" [(selection)]="selectedEmployee" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
-                        <!-- <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
-                            <span class="p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input pInputText type="text"
-                                    (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                    placeholder="Search..." />
-                            </span>
-                        </div> -->
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
@@ -51,22 +39,27 @@
                             <th style="width: 3rem">
                                 No
                             </th>
-                            <th pSortableColumn="nameEmployee">Name <p-sortIcon field="nameEmployee">
+                            <th pSortableColumn="nameEmployee">Name
+                                <p-sortIcon field="nameEmployee">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="nip">NIP <p-sortIcon field="nip">
-                            </p-sortIcon>
-                        </th>
-                            <th pSortableColumn="emailEmployee">Email <p-sortIcon field="emailEmployee">
+                            <th pSortableColumn="nip">NIP
+                                <p-sortIcon field="nip">
                                 </p-sortIcon>
                             </th>
-                           <th pSortableColumn="companyId.names">Company <p-sortIcon field="companyId.names">
-                          </p-sortIcon>
-                          </th>
-                          <th pSortableColumn="phoneNumber">Phone Number <p-sortIcon field="employeeId.phoneNumber">
-                          </p-sortIcon>
-                          </th>
-                         
+                            <th pSortableColumn="emailEmployee">Email
+                                <p-sortIcon field="emailEmployee">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="companyId.names">Company
+                                <p-sortIcon field="companyId.names">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="phoneNumber">Phone Number
+                                <p-sortIcon field="employeeId.phoneNumber">
+                                </p-sortIcon>
+                            </th>
+
                             <th>Action</th>
                         </tr>
                     </ng-template>
@@ -80,12 +73,10 @@
                             <td>{{data.emailEmployee}}</td>
                             <td>{{data.companyId.names}}</td>
                             <td>{{data.phoneNumber}}</td>
-                           
+
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2" (click)="onUpdate(data.id)"></button>
-                                <button pButton pRipple icon="pi pi-trash"
-                                    class="p-button-rounded p-button-warning" (click)="onDelete(data.id)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(data.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(data.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -98,4 +89,4 @@
             </div>
         </div>
     </div>
-  </div>
+</div>

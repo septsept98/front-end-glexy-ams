@@ -18,7 +18,9 @@ export class InventoryListComponent implements OnInit {
   constructor(private inventoryService : InventoryService, private router : Router) { }
 
   ngOnInit(): void {
-    this.inventoryService.getAll()?.subscribe(result => this.dataList = result)
+    this.inventoryService.getAll()?.subscribe(result => {
+      this.dataList = result
+    })
   
   }
 
@@ -27,7 +29,7 @@ export class InventoryListComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.obs?.unsubscribe
+    this.obs?.unsubscribe()
   }
 
 }

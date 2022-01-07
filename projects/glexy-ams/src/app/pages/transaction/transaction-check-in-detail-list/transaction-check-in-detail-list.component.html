@@ -17,16 +17,12 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h2 class="card-title">Transaction Detail Check In</h2>
-                <p-table #dt [value]="listTrxDetail" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names','durationDate','dateCheckin']"
-                    responsiveLayout="scroll" [rowHover]="true" dataKey="id"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                <p-table #dt [value]="listTrxDetail" [rows]="10" [paginator]="true" [globalFilterFields]="['assetId.code','assetId.names','assetId.brandId.names','durationDate','dateCheckin']" responsiveLayout="scroll" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="caption">
                         <div class="d-flex p-ai-center justify-content-between">
-                            <button pButton pRipple icon="fa fa-arrow-left" class="bg-dark"
-                                routerLink="/glexy/transaction/check-in-list"></button>
-                                <h5>{{codeTrx}}</h5>
+                            <button pButton pRipple icon="fa fa-arrow-left" class="bg-dark" routerLink="/glexy/transaction/check-in-list"></button>
+                            <h5>{{codeTrx}}</h5>
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text"
@@ -41,16 +37,20 @@
                                 No
                             </th>
                             <th>Image</th>
-                            <th pSortableColumn="assetId.code">Asset<p-sortIcon field="assetId.code">
+                            <th pSortableColumn="assetId.code">Asset
+                                <p-sortIcon field="assetId.code">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="assetId.brandId.names">Brand<p-sortIcon field="assetId.brandId.names">
+                            <th pSortableColumn="assetId.brandId.names">Brand
+                                <p-sortIcon field="assetId.brandId.names">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="durationDate">Duration Date<p-sortIcon field="durationDate">
+                            <th pSortableColumn="durationDate">Duration Date
+                                <p-sortIcon field="durationDate">
                                 </p-sortIcon>
                             </th>
-                            <th pSortableColumn="dateCheckin">Check In Date<p-sortIcon field="dateCheckin">
+                            <th pSortableColumn="dateCheckin">Check In Date
+                                <p-sortIcon field="dateCheckin">
                                 </p-sortIcon>
                             </th>
                             <th>Status</th>
@@ -62,8 +62,7 @@
                             <td>
                                 {{rowIndex + 1}}
                             </td>
-                            <td><img *ngIf="isDisplayAvail(trx.assetId.assetImg)" style="width: 70px; height: 100%;" class="img-fluid"
-                                    src="data:image/png;base64,{{trx.assetId.assetImg.file}}" alt=""></td>
+                            <td><img *ngIf="isDisplayAvail(trx.assetId.assetImg)" style="width: 70px; height: 100%;" class="img-fluid" src="data:image/png;base64,{{trx.assetId.assetImg.file}}" alt=""></td>
                             <td>{{trx.assetId.code}} - {{trx.assetId.names}}</td>
                             <td>{{trx.assetId.brandId.names}}</td>
                             <td>{{trx.durationDate ? trx.durationDate : '-' }}</td>

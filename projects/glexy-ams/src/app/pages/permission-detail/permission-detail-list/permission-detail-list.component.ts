@@ -24,7 +24,9 @@ export class PermissionDetailListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.dataSubs = this.permissionDetailService.getAll()?.subscribe(result => this.listPermissionDetail = result)
+    this.dataSubs = this.permissionDetailService.getAll()?.subscribe(result => {
+      this.listPermissionDetail = result
+    })
 
   }
 
