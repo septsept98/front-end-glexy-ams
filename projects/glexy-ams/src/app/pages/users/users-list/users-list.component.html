@@ -1,97 +1,79 @@
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
-              </i>
-            </div>
-            <div>User Tables
-                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
-    <div class="col-lg-12">
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <h2 class="card-title">Users</h2>
-                <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true" [globalFilterFields]="['employeeId.nameEmployee','email','rolesId.nameRoles','employeeId.companyId.names','employeeId.phoneNumber']" responsiveLayout="scroll" [(selection)]="selectedUsers"
-                    [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-                    <ng-template pTemplate="caption">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
-                            </div>
-                            <div class="col-md-6 col-12 d-flex justify-content-end">
-                                <span class="p-input-icon-left">
+  <div class="col-lg-12">
+      <div class="main-card mb-3 card">
+          <div class="card-body">
+              <h2 class="card-title">Users</h2>
+              <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true"
+                  [globalFilterFields]="['employeeId.nameEmployee','email','rolesId.nameRoles','employeeId.companyId.names','employeeId.phoneNumber']" responsiveLayout="scroll"
+                  [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  [showCurrentPageReport]="true">
+                  <ng-template pTemplate="caption">
+                      <div class="row">
+                          <div class="col-md-6 col-12">
+                              <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
+                          </div>
+                          <div class="col-md-6 col-12 d-flex justify-content-end">
+                              <span class="p-input-icon-left">
                                   <i class="pi pi-search"></i>
                                   <input pInputText type="text"
                                       (input)="dt.filterGlobal($any($event.target).value, 'contains')"
                                       placeholder="Search..." />
                               </span>
-                            </div>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th style="width: 3rem">
-                                No
-                            </th>
-                            <th pSortableColumn="employeeId.nameEmployee">Name
-                                <p-sortIcon field="employeeId.nameEmployee">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="email">Email
-                                <p-sortIcon field="email">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="rolesId.nameRoles">Role
-                                <p-sortIcon field="rolesId.nameRoles">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="employeeId.companyId.names">Company
-                                <p-sortIcon field="employeeId.companyId.names">
-                                </p-sortIcon>
-                            </th>
-                            <th pSortableColumn="employeeId.phoneNumber">Phone
-                                <p-sortIcon field="employeeId.phoneNumber">
-                                </p-sortIcon>
-                            </th>
-                            <th>Password</th>
-                            <th>Action</th>
-
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
-                        <tr>
-                            <td>
-                                {{rowIndex + 1}}
-                            </td>
-                            <td>{{data.employeeId.nameEmployee}}</td>
-                            <td>{{data.email}}</td>
-                            <td>{{data.rolesId.nameRole}}</td>
-                            <td>{{data.employeeId.companyId.names}}</td>
-                            <td>{{data.employeeId.phoneNumber}}</td>
-                            <td>
-                                <button pButton class="p-button p-button-info" (click)="onResetPassword(data.id)">Reset</button>
-                            </td>
-                            <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(data.id)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(data.id)"></button>
-
-                            </td>
-
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listUsers ? listUsers.length : 0 }} products.
-                        </div>
-                    </ng-template>
-                </p-table>
-            </div>
-        </div>
-    </div>
+                          </div>
+                      </div>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th style="width: 3rem">
+                              No
+                          </th>
+                          <th pSortableColumn="employeeId.nameEmployee">Name <p-sortIcon field="employeeId.nameEmployee">
+                              </p-sortIcon>
+                          </th>
+                          <th pSortableColumn="email">Email <p-sortIcon field="email">
+                              </p-sortIcon>
+                          </th>
+                          <th pSortableColumn="rolesId.nameRoles">Role <p-sortIcon field="rolesId.nameRoles">
+                          </p-sortIcon>
+                         </th>
+                         <th pSortableColumn="employeeId.companyId.names">Company <p-sortIcon field="employeeId.companyId.names">
+                        </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="employeeId.phoneNumber">Phone<p-sortIcon field="employeeId.phoneNumber">
+                        </p-sortIcon>
+                        </th>
+                        <th>Password</th>
+                          <th>Action</th>
+                          
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+                      <tr>
+                          <td>
+                              {{rowIndex + 1}}
+                          </td>
+                          <td>{{data.employeeId.nameEmployee}}</td>
+                          <td>{{data.email}}</td>
+                          <td>{{data.rolesId.nameRole}}</td>
+                          <td>{{data.employeeId.companyId.names}}</td>
+                          <td>{{data.employeeId.phoneNumber}}</td>
+                          <td>
+                            <button pButton
+                            class="p-button p-button-info" (click)="onResetPassword(data.id)">Reset</button>
+                          </td>
+                          <td>
+                              <button pButton pRipple icon="pi pi-pencil"
+                                  class="p-button-rounded p-button-success mr-2" (click)="onUpdate(data.id)"></button>
+                              <button pButton pRipple icon="pi pi-trash"
+                                  class="p-button-rounded p-button-warning" (click)="onDelete(data.id)"></button>
+                                  
+                          </td>
+                          
+                      </tr>
+                  </ng-template>
+              </p-table>
+          </div>
+      </div>
+  </div>
 </div>

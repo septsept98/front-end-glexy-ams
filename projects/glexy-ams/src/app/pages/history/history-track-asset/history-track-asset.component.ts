@@ -33,7 +33,10 @@ export class HistoryTrackAssetComponent implements OnInit, OnDestroy {
 
   downloadPdf(): void {
     this.trackAssetService.downloadPdf()?.subscribe(res => {
-      this.resDto.msg = "Downloaded"
+      var a = document.createElement("a")
+      a.href = URL.createObjectURL(res)
+      a.download = "track-asset.pdf"
+      a.click()
     })
   }
 

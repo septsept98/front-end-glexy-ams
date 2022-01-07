@@ -104,8 +104,8 @@ export class AssetService {
     return this.http.get<ResDto>(`${baseUrl}assets/send-email`)??""
   }
 
-  downloadPdf() : Observable<ResDto> | undefined {
-    return this.http.get<ResDto>(`${baseUrl}assets/pdf`)??""
+  downloadPdf() : Observable<any> | undefined {
+    return this.http.get<any>(`${baseUrl}assets/pdf`,{responseType: 'blob' as 'json'})??""
   }
 
 }

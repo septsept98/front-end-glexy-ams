@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { StatusTransaction } from '@models/status-transaction';
 import { TransactionDetail } from '@models/transaction-detail';
@@ -22,6 +22,7 @@ export class TransactionCheckInComponent implements OnInit {
   resUpdate!: UpdateResDto
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private transactionDetailService: TransactionDetailService,
     private statusTrxService: StatusTransactionService) { }
 
@@ -37,7 +38,6 @@ export class TransactionCheckInComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     console.log(this.statusTrxSelected)
     let statusTrx: StatusTransaction = new StatusTransaction()
     statusTrx.id = this.statusTrxSelected
@@ -45,7 +45,12 @@ export class TransactionCheckInComponent implements OnInit {
     console.log(this.dataAssetTrxDetail)
     this.transactionDetailService.update(this.dataAssetTrxDetail)?.subscribe(res => {
       this.resUpdate = res
+      this.router.navigateByUrl("/glexy/transaction/check-in-list")
     })
+  }
+
+  onCancel(idTrx: any): void {
+    this.router.navigateByUrl(`/glexy/transaction/check-in-detail-list/${idTrx}`)
   }
 
 }

@@ -18,6 +18,8 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   insertResDto: InsertResDto = new InsertResDto()
   updateResDto: UpdateResDto = new UpdateResDto()
 
+  activeOn: boolean = false
+
   private insUnSubs?: Subscription;
   private unSubs?: Subscription;
 
@@ -33,6 +35,7 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id: any = this.route.snapshot.paramMap.get('id');
     if (id) {
+      this.activeOn = true
       this.unSubs = this.statusAssetService.getById(String(id))?.subscribe(result => {
         this.dataStatusAsset = result
       })

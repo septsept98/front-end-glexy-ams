@@ -64,7 +64,7 @@ export class TransactionDetailService {
     return this.http.get<ResDto>(`${baseUrl}transaction-details/send-email`)??""
   }
 
-  downloadPdf() : Observable<ResDto> | undefined {
-    return this.http.get<ResDto>(`${baseUrl}transaction-details/pdf`)??""
+  downloadPdf() : Observable<any> | undefined {
+    return this.http.get<any>(`${baseUrl}transaction-details/pdf`,{responseType: 'blob' as 'json'})??""
   }
 }
