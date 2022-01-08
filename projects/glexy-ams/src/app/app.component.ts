@@ -11,12 +11,12 @@ export class AppComponent implements OnInit {
   constructor(private loadingService : LoadingService) {}
 
   title = 'glexy-ams';
-  loading : boolean = true
+  loading : boolean = false
 
   ngOnInit() : void {
 
     this.loadingService.load$?.subscribe(result => {
-      this.loading = result??true
+      this.loading = result??false
       console.log(this.loading)
     })
   }
