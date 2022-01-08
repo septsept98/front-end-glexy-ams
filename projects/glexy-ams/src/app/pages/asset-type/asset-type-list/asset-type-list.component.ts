@@ -9,7 +9,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-asset-type-list',
   templateUrl: './asset-type-list.component.html',
-  styleUrls: ['./asset-type-list.component.css']
+  styleUrls: ['./asset-type-list.component.css'],
+  providers: [ConfirmationService]
 })
 export class AssetTypeListComponent implements OnInit, OnDestroy {
 

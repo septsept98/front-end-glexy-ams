@@ -29,7 +29,11 @@ export class HttpInterceptorService implements HttpInterceptor {
       },
       error :(err) =>{
         let errorMessage :HttpErrorResponse=err
-        this.toastr.error(errorMessage.error.msg, 'Error')
+        if(errorMessage.error.msg){
+          this.toastr.error(errorMessage.error.msg, 'Error')
+        } else {
+          this.toastr.error(errorMessage.error.message, 'Error')
+        }
         this.loadingService.onLoading(true)
       }
     }))
