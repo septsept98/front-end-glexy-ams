@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     
     const token:string|undefined = this.authService.getToken()
     const newReq = req.clone({setHeaders:{Authorization:`Bearer ${token}`}})
-    this.loadingService.onLoading(false)
+    this.loadingService.onLoading(true)
     return next.handle(newReq).pipe(tap({
       next : (succes: any) =>{
         let data: HttpResponse<any> = succes
@@ -24,17 +24,21 @@ export class HttpInterceptorService implements HttpInterceptor {
           this.toastr.success(data.body.msg, 'Success')
           console.log(succes)
         }
-        this.loadingService.onLoading(true)
         console.log('request complete')
       },
       error :(err) =>{
+        this.loadingService.onLoading(false)
         let errorMessage :HttpErrorResponse=err
+        
         if(errorMessage.error.msg){
           this.toastr.error(errorMessage.error.msg, 'Error')
         } else {
           this.toastr.error(errorMessage.error.message, 'Error')
         }
-        this.loadingService.onLoading(true)
+      },
+      complete : () => {
+        this.loadingService.onLoading(false)
+
       }
     }))
   }
