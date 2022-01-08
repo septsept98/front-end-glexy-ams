@@ -47,6 +47,10 @@
                                 <p-sortIcon field="statusAsset">
                                 </p-sortIcon>
                             </th>
+                            <th pSortableColumn="assetType">Asset Type
+                                <p-sortIcon field="assetType">
+                                </p-sortIcon>
+                            </th>
                             <th pSortableColumn="inventory" *ngIf="!show">Inventory Code
                                 <p-sortIcon field="inventory">
                                 </p-sortIcon>
@@ -78,6 +82,7 @@
                                     {{asset.statusAssetId.nameStatusAsset}}
                                 </div>
                             </td>
+                            <td>{{asset.assetTypeId.names}}</td>
                             <td *ngIf="!show">{{asset.inventoryId.code}}</td>
                             <td>{{asset.companyId.names}}</td>
                             <td>{{asset.invoiceId.code}}</td>
