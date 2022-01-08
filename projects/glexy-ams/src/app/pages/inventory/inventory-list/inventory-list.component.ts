@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Inventory } from '@models/inventory';
 import { InventoryService } from '@services/inventory/inventory.service';
@@ -15,7 +16,10 @@ export class InventoryListComponent implements OnInit {
   dataList: Inventory[] = []
   obs? : Subscription
   
-  constructor(private inventoryService : InventoryService, private router : Router) { }
+  constructor(private inventoryService : InventoryService, private router : Router,
+    private title :Title) {
+      title.setTitle("Inventory")
+     }
 
   ngOnInit(): void {
     this.inventoryService.getAll()?.subscribe(result => {

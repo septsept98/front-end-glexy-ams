@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -27,12 +28,16 @@ export class CompanyModifyComponent implements OnInit, OnDestroy {
   insertSubs?: Subscription
   updateSubs?: Subscription
 
-  constructor(private companyService: CompanyService, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor(private companyService: CompanyService, private router: Router, 
+    private activedRoute:ActivatedRoute, private title :Title) {
+      title.setTitle("Company Create")
+     }
 
   ngOnInit(): void {
     this.companyId = this.activedRoute.snapshot.paramMap.get('id')
 
     if(this.companyId) {
+      this.title.setTitle("Company Update")
       this.dataSubs = this.companyService.getById(this.companyId)?.subscribe(result => {
         this.save = false
         this.tab = true

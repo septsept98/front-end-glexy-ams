@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { LoginReqDto } from '@dto/users/login-req-dto';
 import { AuthService } from '@services/auth/auth.service';
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   counter = 0
   data :LoginReqDto = new LoginReqDto()
 
-  constructor(private router: Router, private authService :AuthService) { }
+  constructor(private router: Router, private authService :AuthService,
+    private title :Title) { 
+      title.setTitle("Login")
+    }
 
   ngOnInit(): void {
     localStorage.clear()

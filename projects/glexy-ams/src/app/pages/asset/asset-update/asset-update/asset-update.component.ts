@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Asset } from '@models/asset';
@@ -23,7 +24,10 @@ import { Options } from 'select2';
 export class AssetUpdateComponent implements OnInit, OnDestroy {
 
   constructor(private activeRoute : ActivatedRoute, private assetService : AssetService, private assetTypeService : AssetTypeService,
-    private companyService : CompanyService, private statusAssetSerive : StatusAssetService, private brandService : BrandService, private router : Router) { }
+    private companyService : CompanyService, private statusAssetSerive : StatusAssetService, private brandService : BrandService, 
+    private router : Router, private title :Title) { 
+      title.setTitle("Asset Update")
+    }
 
   asset : Asset = new Asset()
   assetType : AssetType[] = []

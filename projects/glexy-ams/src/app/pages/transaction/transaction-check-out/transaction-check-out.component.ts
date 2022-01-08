@@ -18,6 +18,7 @@ import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '@services/auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-transaction-check-out',
@@ -66,7 +67,10 @@ export class TransactionCheckOutComponent implements OnInit {
     private transactionService: TransactionService,
     private router: Router,
     private toastr: ToastrService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private title :Title) {
+      title.setTitle("Transaction Check Out")
+     }
 
   ngOnInit(): void {
     this.dataDetailTrx

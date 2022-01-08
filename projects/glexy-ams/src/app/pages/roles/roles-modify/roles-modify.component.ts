@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -34,14 +35,17 @@ export class RolesModifyComponent implements OnInit,OnDestroy {
   updateRoleSubs?:Subscription
   
   constructor(private permissionsService :PermissionsService, private rolesService :RolesService,
-     private activedRoute :ActivatedRoute, private router :Router) { }
+     private activedRoute :ActivatedRoute, private router :Router,
+     private title :Title) { 
+      title.setTitle("role Create")
+     }
 
   ngOnInit(): void {
 
     this.roleId = this.activedRoute.snapshot.paramMap.get('id')
 
     if(this.roleId){
-
+      this.title.setTitle("role Update")
      this.roleSubs = this.rolesService.getById(this.roleId)?.subscribe(result => {
         this.save = false
         this.data.roles = result

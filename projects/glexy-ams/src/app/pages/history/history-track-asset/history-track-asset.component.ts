@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { TrackAsset } from '@models/track-asset';
@@ -19,7 +20,10 @@ export class HistoryTrackAssetComponent implements OnInit, OnDestroy {
   private resDto!: ResDto
 
   constructor(private router: Router,
-    private trackAssetService: TrackAssetService) { }
+    private trackAssetService: TrackAssetService,
+    private title :Title) { 
+      title.setTitle("Track Asset")
+    }
 
   ngOnInit(): void {
     this.unSubs = this.trackAssetService.getAll()?.subscribe(res => {

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -28,7 +29,11 @@ export class LocationModifyComponent implements OnInit, OnDestroy {
   insertSubs?: Subscription
   updateSubs?: Subscription
 
-  constructor(private activedRoute:ActivatedRoute, private locationService : LocationService, private router: Router, private authService : AuthService) { }
+  constructor(private activedRoute:ActivatedRoute, private locationService : LocationService, 
+    private router: Router, private authService : AuthService,
+    private title :Title) {
+      title.setTitle("Location Create")
+     }
 
   ngOnInit(): void {
     this.locationInsert.companyId = new Company()
@@ -36,6 +41,7 @@ export class LocationModifyComponent implements OnInit, OnDestroy {
     this.locationId = this.activedRoute.snapshot.paramMap.get('id')
 
     if(this.locationId) {
+      this.title.setTitle("Location Update")
       this.dataSubs = this.locationService.getById(this.locationId)?.subscribe(result => {
         this.save = false
         this.tab = true

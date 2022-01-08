@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { AssetExpired } from '@dto/report/asset-expired';
@@ -19,7 +20,9 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
   private resDto!: ResDto
 
   constructor(private router: Router,
-    private assetService: AssetService) { }
+    private assetService: AssetService, title :Title) { 
+      title.setTitle("Asset Expired")
+    }
 
   ngOnInit(): void {
     this.assetService.getExpiredAsset()?.subscribe(res => {

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -25,7 +26,10 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
 
   constructor(private statusAssetService: StatusAssetService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private title :Title) {
+      title.setTitle("Status Asset Create")
+     }
 
   ngOnDestroy(): void {
     this.insUnSubs?.unsubscribe
@@ -35,6 +39,7 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id: any = this.route.snapshot.paramMap.get('id');
     if (id) {
+      this.title.setTitle("Status Asset Update")
       this.activeOn = true
       this.unSubs = this.statusAssetService.getById(String(id))?.subscribe(result => {
         this.dataStatusAsset = result

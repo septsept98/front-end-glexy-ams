@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { PermissionDetail } from '@models/permission-detail';
@@ -20,7 +21,10 @@ export class PermissionDetailListComponent implements OnInit, OnDestroy {
   deleteSubs?: Subscription
   dataDelSubs?: Subscription
 
-  constructor(private permissionDetailService: PermissionDetailService, private router: Router) { }
+  constructor(private permissionDetailService: PermissionDetailService, private router: Router,
+    private title :Title) {
+      title.setTitle("Permission Detail")
+     }
 
   ngOnInit(): void {
 

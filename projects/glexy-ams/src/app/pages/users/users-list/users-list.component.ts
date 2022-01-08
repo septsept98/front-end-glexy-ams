@@ -1,5 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -22,7 +23,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
   dataDelSubs?: Subscription
   updateResDto :UpdateResDto = new UpdateResDto()
 
-  constructor(private usersService :UsersService, private router :Router) { }
+  constructor(private usersService :UsersService, private router :Router, private title :Title) { 
+
+    title.setTitle("User")
+  }
 
   ngOnInit(): void {
 

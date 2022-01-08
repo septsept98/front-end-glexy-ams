@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { ConfirmationService } from 'primeng/api';
@@ -14,7 +15,10 @@ import { Subscription } from 'rxjs';
 })
 export class AssetTypeListComponent implements OnInit, OnDestroy {
 
-  constructor(private assetTypeService : AssetTypeService, private router : Router, private confirmDialogService: ConfirmationService) { }
+  constructor(private assetTypeService : AssetTypeService, private router : Router,
+     private confirmDialogService: ConfirmationService, private title :Title) {
+      title.setTitle("Asset Type")
+      }
   dataList : AssetType[] = []
   selectedData : AssetType[] = []
   resDelete: DeleteResDto = new DeleteResDto()

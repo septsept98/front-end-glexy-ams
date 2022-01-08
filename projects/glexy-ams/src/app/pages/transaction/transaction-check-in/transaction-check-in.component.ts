@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { StatusTransaction } from '@models/status-transaction';
@@ -24,7 +25,10 @@ export class TransactionCheckInComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private transactionDetailService: TransactionDetailService,
-    private statusTrxService: StatusTransactionService) { }
+    private statusTrxService: StatusTransactionService,
+    private title :Title) {
+      title.setTitle("Check In")
+     }
 
   ngOnInit(): void {
     const id: any = this.route.snapshot.paramMap.get('id')

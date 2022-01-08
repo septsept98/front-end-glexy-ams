@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Roles } from '@models/roles';
@@ -20,7 +21,10 @@ export class RolesListComponent implements OnInit, OnDestroy {
   private deleteRoleSubs?: Subscription;
   private listRoleDelSubs?: Subscription;
 
-  constructor(private rolesServices: RolesService, private router: Router) { }
+  constructor(private rolesServices: RolesService, private router: Router,
+    private title :Title) { 
+      title.setTitle("role")
+    }
 
   ngOnInit(): void {
 

@@ -5,6 +5,7 @@ import { BrandService } from '@services/brand/brand.service';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto'
 import { Subscription } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-brand-list',
@@ -16,7 +17,10 @@ export class BrandListComponent implements OnInit, OnDestroy {
 
   constructor(private brandService : BrandService, 
     private router : Router, 
-    private confirmDialogService: ConfirmationService) { }
+    private confirmDialogService: ConfirmationService,
+    private title :Title) {
+      title.setTitle("Brand")
+     }
 
   deleteResDto : DeleteResDto = new DeleteResDto()
   selectedBrand: Brand[] = []

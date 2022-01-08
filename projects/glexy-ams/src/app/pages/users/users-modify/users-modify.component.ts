@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -35,14 +36,17 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
   listRoleSubs? :Subscription
 
   constructor(private companyService:CompanyService, private rolesService :RolesService,
-    private usersService:UsersService, private activatedRoute :ActivatedRoute,private router:Router) { }
+    private usersService:UsersService, private activatedRoute :ActivatedRoute,
+    private router:Router, private title :Title) {
+      title.setTitle("User Create")
+     }
 
   ngOnInit(): void {
 
     this.userId = this.activatedRoute.snapshot.paramMap.get('id')
 
     if(this.userId){
-
+      this.title.setTitle("User Update")
       this.dataSubs = this.usersService.getById(this.userId)?.subscribe(result=>{
 
         this.save = false

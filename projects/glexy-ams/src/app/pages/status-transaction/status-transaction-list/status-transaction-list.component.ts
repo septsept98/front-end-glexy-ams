@@ -6,6 +6,7 @@ import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-status-transaction-list',
@@ -24,7 +25,10 @@ export class StatusTransactionListComponent implements OnInit, OnDestroy {
 
   constructor(private statusTransactionService: StatusTransactionService, 
     private router: Router,
-    private confirmDialogService: ConfirmationService) { }
+    private confirmDialogService: ConfirmationService,
+    private title :Title) {
+      title.setTitle("Status transaction")
+     }
 
   ngOnInit(): void {
     this.initData()

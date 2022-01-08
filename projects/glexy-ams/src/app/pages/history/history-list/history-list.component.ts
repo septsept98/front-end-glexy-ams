@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { trxAssignType } from '@constant/trx-type';
 import { GetAllTrx } from '@dto/transaction/get-all-trx';
@@ -23,8 +24,10 @@ export class HistoryListComponent implements OnInit, OnDestroy {
   inHist: boolean = false
 
   private unSubs?: Subscription;
-  constructor(private router: Router,
-    private transactionService: TransactionService) { }
+  constructor(private router: Router,private transactionService: TransactionService,
+    private title :Title) {
+      title.setTitle("Transaction")
+     }
 
   ngOnInit(): void {
     this.initData()
