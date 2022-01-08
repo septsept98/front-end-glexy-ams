@@ -47,78 +47,6 @@
       </div>
     </div>
 
-
-
-    <!-- <div class="row">
-      <div class="col-lg-12">
-          <div class="main-card mb-3 card">
-              <div class="card-body">
-                  <h2 class="card-title">Roles</h2>
-                  <p-table #dt [value]="listRoles" [rows]="10" [paginator]="true"
-                      [globalFilterFields]="['code','nameRole']" responsiveLayout="scroll"
-                      [(selection)]="selectedRoles" [rowHover]="true" dataKey="id"
-                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                      [showCurrentPageReport]="true">
-                      <ng-template pTemplate="caption"> -->
-    <!-- <div class="d-flex p-ai-center justify-content-between">
-                              <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click) = "onCreate()"></button>
-                              <span class="p-input-icon-left">
-                                  <i class="pi pi-search"></i>
-                                  <input pInputText type="text"
-                                      (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                      placeholder="Search..." />
-                              </span>
-                          </div> -->
-    <!-- <div class="row">
-                              <div class="col-md-6 col-12">
-                                  <button pButton pRipple icon="pi pi-plus" class="bg-primary" (click)="onCreate()"></button>
-                              </div>
-                              <div class="col-md-6 col-12 d-flex justify-content-end">
-                                  <span class="p-input-icon-left">
-                                      <i class="pi pi-search"></i>
-                                      <input pInputText type="text"
-                                          (input)="dt.filterGlobal($any($event.target).value, 'contains')"
-                                          placeholder="Search..." />
-                                  </span>
-                              </div>
-                          </div>
-                      </ng-template>
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th style="width: 3rem">
-                                  No
-                              </th>
-                              <th pSortableColumn="code">Code Roles <p-sortIcon field="code">
-                                  </p-sortIcon>
-                              </th>
-                              <th pSortableColumn="nameRole">Name Roles <p-sortIcon field="nameRole">
-                                  </p-sortIcon>
-                              </th>
-                              <th>Action</th>
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
-                          <tr>
-                              <td>
-                                  {{rowIndex + 1}}
-                              </td>
-                              <td>{{data.code}}</td>
-                              <td>{{data.nameRole}}</td>
-                              <td>
-                                  <button pButton pRipple icon="pi pi-pencil"
-                                      class="p-button-rounded p-button-success mr-2" (click) = "onUpdate(data.id)"></button>
-                                  <button pButton pRipple icon="pi pi-trash"
-                                      class="p-button-rounded p-button-warning" (click) = "onDelete(data.id)"></button>
-                              </td>
-                          </tr>
-                      </ng-template>
-                  
-                  </p-table>
-              </div>
-          </div>
-      </div>
-    </div> -->
-
     <div class="divider mt-0" style="margin-bottom: 30px;"></div>
     <div class="main-card mb-3 card bg-warning">
       <div class="no-gutters row">
@@ -126,10 +54,10 @@
           <div class="widget-content">
             <div class="widget-content-wrapper">
               <div class="widget-content-right ml-0 mr-3">
-                <div class="widget-numbers text-primary">{{totalCheckOut}}</div>
+                <div class="widget-numbers text-primary">{{totalPending}}</div>
               </div>
               <div class="widget-content-left">
-                <div class="widget-heading text-primary">Check Out</div>
+                <div class="widget-heading text-primary">Pending Assets</div>
                 <div class="widget-subheading text-primary">Total</div>
               </div>
             </div>
@@ -139,10 +67,10 @@
           <div class="widget-content">
             <div class="widget-content-wrapper">
               <div class="widget-content-right ml-0 mr-3">
-                <div class="widget-numbers text-primary">{{totalCheckIn}}</div>
+                <div class="widget-numbers text-primary">{{totalArchived}}</div>
               </div>
               <div class="widget-content-left">
-                <div class="widget-heading text-primary">Check In</div>
+                <div class="widget-heading text-primary">Archived Assets</div>
                 <div class="widget-subheading text-primary">Total</div>
               </div>
             </div>
@@ -155,7 +83,7 @@
                 <div class="widget-numbers text-danger">{{totalExpiredAsset}}</div>
               </div>
               <div class="widget-content-left">
-                <div class="widget-heading text-danger">Expired Asset</div>
+                <div class="widget-heading text-danger">Expired Assets</div>
                 <div class="widget-subheading text-danger">Total</div>
               </div>
             </div>
@@ -183,7 +111,7 @@
               </div>
               <div class="progress-sub-label  ">
                 <div class="sub-label-left text-light">{{totalNotCheckIn}}</div>
-                <div class="sub-label-right text-light">Transaction Not Check In</div>
+                <div class="sub-label-right text-light">Transaction Not Completed</div>
               </div>
             </div>
           </div>
@@ -208,7 +136,7 @@
               </div>
               <div class="widget-content-left fsize-1">
                 <div class="sub-label-left text-light">{{totalCheckIn}}</div>
-                <div class="sub-label-right text-light">Transaction Check In</div>
+                <div class="sub-label-right text-light">Transaction Completed</div>
               </div>
             </div>
           </div>

@@ -65,9 +65,6 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/glexy/users/list')
 
   }
-
-
-
   add() :void{
     this.data.employeeId.emailEmployee = this.data.email
     if(this.userId){
