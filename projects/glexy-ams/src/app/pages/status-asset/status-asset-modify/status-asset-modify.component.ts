@@ -50,6 +50,7 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
     if (this.dataStatusAsset.id) {
       this.insUnSubs = this.statusAssetService.update(this.dataStatusAsset)?.subscribe(res => {
         this.updateResDto = res
+        this.router.navigateByUrl("/glexy/status-asset/list")
         console.log(res)
       })
     } else {
