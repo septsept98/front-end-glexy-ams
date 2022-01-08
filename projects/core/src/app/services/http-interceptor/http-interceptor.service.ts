@@ -25,6 +25,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           console.log(succes)
         }
 
+
         console.log('request complete')
       },
       error :(err) =>{
