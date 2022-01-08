@@ -13,6 +13,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(private toastr: ToastrService, private authService:AuthService, private loadingService : LoadingService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
     const token:string|undefined = this.authService.getToken()
     const newReq = req.clone({setHeaders:{Authorization:`Bearer ${token}`}})
     this.loadingService.onLoading(true)
@@ -28,7 +29,12 @@ export class HttpInterceptorService implements HttpInterceptor {
       error :(err) =>{
         this.loadingService.onLoading(false)
         let errorMessage :HttpErrorResponse=err
-        this.toastr.error(errorMessage.error.msg, 'Error')
+        
+        if(errorMessage.error.msg){
+          this.toastr.error(errorMessage.error.msg, 'Error')
+        } else {
+          this.toastr.error(errorMessage.error.message, 'Error')
+        }
       },
       complete : () => {
         this.loadingService.onLoading(false)

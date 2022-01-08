@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { NgSelect2Module } from 'ng-select2';
 import { RouterModule } from '@angular/router';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
     InputTextModule,
     ButtonModule,
     NgSelect2Module,
-    RouterModule
+    RouterModule,
+    ConfirmDialogModule
   ]
 })
 export class LocationModule { }

@@ -1,22 +1,8 @@
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
-                </i>
-            </div>
-            <div>Status Assets Tables
-                <div class="page-title-subheading">Tables are the backbone of almost all web applications.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h2 class="card-title">Transaction Detail Check In</h2>
+                <h2 class="card-title">{{title}} Transaction Details</h2>
                 <p-table #dt [value]="listTrxDetail" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['code','nameStatusTr','durationDate','dateCheckin']" responsiveLayout="scroll"
                     [rowHover]="true" dataKey="id"
@@ -52,6 +38,7 @@
                             <th pSortableColumn="dateCheckin">Check In Date<p-sortIcon field="dateCheckin">
                                 </p-sortIcon>
                             </th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </ng-template>
@@ -67,14 +54,11 @@
                             <td>{{trxDetail.durationDate?trxDetail.durationDate:'-'}}</td>
                             <td>{{trxDetail.dateCheckin?trxDetail.dateCheckin:'-'}}</td>
                             <td>
+                                <label class="badge {{statusTrx(trxDetail.dateCheckin)}}">{{nameStatus}}</label>
+                            <td>
                                 <button class="btn btn-success" (click)="detailInfo(trxDetail.id)">Info</button>
                             </td>
                         </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listTrxDetail ? listTrxDetail.length : 0 }} products.
-                        </div>
                     </ng-template>
                 </p-table>
             </div>

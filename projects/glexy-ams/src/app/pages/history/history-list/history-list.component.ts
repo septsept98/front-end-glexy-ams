@@ -121,8 +121,8 @@ export class HistoryListComponent implements OnInit, OnDestroy {
     this.unSubs?.unsubscribe()
   }
 
-  detailTrx(id: any): void {
-    this.router.navigateByUrl(`/glexy/histories/transaction-detail/${id}`)
+  detailTrx(id: any, type: any): void {
+    this.router.navigateByUrl(`/glexy/histories/transaction-detail/${type}/${id}`)
   }
 
   downloadPdf(): void {

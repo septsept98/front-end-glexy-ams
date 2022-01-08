@@ -21,6 +21,8 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
   dataStatus: StatusAsset = new StatusAsset()
   listDataStatus: StatusAsset[] = []
 
+  activeOn: boolean = false
+
   private getUnSubs?: Subscription
   private saveUnSubs?: Subscription
 
@@ -39,6 +41,7 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
     })
     const id: any = this.route.snapshot.paramMap.get('id');
     if(id){
+      this.activeOn = true
       this.getUnSubs = this.statusTrxService.getById(String(id))?.subscribe(result => {
         this.dataStatusTrx = result
       })

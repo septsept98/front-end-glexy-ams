@@ -21,7 +21,7 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   file! :File |null 
   updateResDto :UpdateResDto = new UpdateResDto()
   photo :boolean = false
-  // @Output() messageEvent = new EventEmitter<Users>()
+  change :boolean = true
   
   constructor(private usersService :UsersService,private router :Router) { }
 
@@ -68,9 +68,12 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
     })
   }
 
+  onChangePhoto(){
+    this.change = !this.change
+  }
+
   ngOnDestroy(): void {
     this.userSubs?.unsubscribe()
   }
- 
 
 }

@@ -13,6 +13,8 @@ export class HistoryDetailComponent implements OnInit, OnDestroy {
 
   listTrxDetail: TransactionDetail[] = []
   codeTrx!: string
+  nameStatus!: string
+  title!: string
 
   private unSubs?: Subscription
 
@@ -22,10 +24,42 @@ export class HistoryDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const idTrx: any = this.route.snapshot.paramMap.get('id');
-    this.transactionDetailService.getByTr(idTrx)?.subscribe(res => {
-      this.listTrxDetail = res
-      this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
-    })
+    const type: any = this.route.snapshot.paramMap.get('type');
+    this.initData(idTrx, type)
+  }
+
+  initData(idTrx: any, type: any): void {
+    if(type == 'IN'){
+      this.title = "Check In"
+      this.transactionDetailService.getByTrCheckIn(idTrx)?.subscribe(res => {
+        this.listTrxDetail = res
+        this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
+      })
+    }else if(type == 'OUT'){
+      this.title = "Check Out"
+      this.transactionDetailService.getByTrNotCheckIn(idTrx)?.subscribe(res => {
+        this.listTrxDetail = res
+        this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
+      })
+    }else{
+      this.title = "All"
+      this.transactionDetailService.getByTr(idTrx)?.subscribe(res => {
+        this.listTrxDetail = res
+        this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
+      })
+    }
+  }
+
+  statusTrx(data: any): string {
+    let badge: string = ""
+    if(data == null){
+      badge = "badge-danger"
+      this.nameStatus = "Assign"
+    }else {
+      badge = "badge-primary"
+      this.nameStatus = "Complete"
+    }
+    return badge
   }
 
   isDisplayAvail(file: File): boolean {

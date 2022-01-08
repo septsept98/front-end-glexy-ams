@@ -14,6 +14,7 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
   listTrxDetail: TransactionDetail[] = []
   
   codeTrx!: string
+  nameStatus!: string
 
   private unSubs?: Subscription
 
@@ -26,15 +27,19 @@ export class TransactionCheckInDetailListComponent implements OnInit, OnDestroy 
     this.transactionDetailService.getByTrNotCheckIn(idTrx)?.subscribe(res => {
       this.listTrxDetail = res
       this.codeTrx = this.listTrxDetail[0].transactionId.codeTransaction
-      this.listTrxDetail.forEach(result => {
-        result.statusIn = false
-        result.statusOut = true
-        if(result.dateCheckin != null){
-          result.statusIn = true
-          result.statusOut = false
-        }
-      })
     })
+  }
+  
+  statusTrx(data: any): string {
+    let badge: string = ""
+    if(data == null){
+      badge = "badge-danger"
+      this.nameStatus = "Assign"
+    }else {
+      badge = "badge-primary"
+      this.nameStatus = "Complete"
+    }
+    return badge
   }
 
   isDisplayAvail(file: File) : boolean {
