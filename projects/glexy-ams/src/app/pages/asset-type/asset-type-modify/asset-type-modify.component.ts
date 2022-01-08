@@ -41,14 +41,14 @@ export class AssetTypeModifyComponent implements OnInit, OnDestroy {
     if(this.assetTypeId) {
       this.updateSubs = this.assetTypeService.update(this.assetTypeInsert)?.subscribe( result => {
         this.updateResDto = result
-        this.router.navigateByUrl('/glexy/asset-type/list')
+        this.router.navigateByUrl('/glexy/asset-type')
       })
     } else {
       this.assetTypeService.insert(this.assetTypeInsert)?.subscribe(result => {
         if(result.data) {
           this.dataAssetType = result
           if(this.dataAssetType){
-            this.router.navigateByUrl("/glexy/asset-type/list")
+            this.router.navigateByUrl("/glexy/asset-type")
   
           }
         }
@@ -64,7 +64,7 @@ export class AssetTypeModifyComponent implements OnInit, OnDestroy {
   }
 
   onCancel() :void{
-    this.router.navigateByUrl('/glexy/asset-type/list')
+    this.router.navigateByUrl('/glexy/asset-type')
 
   }
 

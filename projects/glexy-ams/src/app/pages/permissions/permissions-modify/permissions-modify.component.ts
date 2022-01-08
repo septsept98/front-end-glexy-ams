@@ -41,7 +41,7 @@ export class PermissionsModifyComponent implements OnInit, OnDestroy {
 
   onCancel(): void {
 
-    this.router.navigateByUrl('/glexy/permissions/list')
+    this.router.navigateByUrl('/glexy/permissions')
 
   }
 
@@ -49,12 +49,12 @@ export class PermissionsModifyComponent implements OnInit, OnDestroy {
 
     if (this.permissionId) {
       this.updateSubs = this.permissionService.update(this.data)?.subscribe(result => this.updateResDto = result)
-      this.router.navigateByUrl('/glexy/permissions/list')
+      this.router.navigateByUrl('/glexy/permissions')
     }
     else {
 
       this.insertSubs = this.permissionService.insert(this.data)?.subscribe(result => this.insertResDto = result)
-      this.router.navigateByUrl('/glexy/permissions/list')
+      this.router.navigateByUrl('/glexy/permissions')
     }
   }
 

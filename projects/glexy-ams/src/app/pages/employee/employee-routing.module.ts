@@ -6,7 +6,7 @@ import { EmployeeModifyComponent } from './employee-modify/employee-modify.compo
 const routes: Routes = [
 
   {
-    path:'employee/list',
+    path:'employee',
     component : EmployeeListComponent
   },
   {

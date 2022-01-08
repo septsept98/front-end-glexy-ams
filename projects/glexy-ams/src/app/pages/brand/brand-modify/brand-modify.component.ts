@@ -40,14 +40,14 @@ export class BrandModifyComponent implements OnInit, OnDestroy{
     if(this.brandId) {
       this.updateSubs = this.brandService.update(this.brandInsert)?.subscribe( result => {
         this.updateResDto = result
-        this.router.navigateByUrl('/glexy/brand/list')
+        this.router.navigateByUrl('/glexy/brand')
       })
     } else {
       this.brandService.insert(this.brandInsert)?.subscribe(result => {
         if(result.data) {
           this.dataBrand = result
           if(this.dataBrand){
-            this.router.navigateByUrl("/glexy/brand/list")
+            this.router.navigateByUrl("/glexy/brand")
   
           }
         }
@@ -57,7 +57,7 @@ export class BrandModifyComponent implements OnInit, OnDestroy{
   }
 
   onCancel() :void{
-    this.router.navigateByUrl('/glexy/brand/list')
+    this.router.navigateByUrl('/glexy/brand')
 
   }
 

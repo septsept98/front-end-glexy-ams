@@ -6,7 +6,7 @@ import { BrandModifyComponent } from './brand-modify/brand-modify.component';
 const routes: Routes = [
 
   {
-    path:'brand/list',
+    path:'brand',
     component : BrandListComponent
   },
   {

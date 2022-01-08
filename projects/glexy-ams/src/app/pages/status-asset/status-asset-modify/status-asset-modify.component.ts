@@ -43,20 +43,20 @@ export class StatusAssetModifyComponent implements OnInit, OnDestroy {
   }
 
   onBack(): void {
-    this.router.navigateByUrl("/glexy/status-asset/list")
+    this.router.navigateByUrl("/glexy/status-asset")
   }
 
   onSubmit(): void {
     if (this.dataStatusAsset.id) {
       this.insUnSubs = this.statusAssetService.update(this.dataStatusAsset)?.subscribe(res => {
         this.updateResDto = res
-        this.router.navigateByUrl("/glexy/status-asset/list")
+        this.router.navigateByUrl("/glexy/status-asset")
         console.log(res)
       })
     } else {
       this.insUnSubs = this.statusAssetService.insert(this.dataStatusAsset)?.subscribe(res => {
         this.insertResDto = res
-        this.router.navigateByUrl("/glexy/status-asset/list")
+        this.router.navigateByUrl("/glexy/status-asset")
       })
     }
   }

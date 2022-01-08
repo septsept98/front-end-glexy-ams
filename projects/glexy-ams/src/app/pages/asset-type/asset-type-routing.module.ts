@@ -7,7 +7,7 @@ import { AssetTypeModifyComponent } from './asset-type-modify/asset-type-modify.
 const routes: Routes = [
 
   {
-    path:'asset-type/list',
+    path:'asset-type',
     component : AssetTypeListComponent
   },
   {

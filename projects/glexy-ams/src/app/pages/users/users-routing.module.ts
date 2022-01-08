@@ -6,7 +6,7 @@ import { UsersModifyComponent } from './users-modify/users-modify.component';
 const routes: Routes = [
   
   {
-    path:'users/list',
+    path:'users',
     component : UsersListComponent
   },
   {

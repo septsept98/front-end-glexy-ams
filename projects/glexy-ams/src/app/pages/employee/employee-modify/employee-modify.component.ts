@@ -49,7 +49,7 @@ export class EmployeeModifyComponent implements OnInit, OnDestroy {
 
   onCancel() :void{
 
-    this.router.navigateByUrl('/glexy/employee/list')
+    this.router.navigateByUrl('/glexy/employee')
 
   }
 
@@ -57,12 +57,12 @@ export class EmployeeModifyComponent implements OnInit, OnDestroy {
     if(this.employeeId){
       this.updateSubs = this.employeeService.update(this.data)?.subscribe(result =>{
         this.updateResDto = result
-        this.router.navigateByUrl('/glexy/employee/list')
+        this.router.navigateByUrl('/glexy/employee')
       })
     }else{
       this.insertSubs = this.employeeService.insert(this.data)?.subscribe(result =>{
         this.insertResDto = result
-        this.router.navigateByUrl('/glexy/employee/list')
+        this.router.navigateByUrl('/glexy/employee')
       })
     }
   }

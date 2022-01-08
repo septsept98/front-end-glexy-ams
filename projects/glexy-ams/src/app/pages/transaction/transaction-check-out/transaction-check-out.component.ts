@@ -364,7 +364,7 @@ export class TransactionCheckOutComponent implements OnInit {
       this.transactionService.insert(this.dataAllTransaction)?.subscribe(res => {
         this.resInsert = res
         console.log(this.dataAllTransaction)
-        this.router.navigateByUrl('/glexy/transaction/check-in-list')
+        this.router.navigateByUrl('/glexy/transaction/check-in')
       })
     }
   }

@@ -59,11 +59,11 @@ export class AssetListComponent implements OnInit, OnDestroy {
   }
 
   backToInvent(): void {
-    this.router.navigateByUrl(`/glexy/inventory/list`)
+    this.router.navigateByUrl(`/glexy/inventory`)
   }
 
   backToInvoice(): void {
-    this.router.navigateByUrl(`/glexy/invoice/list`)
+    this.router.navigateByUrl(`/glexy/invoice`)
   }
 
   onUpdate(id : number): void{

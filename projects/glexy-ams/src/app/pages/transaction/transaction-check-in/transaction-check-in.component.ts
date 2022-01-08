@@ -45,12 +45,12 @@ export class TransactionCheckInComponent implements OnInit {
     console.log(this.dataAssetTrxDetail)
     this.transactionDetailService.update(this.dataAssetTrxDetail)?.subscribe(res => {
       this.resUpdate = res
-      this.router.navigateByUrl("/glexy/transaction/check-in-list")
+      this.router.navigateByUrl("/glexy/transaction/check-in")
     })
   }
 
   onCancel(idTrx: any): void {
-    this.router.navigateByUrl(`/glexy/transaction/check-in-detail-list/${idTrx}`)
+    this.router.navigateByUrl(`/glexy/transaction/check-in-detail/${idTrx}`)
   }
 
 }

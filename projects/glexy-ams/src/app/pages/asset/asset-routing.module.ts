@@ -7,7 +7,7 @@ import { AssetUpdateComponent } from './asset-update/asset-update/asset-update.c
 const routes: Routes = [
 
   {
-    path:'asset/list',
+    path:'asset',
     component : AssetListComponent
   },
   {

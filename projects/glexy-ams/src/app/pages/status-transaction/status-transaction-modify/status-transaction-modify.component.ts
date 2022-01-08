@@ -54,7 +54,7 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
   }
 
   onBack(): void {
-    this.router.navigateByUrl("/glexy/status-trx/list")
+    this.router.navigateByUrl("/glexy/status-trx")
   }
 
   onSubmit(): void {
@@ -66,7 +66,7 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
     } else {
       this.saveUnSubs = this.statusTrxService.insert(this.dataStatusTrx)?.subscribe(res => {
         this.resInsert = res
-        this.router.navigateByUrl("/glexy/status-trx/list")
+        this.router.navigateByUrl("/glexy/status-trx")
       })
     }
   }
