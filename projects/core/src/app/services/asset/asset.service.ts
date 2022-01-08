@@ -108,4 +108,12 @@ export class AssetService {
     return this.http.get<any>(`${baseUrl}assets/pdf`,{responseType: 'blob' as 'json'})??""
   }
 
+  getPendingAsset() : Observable<AssetExpired[]> | undefined {
+    return this.http.get<AssetExpired[]>(`${baseUrl}assets/pending-asset/`)??""
+  }
+
+  getArchivedAsset() : Observable<AssetExpired[]> | undefined {
+    return this.http.get<AssetExpired[]>(`${baseUrl}assets/archived-asset/`)??""
+  }
+
 }

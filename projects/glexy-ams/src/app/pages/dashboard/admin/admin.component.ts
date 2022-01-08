@@ -21,22 +21,24 @@ export class AdminComponent implements OnInit {
   totalEmployee :number = 0;
   totalCompany :number = 0;
   totalExpiredAsset :number = 0;
-  totalCheckOut :number = 0;
-  totalCheckIn :number = 0;
+  totalPending :number = 0;
+  totalArchived :number = 0;
   percent :number = 0;
   totalNotCheckIn :number = 0;
   totalTransactionDetail :number =0;
   percentCheckIn :number =0;
   percentDeployable :number =0;
   totalDeployable :number = 0;
+  totalCheckIn :number = 0;
   ngOnInit(): void {
  
     this.assetService.getAll()?.subscribe(result => this.totalAsset = result.length)
     this.companyService.getAll()?.subscribe(result => this.totalCompany = result.length)
     this.employeeService.getAll()?.subscribe(result => this.totalEmployee = result.length)
     this.assetService.getExpiredAsset()?.subscribe(result => this.totalExpiredAsset = result.length)
-    this.transactionService.getAll()?.subscribe(result => this.totalCheckOut = result.length)
-    this.transactionDetailService.getAllCheckIn()?.subscribe(result => {this.totalCheckIn = result.length
+    this.assetService.getPendingAsset()?.subscribe(result => this.totalPending = result.length)
+    this.assetService.getArchivedAsset()?.subscribe(result => {this.totalArchived = result.length
+     this.transactionDetailService.getAllCheckIn()?.subscribe(result => this.totalCheckIn = result.length) 
       this.transactionDetailService.getAllNotCheckIn()?.subscribe(result => {this.totalNotCheckIn = result.length
         this.transactionDetailService.getAll()?.subscribe(result => {this.totalTransactionDetail = result.length
         
