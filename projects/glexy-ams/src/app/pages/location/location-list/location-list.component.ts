@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-location-list',
@@ -14,7 +15,10 @@ import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 })
 export class LocationListComponent implements OnInit, OnDestroy {
 
-  constructor(private locationService : LocationService, private router : Router, private confirmDialogService: ConfirmationService) { }
+  constructor(private locationService : LocationService, private router : Router, 
+    private confirmDialogService: ConfirmationService, private title :Title) {
+      title.setTitle("Location")
+     }
   
   selectedLocation: Location[] = []
   deleteResDto: DeleteResDto = new DeleteResDto()

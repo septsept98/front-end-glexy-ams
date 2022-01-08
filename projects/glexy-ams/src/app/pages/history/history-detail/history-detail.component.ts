@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionDetail } from '@models/transaction-detail';
 import { TransactionDetailService } from '@services/transaction-detail/transaction-detail.service';
@@ -20,7 +21,9 @@ export class HistoryDetailComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private transactionDetailService: TransactionDetailService) { }
+    private transactionDetailService: TransactionDetailService,private titleWeb :Title) {
+      titleWeb.setTitle("Transaction Detail")
+     }
 
   ngOnInit(): void {
     const idTrx: any = this.route.snapshot.paramMap.get('id');

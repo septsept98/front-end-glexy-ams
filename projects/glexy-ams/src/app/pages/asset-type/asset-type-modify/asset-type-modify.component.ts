@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -13,7 +14,10 @@ import { Subscription } from 'rxjs';
 })
 export class AssetTypeModifyComponent implements OnInit, OnDestroy {
 
-  constructor(private assetTypeService : AssetTypeService, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor(private assetTypeService : AssetTypeService, private router: Router,
+     private activedRoute:ActivatedRoute, private title :Title) { 
+      title.setTitle("Asset Type Create")
+     }
   assetTypeInsert : AssetType = new AssetType()
   dataAssetType : InsertResDto = new InsertResDto()
   updateResDto: UpdateResDto = new UpdateResDto()
@@ -28,6 +32,7 @@ export class AssetTypeModifyComponent implements OnInit, OnDestroy {
     this.assetTypeId = this.activedRoute.snapshot.paramMap.get('id')
 
     if(this.assetTypeId){
+      this.title.setTitle("Asset Type Update")
       this.dataSubs = this.assetTypeService.getById(this.assetTypeId)?.subscribe(result => {
         this.save = false
         this.tab = true

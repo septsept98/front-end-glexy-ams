@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Users } from '@models/users';
@@ -23,7 +24,10 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   photo :boolean = false
   change :boolean = true
   
-  constructor(private usersService :UsersService,private router :Router) { }
+  constructor(private usersService :UsersService,private router :Router,
+    private title :Title) {
+      title.setTitle("Profile")
+     }
 
   ngOnInit(): void {
 

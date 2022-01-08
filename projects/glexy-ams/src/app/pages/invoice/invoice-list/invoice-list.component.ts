@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Invoice } from '@models/invoice';
 import { InvoiceService } from '@services/invoice/invoice.service';
@@ -15,7 +16,10 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   dataList: Invoice[] = []
   obs? : Subscription
   
-  constructor(private invoiceService : InvoiceService, private router : Router) { }
+  constructor(private invoiceService : InvoiceService, private router : Router,
+    private title :Title) { 
+      title.setTitle("Invoice")
+    }
 
   ngOnInit(): void {
     this.invoiceService.getAll()?.subscribe(result => {

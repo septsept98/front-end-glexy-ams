@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -23,11 +24,15 @@ export class BrandModifyComponent implements OnInit, OnDestroy{
   insertSubs?: Subscription
   updateSubs?: Subscription
 
-  constructor(private brandService: BrandService, private router: Router, private activedRoute:ActivatedRoute) { }
+  constructor(private brandService: BrandService, private router: Router, 
+    private activedRoute:ActivatedRoute, private title :Title) { 
+      title.setTitle("Brand Create")
+    }
 
   ngOnInit(): void {
     this.brandId = this.activedRoute.snapshot.paramMap.get('id')
     if(this.brandId) {
+      this. title.setTitle("Brand Update")
       this.dataSubs = this.brandService.getById(this.brandId)?.subscribe(result => {
         this.save = false
         this.tab = true

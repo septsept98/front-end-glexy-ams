@@ -1,5 +1,6 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { Asset } from '@models/asset';
@@ -22,7 +23,10 @@ import { Options } from 'select2';
 })
 export class AssetModifyComponent implements OnInit, OnDestroy {
 
-  constructor(private assetService : AssetService, private router : Router, private authService : AuthService) { }
+  constructor(private assetService : AssetService, private router : Router, 
+    private authService : AuthService, private title :Title) { 
+      title.setTitle("Asset Create")
+    }
 
   optionsBrand! : Options;
   optionsCompany! : Options;

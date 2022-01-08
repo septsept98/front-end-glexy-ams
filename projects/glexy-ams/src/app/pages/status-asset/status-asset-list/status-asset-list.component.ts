@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { ConfirmationService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-status-asset-list',
@@ -23,7 +24,10 @@ export class StatusAssetListComponent implements OnInit, OnDestroy {
 
   constructor(private statusAssetService: StatusAssetService,
     private router: Router,
-    private confirmDialogService: ConfirmationService) { }
+    private confirmDialogService: ConfirmationService,
+    private title :Title) {
+      title.setTitle("Status Asset")
+     }
 
   ngOnInit(): void {
     this.initData()

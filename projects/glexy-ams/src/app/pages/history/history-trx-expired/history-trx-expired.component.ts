@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { TrxOutofDate } from '@dto/report/trx-out-of-date';
@@ -19,7 +20,10 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
   private resDto!: ResDto
 
   constructor(private router: Router,
-    private transactionDetailService: TransactionDetailService) { }
+    private transactionDetailService: TransactionDetailService,
+    private title :Title) {
+      title.setTitle("Transaction Expired")
+     }
 
   ngOnInit(): void {
     this.transactionDetailService.getOutDate()?.subscribe(res => {

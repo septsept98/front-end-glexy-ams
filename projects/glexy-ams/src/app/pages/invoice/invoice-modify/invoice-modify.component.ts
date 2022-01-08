@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Invoice } from '@models/invoice';
@@ -11,7 +12,10 @@ import { InvoiceService } from '@services/invoice/invoice.service';
 })
 export class InvoiceModifyComponent implements OnInit {
 
-  constructor(private activeRoute : ActivatedRoute, private invoiceService : InvoiceService, private router : Router) { }
+  constructor(private activeRoute : ActivatedRoute, private invoiceService : InvoiceService, 
+    private router : Router, private title :Title) {
+      title.setTitle("Invoice Update")
+     }
 
   invoice : Invoice = new Invoice()
   updateResDto : UpdateResDto = new UpdateResDto()

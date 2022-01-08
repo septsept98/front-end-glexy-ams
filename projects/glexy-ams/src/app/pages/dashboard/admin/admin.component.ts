@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AssetService } from '@services/asset/asset.service';
 import { CompanyService } from '@services/company/company.service';
 import { EmployeeService } from '@services/employee/employee.service';
@@ -15,7 +16,9 @@ export class AdminComponent implements OnInit {
 
   constructor(private assetService :AssetService, private companyService :CompanyService,
     private employeeService :EmployeeService, private transactionService :TransactionService,
-    private transactionDetailService :TransactionDetailService) { }
+    private transactionDetailService :TransactionDetailService, private title :Title) {
+      title.setTitle("Dashboard")
+     }
 
   totalAsset :number = 0;
   totalEmployee :number = 0;

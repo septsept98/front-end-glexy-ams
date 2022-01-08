@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { StatusAssetService } from '@services/status-asset/status-asset.service';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-status-transaction-modify',
@@ -32,7 +33,10 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
   constructor(private statusTrxService: StatusTransactionService,
     private statusAssetService: StatusAssetService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private title :Title) {
+      title.setTitle("Status Transaction Create")
+     }
 
   ngOnInit(): void {
     this.dataStatusTrx.statusAssetId = this.dataStatus
@@ -41,6 +45,7 @@ export class StatusTransactionModifyComponent implements OnInit, OnDestroy {
     })
     const id: any = this.route.snapshot.paramMap.get('id');
     if(id){
+      this.title.setTitle("Status Transaction Update")
       this.activeOn = true
       this.getUnSubs = this.statusTrxService.getById(String(id))?.subscribe(result => {
         this.dataStatusTrx = result

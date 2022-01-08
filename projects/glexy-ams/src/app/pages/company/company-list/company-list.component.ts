@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Company } from '@models/company';
@@ -21,7 +22,10 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   obs? : Subscription
   delSubs? : Subscription
   
-  constructor(private companyService : CompanyService, private router : Router, private confirmDialogService: ConfirmationService) { }
+  constructor(private companyService : CompanyService, private router : Router, private confirmDialogService: ConfirmationService,
+    private title :Title) {
+      title.setTitle("Company")
+     }
   
   ngOnInit(): void {
     this.initData()

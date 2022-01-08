@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -23,13 +24,16 @@ export class PermissionsModifyComponent implements OnInit, OnDestroy {
   updateSubs?: Subscription
 
   constructor(private permissionService: PermissionsService, private activedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private title :Title) {
+      title.setTitle("Permission Create")
+     }
 
   ngOnInit(): void {
 
     this.permissionId = this.activedRoute.snapshot.paramMap.get('id')
 
     if (this.permissionId) {
+      this.title.setTitle("Permission Update")
       this.dataSubs = this.permissionService.getById(this.permissionId)?.subscribe(result => {
         this.save = false
         this.data = result

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
 import { Users } from '@models/users';
@@ -18,7 +19,10 @@ export class ProfileModifyPasswordComponent implements OnInit, OnDestroy {
   updateResDto :UpdateResDto = new UpdateResDto()
   userSubs? :Subscription
 
-  constructor(private usersSevice :UsersService, private router :Router) { }
+  constructor(private usersSevice :UsersService, private router :Router,
+    private title :Title) {
+      title.setTitle("Profile Update Password")
+     }
 
   ngOnInit(): void {
 

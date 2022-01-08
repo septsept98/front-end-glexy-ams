@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsertResDto } from '@dto/all-respons/insert-res-dto';
 import { UpdateResDto } from '@dto/all-respons/update-res-dto';
@@ -33,14 +34,17 @@ export class PermissionDetailModifyComponent implements OnInit, OnDestroy {
   listPermissionSubs?: Subscription
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private permissionDetailService: PermissionDetailService,
-    private roleService: RolesService, private permissionService: PermissionsService) { }
+    private roleService: RolesService, private permissionService: PermissionsService,
+    private title :Title) {
+      title.setTitle("Permission Detail Create")
+     }
 
   ngOnInit(): void {
 
     this.permissionDetailId = this.activatedRoute.snapshot.paramMap.get('id')
 
     if (this.permissionDetailId) {
-
+      this. title.setTitle("Permission Detail Update")
       this.dataSubs = this.permissionDetailService.getById(this.permissionDetailId)?.subscribe(result => {
         this.save = false
         this.data = result

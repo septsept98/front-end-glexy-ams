@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionDetail } from '@models/transaction-detail';
 import { TransactionDetailService } from '@services/transaction-detail/transaction-detail.service';
@@ -13,7 +14,10 @@ export class HistoryDetailInfoComponent implements OnInit {
   dataAssetTrxDetail: TransactionDetail = new TransactionDetail()
 
   constructor(private route: ActivatedRoute,
-    private transactionDetailService: TransactionDetailService) { }
+    private transactionDetailService: TransactionDetailService,
+    private title :Title) { 
+      title.setTitle("Transaction Detail Info")
+    }
 
   ngOnInit(): void {
     const id: any = this.route.snapshot.paramMap.get('id')

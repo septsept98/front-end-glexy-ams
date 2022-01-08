@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeleteResDto } from '@dto/all-respons/delete-res-dto';
 import { Employee } from '@models/employee';
@@ -19,7 +20,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   deleteSubs?: Subscription
   dataDelSubs?: Subscription
 
-  constructor(private employeeService :EmployeeService, private router :Router) { }
+  constructor(private employeeService :EmployeeService, private router :Router,
+    private title :Title) { 
+      title.setTitle("Emloyee")
+    }
 
   ngOnInit(): void {
 

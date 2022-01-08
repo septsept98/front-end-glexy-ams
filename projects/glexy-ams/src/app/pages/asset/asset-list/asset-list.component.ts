@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { statusAss } from '@constant/status';
 import { Asset } from '@models/asset';
@@ -12,7 +13,10 @@ import { Subscription } from 'rxjs';
 })
 export class AssetListComponent implements OnInit, OnDestroy {
 
-  constructor(private activedRoute:ActivatedRoute, private assetService : AssetService, private router : Router) { }
+  constructor(private activedRoute:ActivatedRoute, private assetService : AssetService, 
+    private router : Router, private title :Title) {
+      title.setTitle("Asset")
+     }
 
   assetList: Asset[] = []
   selectedAsset: Asset[] = []
