@@ -66,7 +66,7 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
   
   onCancel() :void{
 
-    this.router.navigateByUrl('/glexy/users/list')
+    this.router.navigateByUrl('/glexy/users')
 
   }
   add() :void{
@@ -74,12 +74,12 @@ export class UsersModifyComponent implements OnInit, OnDestroy {
     if(this.userId){
       
       this.updateSubs = this.usersService.update(this.data)?.subscribe(result => this.updateResDto = result)
-      this.router.navigateByUrl('/glexy/users/list')
+      this.router.navigateByUrl('/glexy/users')
     }else{
     
       this.insertSubs = this.usersService.insert(this.data)?.subscribe(result =>{
       this.insertResDto = result
-      this.router.navigateByUrl('/glexy/users/list')
+      this.router.navigateByUrl('/glexy/users')
     })
     
   }

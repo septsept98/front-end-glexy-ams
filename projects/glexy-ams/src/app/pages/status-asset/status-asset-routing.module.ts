@@ -7,7 +7,7 @@ import { StatusAssetModifyComponent } from './status-asset-modify/status-asset-m
 const routes: Routes = [
 
   {
-    path:'status-asset/list',
+    path:'status-asset',
     component : StatusAssetListComponent
   },
   {

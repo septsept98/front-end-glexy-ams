@@ -152,7 +152,7 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
     this.assetService.update(this.asset)?.subscribe(result => {
       this.dataUpdate = result
         if(this.dataUpdate){
-          this.router.navigateByUrl("/glexy/asset/list")
+          this.router.navigateByUrl("/glexy/asset")
         }
     })
   }
@@ -162,7 +162,7 @@ export class AssetUpdateComponent implements OnInit, OnDestroy {
       this.assetService.updateImage(this.asset, this.fileImg!)?.subscribe(result => {
         this.dataUpdate = result
         if(this.dataUpdate){
-          this.router.navigateByUrl("/glexy/asset/list")
+          this.router.navigateByUrl("/glexy/asset")
         }
       }) 
   }

@@ -6,7 +6,7 @@ import { CompanyModifyComponent } from './company-modify/company-modify.componen
 const routes: Routes = [
 
   {
-    path:'company/list',
+    path:'company',
     component : CompanyListComponent
   },
   {

@@ -6,7 +6,7 @@ import { StatusTransactionModifyComponent } from './status-transaction-modify/st
 
 const routes: Routes = [
   {
-    path : 'status-trx/list',
+    path : 'status-trx',
     component : StatusTransactionListComponent
   },
   {

@@ -56,6 +56,6 @@ export class TransactionCheckInListComponent implements OnInit, OnDestroy {
   }
 
   checkIn(id: any): void {
-    this.router.navigateByUrl(`/glexy/transaction/check-in-detail-list/${id}`)
+    this.router.navigateByUrl(`/glexy/transaction/check-in-detail/${id}`)
   }
 }

@@ -6,7 +6,7 @@ import { PermissionsModifyComponent } from './permissions-modify/permissions-mod
 const routes: Routes = [
 
   {
-    path:'permissions/list',
+    path:'permissions',
     component : PermissionsListComponent
   },
   {

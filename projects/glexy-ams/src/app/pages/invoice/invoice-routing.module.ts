@@ -6,7 +6,7 @@ import { InvoiceModifyComponent } from './invoice-modify/invoice-modify.componen
 const routes: Routes = [
 
   {
-    path:'invoice/list',
+    path:'invoice',
     component : InvoiceListComponent
   },
   {

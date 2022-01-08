@@ -71,44 +71,44 @@
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/asset/list" routerLinkActive="active" *ngIf="assetMenu">
+                                <a class="nav-link" routerLink="/glexy/asset" routerLinkActive="active" *ngIf="assetMenu">
                                     <i class="bx bx-devices" *ngIf="assetMenu"></i >&nbsp; Asset</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/status-asset/list" routerLinkActive="active" *ngIf = "assetStatusMenu">
+                                <a class="nav-link" routerLink="/glexy/status-asset" routerLinkActive="active" *ngIf = "assetStatusMenu">
                                     <i class="bx bx-archive-in" *ngIf = "assetStatusMenu"></i>&nbsp; Asset Status</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/asset-type/list" routerLinkActive="active" *ngIf="assetTypeMenu">
+                                <a class="nav-link" routerLink="/glexy/asset-type" routerLinkActive="active" *ngIf="assetTypeMenu">
                                     <i class="bx bx-barcode" *ngIf="assetTypeMenu"></i>&nbsp;Asset Type</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/status-trx/list" routerLinkActive="active" *ngIf="assetTypeMenu">
+                                <a class="nav-link" routerLink="/glexy/status-trx" routerLinkActive="active" *ngIf="assetTypeMenu">
                                     <i class="bx bx-wrench" *ngIf="assetTypeMenu"></i>&nbsp;Status Transaction</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/brand/list" routerLinkActive="active" *ngIf="brandMenu">
+                                <a class="nav-link" routerLink="/glexy/brand" routerLinkActive="active" *ngIf="brandMenu">
                                     <i class="bx bx-laptop" *ngIf="brandMenu"></i>&nbsp;Brand</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/location/list" routerLinkActive="active" *ngIf="locationMenu">
+                                <a class="nav-link" routerLink="/glexy/location" routerLinkActive="active" *ngIf="locationMenu">
                                     <i class="bx bx-building" *ngIf="locationMenu"></i>&nbsp;Location</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/invoice/list" routerLinkActive="active" *ngIf="invoiceMenu">
+                                <a class="nav-link" routerLink="/glexy/invoice" routerLinkActive="active" *ngIf="invoiceMenu">
                                     <i class="bx bx-cart" *ngIf="invoiceMenu"></i>&nbsp;Invoice</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/company/list" routerLinkActive="active" *ngIf="companyMenu">
+                                <a class="nav-link" routerLink="/glexy/company" routerLinkActive="active" *ngIf="companyMenu">
                                     <i class="bx bx-buildings" *ngIf="companyMenu"></i>&nbsp;Company</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/employee/list" routerLinkActive="active" *ngIf="employeeMenu">
+                                <a class="nav-link" routerLink="/glexy/employee" routerLinkActive="active" *ngIf="employeeMenu">
                                     <i class="bx bx-user" *ngIf="employeeMenu"></i>&nbsp;Employee</a>
                             </li>
                         </ul>
@@ -123,20 +123,20 @@
                     <div class="collapse" id="ui-user">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/users/list" routerLinkActive="active" *ngIf="userMenu">
+                                <a class="nav-link" routerLink="/glexy/users" routerLinkActive="active" *ngIf="userMenu">
                                     <i class="bx bxs-user-account" *ngIf="userMenu"></i>&nbsp; User</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/roles/list" routerLinkActive="active" *ngIf="roleMenu">
+                                <a class="nav-link" routerLink="/glexy/roles" routerLinkActive="active" *ngIf="roleMenu">
                                     <i class="bx bxs-user-badge" *ngIf="roleMenu"></i>&nbsp; Role</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/permissions/list" routerLinkActive="active" *ngIf="permissionMenu">
+                                <a class="nav-link" routerLink="/glexy/permissions" routerLinkActive="active" *ngIf="permissionMenu">
                                     <i class="bx bx-user-pin" *ngIf="permissionMenu"></i>&nbsp;Permission</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/permission-detail/list" routerLinkActive="active" *ngIf="permissionDetailMenu">
+                                <a class="nav-link" routerLink="/glexy/permission-detail" routerLinkActive="active" *ngIf="permissionDetailMenu">
                                     <i class="bx bxs-user" *ngIf="permissionDetailMenu"></i>&nbsp;Permission Detail</a>
                             </li>
 
@@ -157,7 +157,7 @@
                                     <i class="bx bx-up-arrow-alt" *ngIf="coMenu"></i>&nbsp; Check Out</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" routerLink="/glexy/transaction/check-in-list" routerLinkActive="active" *ngIf="ciMenu">
+                                <a class="nav-link" routerLink="/glexy/transaction/check-in" routerLinkActive="active" *ngIf="ciMenu">
                                     <i class="bx bx-down-arrow-alt" *ngIf="ciMenu"></i>&nbsp; Check In</a>
                             </li>
                         </ul>
@@ -194,7 +194,7 @@
                 </li>
 
                 <li class="nav-item" routerLinkActive="active" (mouseenter)="hoverOpen($event.target)" (mouseleave)="hoverClose($event.target)">
-                    <a class="nav-link" routerLink="/glexy/inventory/list" *ngIf="inventoryMenu">
+                    <a class="nav-link" routerLink="/glexy/inventory" *ngIf="inventoryMenu">
                         <i class="bx bxs-archive menu-icon" *ngIf="inventoryMenu"></i>
                         <span class="menu-title" *ngIf="inventoryMenu">Inventory</span>
                     </a>

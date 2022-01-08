@@ -47,7 +47,7 @@ export class CompanyModifyComponent implements OnInit, OnDestroy {
   }
 
   onCancel() :void{
-    this.router.navigateByUrl('/glexy/company/list')
+    this.router.navigateByUrl('/glexy/company')
 
   }
 
@@ -61,14 +61,14 @@ export class CompanyModifyComponent implements OnInit, OnDestroy {
     if(this.companyId){
       this.updateSubs = this.companyService.update(this.companyInsert)?.subscribe( result => {
         this.updateResDto = result
-        this.router.navigateByUrl('/glexy/company/list')
+        this.router.navigateByUrl('/glexy/company')
       })
     } else {
       this.file = this.selectedFile?.item(0)
       this.companyService.insert(this.companyInsert, this.file)?.subscribe(result => {
         this.insertResDto = result
         if(this.insertResDto){
-          this.router.navigateByUrl("/glexy/company/list")
+          this.router.navigateByUrl("/glexy/company")
         }
       }) 
 
@@ -80,7 +80,7 @@ export class CompanyModifyComponent implements OnInit, OnDestroy {
       this.companyService.updateImage(this.companyInsert, this.imageUpdate!)?.subscribe(result => {
         this.updateResDto = result
         if(this.updateResDto){
-          this.router.navigateByUrl("/glexy/company/list")
+          this.router.navigateByUrl("/glexy/company")
         }
       }) 
   }

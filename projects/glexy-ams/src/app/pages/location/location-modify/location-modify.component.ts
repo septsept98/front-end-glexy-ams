@@ -84,14 +84,14 @@ export class LocationModifyComponent implements OnInit, OnDestroy {
     if(this.locationId) { 
       this.updateSubs = this.locationService.update(this.locationInsert)?.subscribe( result => {
         this.updateResDto = result
-        this.router.navigateByUrl('/glexy/location/list')
+        this.router.navigateByUrl('/glexy/location')
       })
     } else {
       this.insertSubs = this.locationService.insert(this.locationInsert)?.subscribe(result => {
         if(result.data) {
           this.dataLocation = result
           if(this.dataLocation){
-            this.router.navigateByUrl("/glexy/location/list")
+            this.router.navigateByUrl("/glexy/location")
   
           }
         }
@@ -102,7 +102,7 @@ export class LocationModifyComponent implements OnInit, OnDestroy {
   }
 
   onCancel() :void{
-    this.router.navigateByUrl('/glexy/location/list')
+    this.router.navigateByUrl('/glexy/location')
 
   }
 

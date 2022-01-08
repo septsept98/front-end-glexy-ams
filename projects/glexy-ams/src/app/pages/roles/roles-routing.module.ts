@@ -6,7 +6,7 @@ import { RolesModifyComponent } from './roles-modify/roles-modify.component';
 const routes: Routes = [
 
   {
-    path:'roles/list',
+    path:'roles',
     component : RolesListComponent
   },
   {

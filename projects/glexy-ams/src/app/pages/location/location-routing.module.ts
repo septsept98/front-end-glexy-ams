@@ -6,7 +6,7 @@ import { LocationModifyComponent } from './location-modify/location-modify.compo
 const routes: Routes = [
 
   {
-    path:'location/list',
+    path:'location',
     component : LocationListComponent
   },
   {

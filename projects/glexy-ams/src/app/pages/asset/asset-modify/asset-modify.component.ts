@@ -192,7 +192,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.obs = this.assetService.uploadFile(this.currentFile!)?.subscribe(result => {
       this.insertResDto = result
       if(this.insertResDto){
-        this.router.navigateByUrl("/glexy/asset/list")
+        this.router.navigateByUrl("/glexy/asset")
       }
     })
   }
@@ -203,7 +203,7 @@ export class AssetModifyComponent implements OnInit, OnDestroy {
     this.insertSubs = this.assetService.insert(this.assetInsert, this.fileInvoice!, this.fileAsset!)?.subscribe(result => {
       this.insertResDto = result
       if(this.insertResDto){
-        this.router.navigateByUrl("/glexy/asset/list")
+        this.router.navigateByUrl("/glexy/asset")
       }
     }) 
   }

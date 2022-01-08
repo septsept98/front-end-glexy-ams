@@ -6,7 +6,7 @@ import { InventoryModifyComponent } from './inventory-modify/inventory-modify.co
 const routes: Routes = [
 
   {
-    path:'inventory/list',
+    path:'inventory',
     component : InventoryListComponent
   },
   {

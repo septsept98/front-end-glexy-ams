@@ -6,7 +6,7 @@ import { PermissionDetailModifyComponent } from './permission-detail-modify/perm
 const routes: Routes = [
 
   {
-    path:'permission-detail/list',
+    path:'permission-detail',
     component : PermissionDetailListComponent
   },
   {
