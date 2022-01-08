@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     TableModule,
     InputTextModule,
     ButtonModule,
-    RouterModule
+    RouterModule,
+    ConfirmDialogModule
   ]
 })
 export class CompanyModule { }
