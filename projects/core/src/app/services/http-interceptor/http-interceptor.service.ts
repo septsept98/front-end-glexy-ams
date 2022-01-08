@@ -24,13 +24,30 @@ export class HttpInterceptorService implements HttpInterceptor {
           this.toastr.success(data.body.msg, 'Success')
           console.log(succes)
         }
+<<<<<<< HEAD
         this.loadingService.onLoading(false)
+=======
+>>>>>>> fae5ba5a24d86bd73bc00f644dd10a38055ce264
         console.log('request complete')
       },
       error :(err) =>{
+        this.loadingService.onLoading(false)
         let errorMessage :HttpErrorResponse=err
+<<<<<<< HEAD
         this.toastr.error(errorMessage.error.msg, 'Error')
         this.loadingService.onLoading(false)
+=======
+        
+        if(errorMessage.error.msg){
+          this.toastr.error(errorMessage.error.msg, 'Error')
+        } else {
+          this.toastr.error(errorMessage.error.message, 'Error')
+        }
+      },
+      complete : () => {
+        this.loadingService.onLoading(false)
+
+>>>>>>> fae5ba5a24d86bd73bc00f644dd10a38055ce264
       }
     }))
   }
