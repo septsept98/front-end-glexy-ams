@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { AssetExpired } from '@dto/report/asset-expired';
 import { AssetService } from '@services/asset/asset.service';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,7 +21,9 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
   private resDto!: ResDto
 
   constructor(private router: Router,
-    private assetService: AssetService, title :Title) { 
+    private assetService: AssetService, 
+    private title :Title,
+    private toastr: ToastrService) { 
       title.setTitle("Asset Expired")
     }
 
@@ -48,6 +51,7 @@ export class HistoryAssetExpiredComponent implements OnInit, OnDestroy {
       a.href = URL.createObjectURL(res)
       a.download = "asset-license-expired.pdf"
       a.click()
+      this.toastr.success('Downloaded', 'Success')
     })
   }
 

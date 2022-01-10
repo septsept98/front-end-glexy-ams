@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { TrackAsset } from '@models/track-asset';
 import { TrackAssetService } from '@services/track-asset/track-asset.service';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,7 +22,8 @@ export class HistoryTrackAssetComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private trackAssetService: TrackAssetService,
-    private title :Title) { 
+    private title :Title,
+    private toastr: ToastrService) { 
       title.setTitle("Track Asset")
     }
 
@@ -41,6 +43,7 @@ export class HistoryTrackAssetComponent implements OnInit, OnDestroy {
       a.href = URL.createObjectURL(res)
       a.download = "track-asset.pdf"
       a.click()
+      this.toastr.success('Downloaded', 'Success')
     })
   }
 

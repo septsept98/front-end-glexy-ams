@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ResDto } from '@dto/all-respons/res-dto';
 import { TrxOutofDate } from '@dto/report/trx-out-of-date';
 import { TransactionDetailService } from '@services/transaction-detail/transaction-detail.service';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -21,7 +22,8 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private transactionDetailService: TransactionDetailService,
-    private title :Title) {
+    private title :Title,
+    private toastr: ToastrService) {
       title.setTitle("Transaction Expired")
      }
 
@@ -49,6 +51,7 @@ export class HistoryTrxExpiredComponent implements OnInit, OnDestroy {
       a.href = URL.createObjectURL(res)
       a.download = "trx-expired.pdf"
       a.click()
+      this.toastr.success('Downloaded', 'Success')
     })
   }
 
