@@ -88,13 +88,13 @@
                             <td>{{asset.invoiceId.code}}</td>
                             <td>{{asset.expiredDate?asset.expiredDate:'-'}}</td>
                             <td *ngIf="!show" class="px-6">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)"></button>
+                                <div class="row" *ngIf="showEdit">
+                                    <div class="col-6" >
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="onUpdate(asset.id)" ></button>
 
                                     </div>
                                     <div class="col-6">
-                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(asset.id)"></button>
 
                                     </div>
                                 </div>
@@ -102,6 +102,7 @@
                         </tr>
                     </ng-template>
                 </p-table>
+                <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
             </div>
         </div>
     </div>

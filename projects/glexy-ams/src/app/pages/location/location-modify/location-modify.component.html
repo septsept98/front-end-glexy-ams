@@ -13,7 +13,7 @@
             </div>
             <div class="form-group" *ngIf="save">
                 <label>Company</label>
-                <ng-select2 [options]='optionsCompany' [(ngModel)]="locationInsert.companyId"> </ng-select2>
+                <ng-select2 [options]='optionsCompany' [(ngModel)]="locationInsert.companyId.id"> </ng-select2>
             </div>
             <button class="btn btn-dark mr-2" (click)="onCancel()">Cancel</button>
             <button type="submit" class="btn btn-primary" (click)="addDb()">Submit</button>

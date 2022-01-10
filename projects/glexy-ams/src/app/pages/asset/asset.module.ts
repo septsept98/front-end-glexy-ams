@@ -12,6 +12,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AssetUpdateComponent } from './asset-update/asset-update/asset-update.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AssetUpdateComponent } from './asset-update/asset-update/asset-update.c
     ButtonModule,
     NgSelect2Module,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfirmDialogModule
   ]
 })
 export class AssetModule { }

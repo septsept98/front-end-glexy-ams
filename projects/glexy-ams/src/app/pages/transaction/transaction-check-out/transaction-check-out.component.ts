@@ -330,7 +330,7 @@ export class TransactionCheckOutComponent implements OnInit {
     this.dataReqAsset.qty = this.qtyTrx
     this.dataReqAsset.stock = this.stockAsset
     if (this.dataReqAsset.brandId == null) {
-      this.toastr.error("Fill The Form", 'Error')
+      this.toastr.error("Data not complete", 'Error')
     } else {
       if (this.qtyTrx > 0 && this.qtyTrx <= this.stockAsset) {
         for (let i = 0; i < this.qtyTrx; i++) {
@@ -354,7 +354,7 @@ export class TransactionCheckOutComponent implements OnInit {
 
   onSubmit(): void {
     if (this.dataTrx.description == null || this.dataDetailTrx.length <= 0) {
-    this.toastr.error("Fill The Form", 'Error')
+    this.toastr.error("Data not complete", 'Error')
     } else {
     if (this.employeeSelected.id != null) {
         this.dataTrx.employeeId = this.employeeSelected
